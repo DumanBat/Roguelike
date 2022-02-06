@@ -15,7 +15,7 @@ PlayerSettings:
   companyName: DefaultCompany
   productName: RogueLike
   defaultCursor: {fileID: 2800000, guid: b8e7ff52acb814a409bcb65beb7818c6, type: 3}
-  cursorHotspot: {x: 512, y: 256}
+  cursorHotspot: {x: 512, y: 512}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1

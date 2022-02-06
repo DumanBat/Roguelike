@@ -15,6 +15,22 @@ MonoBehaviour:
   _greenJelly:
     enemyPrefab: {fileID: 2796267632980311292, guid: e9aecf1944b4c7d4891a384123ea4362,
       type: 3}
+    Health:
+      _value: 10
+    Scale:
+      _value: 1
+    PatrolRange:
+      _value: 5
+    AggroRange:
+      _value: 5
   _pinkJelly:
     enemyPrefab: {fileID: 6116314101010631402, guid: 1e4028abda38544439cca80da41cb27c,
       type: 3}
+    Health:
+      _value: 10
+    Scale:
+      _value: 1
+    PatrolRange:
+      _value: 5
+    AggroRange:
+      _value: 5

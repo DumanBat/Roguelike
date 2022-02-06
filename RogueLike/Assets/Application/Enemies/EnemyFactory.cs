@@ -12,7 +12,7 @@ public class EnemyFactory: GameObjectFactory
         var config = GetConfig(type);
         Enemy instance = CreateGameObjectInstance(config.enemyPrefab);
         instance.OriginFactory = this;
-        instance.Init();
+        instance.Init(config.Health, config.Scale, config.PatrolRange, config.AggroRange);
         return instance;
     }
 

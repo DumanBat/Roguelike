@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class EnemyBaseBehaviour : MonoBehaviour, IEnemyStateSwitcher
+public abstract class EnemyBaseBehaviour : MonoBehaviour//, IEnemyStateSwitcher
 {
-    protected Enemy _enemy;
+    /*protected Enemy _enemy;
     protected EnemyBaseState _currentState;
 
     protected List<EnemyBaseState> _allStates;
@@ -41,5 +41,5 @@ public abstract class EnemyBaseBehaviour : MonoBehaviour, IEnemyStateSwitcher
         _currentState.Exit();
         state.Enter();
         _currentState = state;
-    }
+    }*/
 }

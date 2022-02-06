@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-public class PinkJellyBehaviour : EnemyBaseBehaviour, IEnemyStateSwitcher
+public class PinkJellyBehaviour : EnemyBaseBehaviour//, IEnemyStateSwitcher
 {
-    public override void Init(Enemy enemy)
+    /*public override void Init(Enemy enemy)
     {
         base.Init(enemy);
 
@@ -13,5 +13,5 @@ public class PinkJellyBehaviour : EnemyBaseBehaviour, IEnemyStateSwitcher
         };
 
         _currentState = _allStates[0];
-    }
+    }*/
 }

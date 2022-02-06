@@ -25,7 +25,7 @@ public class GreenJellyIdleState : GreenJellyBaseState
 
     public override void FixedUpdate()
     {
-        _enemy.rb.MovePosition(_enemy.spawnPosition + new Vector2(0.0f, 3.0f) * Time.fixedDeltaTime * 0.05f);
+        //_enemy.rb.MovePosition(_enemy.spawnPosition + new Vector2(0.0f, 3.0f) * Time.fixedDeltaTime * 0.05f);
     }
 
     public override void Move()
