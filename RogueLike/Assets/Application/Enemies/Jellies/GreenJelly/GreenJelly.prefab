@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4287138186665844133}
   - component: {fileID: 6756242943684304252}
   m_Layer: 0
-  m_Name: PinkJelly
+  m_Name: GreenJelly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,12 +67,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1510215969522720934}
-  - component: {fileID: 6116314101010631402}
-  - component: {fileID: 4807889955907536593}
-  - component: {fileID: 7306774668641837991}
-  - component: {fileID: 3754586988193846661}
+  - component: {fileID: 2796267632980311292}
+  - component: {fileID: 5676632601098827773}
+  - component: {fileID: 2899474859931157444}
+  - component: {fileID: 5105259815656654118}
   m_Layer: 0
-  m_Name: PinkJelly
+  m_Name: GreenJelly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6116314101010631402
+--- !u!114 &2796267632980311292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,11 +102,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2974137913426086109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c968fe73ab6c564283c046ae0b16a0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 60ad93f5e5bf4f34cb62daf7428b0520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 4287138186665844133}
---- !u!114 &4807889955907536593
+--- !u!114 &5676632601098827773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,10 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2974137913426086109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2985784c40a2aa84281a5c124f34503b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca2fd418ad22ed479497985ec26da5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &7306774668641837991
+--- !u!50 &2899474859931157444
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!195 &3754586988193846661
+--- !u!195 &5105259815656654118
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +157,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -171,6 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2938405610225367282}
   - component: {fileID: 5846643521094778151}
+  - component: {fileID: 5193516211830422309}
   m_Layer: 0
   m_Name: idle
   m_TagString: Untagged
@@ -233,7 +234,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 932ce8ce7b8fd8e4d9fb9bce6a7e0b7d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f4ba7a5e8b25ae241a6c94d4d6df858d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -244,3 +245,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5193516211830422309
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521910154365300646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cf4db5108a8b1874692fcde7c19517c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
