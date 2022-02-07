@@ -5,6 +5,8 @@ using Modules.Core;
 
 public class PlayerController : MonoBehaviour
 {
+    // TODO: Remove cam Init() commentary
+
     private PlayerView _currentView;
     public WeaponController weaponController;
 
@@ -33,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     public void Init()
     {
-        cam = GameManager.Instance.cameraController.GetCamera();
+        //cam = GameManager.Instance.cameraController.GetCamera();
     }
 
     private void Update()
