@@ -12,7 +12,6 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public abstract string enemyName { get; }
     public EnemyFactory OriginFactory { get; set; }
 
-    private EnemyBaseBehaviour behaviour;
     protected Rigidbody2D rb;
     protected NavMeshAgent _navMeshAgent;
     protected StateMachine _stateMachine;
@@ -42,8 +41,6 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         PatrolRange = patrolRange;
         AggroRange = aggroRange;
         _model.localScale = new Vector3(scale, scale, scale);
-        //behaviour = GetComponent<EnemyBaseBehaviour>();
-        //behaviour.Init(this);
     }
 
     public void Update()
@@ -53,20 +50,18 @@ public abstract class Enemy: MonoBehaviour, IDamageable
 
     public virtual void Move()
     {
-        //behaviour.Move();
+
     }
 
     public virtual void Attack()
     {
-        //behaviour.Attack();
+
     }
 
     public virtual void Spawn(Vector3 position)
     {
-        //transform.position = position;
         _navMeshAgent.Warp(position);
         spawnPosition = position;
-        //Move();
     }
 
     public virtual void TakeDamage(float value)
