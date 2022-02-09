@@ -14,4 +14,6 @@ public class EnemyConfig
     public float PatrolRange = 5.0f;
     [Range(1.0f, 100.0f)]
     public float AggroRange = 5.0f;
+    [Range(1.0f, 5.0f)]
+    public float MeleeRange = 1.5f;
 }

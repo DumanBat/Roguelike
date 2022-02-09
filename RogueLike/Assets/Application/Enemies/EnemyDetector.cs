@@ -5,30 +5,45 @@ using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
+    /// <summary>
+    /// TODO:
+    /// Remove PlayerController class from on trigger enter
+    /// </summary>
     [SerializeField]
     private string _enemyTag;
 
-    private Collider2D _areaCollider;
+    private CircleCollider2D _areaCollider;
 
     private EnemyMeleeDetector _enemyMeleeDetector;
-    private Collider2D _meleeCollider;
 
     public Action onEnemyDetected;
     public Action onEnemyLeaveDetectionArea;
 
+    public IDamageable detectedTarget;
+    public bool EnemyInRange => detectedTarget != null;
+
     private void Awake()
     {
-        _areaCollider = GetComponent<Collider2D>();
+        _areaCollider = GetComponent<CircleCollider2D>();
 
         _enemyMeleeDetector = GetComponentInChildren<EnemyMeleeDetector>();
-        _meleeCollider = GetComponentInChildren<Collider2D>();
+    }
+
+    public void Init(float aggroRange, float meleeRange)
+    {
+        _areaCollider.radius = aggroRange;
+        _enemyMeleeDetector.Init(_enemyTag, meleeRange);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(_enemyTag))
         {
-            onEnemyDetected.Invoke();
+            IDamageable attribute = collision.gameObject.GetComponentInParent(typeof(IDamageable)) as IDamageable;
+            detectedTarget = attribute;
+            Debug.Log("Detected target == null?");
+            Debug.Log(detectedTarget == null);
+
         }
     }
 
@@ -36,7 +51,13 @@ public class EnemyDetector : MonoBehaviour
     {
         if (collision.CompareTag(_enemyTag))
         {
-            onEnemyLeaveDetectionArea.Invoke();
+            StartCoroutine(ClearDetectedTargetAfterDelay());
         }
+    }
+
+    private IEnumerator ClearDetectedTargetAfterDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        detectedTarget = null;
     }
 }

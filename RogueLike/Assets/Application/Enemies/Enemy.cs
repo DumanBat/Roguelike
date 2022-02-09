@@ -17,7 +17,8 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     [SerializeField]
     protected Animator _animator;
     protected StateMachine _stateMachine;
-    private IDamageable _target;
+    [SerializeField]
+    protected EnemyDetector _enemyDetector;
 
     protected Vector2 _spawnPosition;
 
@@ -25,6 +26,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public float Scale { get; private set; }
     public float PatrolRange { get; private set; }
     public float AggroRange { get; private set; }
+    public float MeleeRange { get; private set; }
 
     public virtual void Awake()
     {
@@ -36,12 +38,14 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         _stateMachine = new StateMachine();
     }
 
-    public virtual void Init(float health, float scale, float patrolRange, float aggroRange)
+    public virtual void Init(float health, float scale, float patrolRange, float aggroRange, float meleeRange)
     {
         Health = health;
         Scale = scale;
         PatrolRange = patrolRange;
         AggroRange = aggroRange;
+        MeleeRange = meleeRange;
+        _enemyDetector.Init(aggroRange, meleeRange);
         _model.localScale = new Vector3(scale, scale, scale);
     }
 
@@ -57,7 +61,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
 
     public virtual void Attack()
     {
-
+        Debug.Log("ATTACK");
     }
 
     public virtual void Spawn(Vector3 position)

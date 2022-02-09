@@ -1,10 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Modules.Core;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
+
+    /// <summary>
+    /// TODO: 
+    /// Remove health display from Update();
+    /// Remove Health property from variables;
+    /// </summary>
     private PlayerView _currentView;
     public WeaponController weaponController;
 
@@ -20,6 +28,20 @@ public class PlayerController : MonoBehaviour
     private bool _isRunning;
     private bool _isAiming;
 
+    private float _health = 100f;
+    public float Health
+    {
+        get
+        {
+            return _health;
+        }
+        set
+        {
+            _health = value;
+        } 
+    }
+
+    public TextMeshPro healthDisplay;
     private void Awake()
     {
         _currentView = GetComponent<PlayerView>();
@@ -48,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
             SwapWeapons();
+
+        healthDisplay.text = _health.ToString();
     }
 
     private void FixedUpdate()
@@ -118,5 +142,11 @@ public class PlayerController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         collision.gameObject.GetComponent<IPickable>()?.PickUp();
+    }
+
+    public void TakeDamage(float value)
+    {
+        Health -= value;
+        Debug.LogError("Player take damage");
     }
 }
