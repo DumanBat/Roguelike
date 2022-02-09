@@ -12,12 +12,14 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public abstract string enemyName { get; }
     public EnemyFactory OriginFactory { get; set; }
 
-    protected Rigidbody2D rb;
+    protected Rigidbody2D _rb;
     protected NavMeshAgent _navMeshAgent;
+    [SerializeField]
+    protected Animator _animator;
     protected StateMachine _stateMachine;
     private IDamageable _target;
 
-    protected Vector2 spawnPosition;
+    protected Vector2 _spawnPosition;
 
     public float Health { get; private set; }
     public float Scale { get; private set; }
@@ -26,7 +28,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
 
     public virtual void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
 
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.updateRotation = false;
@@ -61,7 +63,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public virtual void Spawn(Vector3 position)
     {
         _navMeshAgent.Warp(position);
-        spawnPosition = position;
+        _spawnPosition = position;
     }
 
     public virtual void TakeDamage(float value)

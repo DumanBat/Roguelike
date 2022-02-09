@@ -11,7 +11,7 @@ public class GreenJelly : Enemy
     {
         base.Init(health, scale, patrolRange, aggroRange);
 
-        var patrol = new JellyPatrolState(this, _navMeshAgent, PatrolRange);
+        var patrol = new JellyPatrolState(this, _navMeshAgent, _animator, PatrolRange);
 
         void At(IState to, IState from, Func<bool> condition) => _stateMachine.AddTransition(to, from, condition);
 
