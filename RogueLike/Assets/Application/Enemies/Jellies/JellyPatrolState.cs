@@ -7,6 +7,7 @@ public class JellyPatrolState : IState
 {
     private readonly Enemy _enemy;
     private readonly NavMeshAgent _navMeshAgent;
+    private readonly Animator _animator;
     private readonly float _patrolRange;
 
     private bool _isPatroling;
@@ -16,10 +17,11 @@ public class JellyPatrolState : IState
     private Vector3 _lastPosition = Vector3.zero;
     private float _timeStuck;
 
-    public JellyPatrolState(Enemy enemy, NavMeshAgent navMeshAgent, float patrolRange)
+    public JellyPatrolState(Enemy enemy, NavMeshAgent navMeshAgent, Animator animator, float patrolRange)
     {
         _enemy = enemy;
         _navMeshAgent = navMeshAgent;
+        _animator = animator;
         _patrolRange = patrolRange;
 
         _isPatrolPointSet = false;
@@ -70,9 +72,13 @@ public class JellyPatrolState : IState
 
     public void OnEnter()
     {
+        _timeStuck = 0f;
+        _navMeshAgent.enabled = true;
+        _navMeshAgent.speed = 0.5f;
     }
 
     public void OnExit()
     {
+        _navMeshAgent.enabled = false;
     }
 }

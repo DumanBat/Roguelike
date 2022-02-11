@@ -1,12 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Modules.Core;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
-    // TODO: Remove cam Init() commentary
 
+    /// <summary>
+    /// TODO: 
+    /// Remove health display from Update();
+    /// Remove Health property from variables;
+    /// </summary>
     private PlayerView _currentView;
     public WeaponController weaponController;
 
@@ -16,16 +22,30 @@ public class PlayerController : MonoBehaviour
     private Camera cam;
 
     private Vector2 _movement;
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
     private Vector3 _aimPos;
 
     private bool _isRunning;
     private bool _isAiming;
 
+    private float _health = 100f;
+    public float Health
+    {
+        get
+        {
+            return _health;
+        }
+        set
+        {
+            _health = value > 0 ? value : 0;
+        } 
+    }
+
+    public TextMeshPro healthDisplay;
     private void Awake()
     {
         _currentView = GetComponent<PlayerView>();
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     public void Start()
@@ -35,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     public void Init()
     {
-        //cam = GameManager.Instance.cameraController.GetCamera();
+        cam = GameManager.Instance.cameraController.GetCamera();
     }
 
     private void Update()
@@ -50,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
             SwapWeapons();
+
+        healthDisplay.text = _health.ToString();
     }
 
     private void FixedUpdate()
@@ -57,7 +79,7 @@ public class PlayerController : MonoBehaviour
         if (!_isRunning) return;
 
         var moveSpeed = _isAiming ? _moveSpeed * 0.75f : _moveSpeed;
-        rb.MovePosition(rb.position + _movement * Time.fixedDeltaTime * moveSpeed);
+        _rb.MovePosition(_rb.position + _movement * Time.fixedDeltaTime * moveSpeed);
     }
 
     private void Move()
@@ -82,7 +104,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 15.0f));
-        var rbPos = new Vector3(rb.position.x, rb.position.y, 15.0f);
+        var rbPos = new Vector3(_rb.position.x, _rb.position.y, 15.0f);
         _aimPos = mousePos - rbPos;
 
         animator.SetBool("isAiming", _isAiming);
@@ -120,5 +142,15 @@ public class PlayerController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         collision.gameObject.GetComponent<IPickable>()?.PickUp();
+    }
+
+    public void TakeDamage(float value)
+    {
+        Health -= value;
+    }
+
+    public Vector2 GetPosition()
+    {
+        return _rb.position;
     }
 }
