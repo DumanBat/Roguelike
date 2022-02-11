@@ -23,10 +23,13 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     protected Vector2 _spawnPosition;
 
     public float Health { get; private set; }
+    public float Damage { get; private set; }
     public float Scale { get; private set; }
     public float PatrolRange { get; private set; }
     public float AggroRange { get; private set; }
     public float MeleeRange { get; private set; }
+    public float AttackCooldown { get; private set; }
+    public float AggroCooldown { get; private set; }
 
     public virtual void Awake()
     {
@@ -38,30 +41,31 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         _stateMachine = new StateMachine();
     }
 
-    public virtual void Init(float health, float scale, float patrolRange, float aggroRange, float meleeRange)
+    public virtual void Init(float health, float damage, float scale, float patrolRange, 
+        float aggroRange, float meleeRange, float attackCooldown, float aggroCooldown)
     {
         Health = health;
+        Damage = damage;
         Scale = scale;
         PatrolRange = patrolRange;
         AggroRange = aggroRange;
         MeleeRange = meleeRange;
-        _enemyDetector.Init(aggroRange, meleeRange);
+        AttackCooldown = attackCooldown;
+        AggroCooldown = aggroCooldown;
+        _enemyDetector.Init(aggroRange, meleeRange, aggroCooldown);
         _model.localScale = new Vector3(scale, scale, scale);
+
+        Init();
+    }
+
+    public virtual void Init()
+    {
+
     }
 
     public void Update()
     {
         _stateMachine.Tick();
-    }
-
-    public virtual void Move()
-    {
-
-    }
-
-    public virtual void Attack()
-    {
-        Debug.Log("ATTACK");
     }
 
     public virtual void Spawn(Vector3 position)
@@ -73,5 +77,10 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public virtual void TakeDamage(float value)
     {
         Health -= value;
+    }
+
+    public Vector2 GetPosition()
+    {
+        return _rb.position;
     }
 }

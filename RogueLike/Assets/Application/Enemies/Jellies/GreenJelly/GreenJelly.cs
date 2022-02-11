@@ -7,10 +7,8 @@ public class GreenJelly : Enemy
 {
     public override string enemyName => "green jelly";
 
-    public override void Init(float health, float scale, float patrolRange, float aggroRange, float meleeRange)
+    public override void Init()
     {
-        base.Init(health, scale, patrolRange, aggroRange, meleeRange);
-
         var patrol = new JellyPatrolState(this, _navMeshAgent, _animator, PatrolRange);
         var attack = new JellyAttackState(this, _navMeshAgent, _animator, _enemyDetector);
 

@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Camera cam;
 
     private Vector2 _movement;
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
     private Vector3 _aimPos;
 
     private bool _isRunning;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
         set
         {
-            _health = value;
+            _health = value > 0 ? value : 0;
         } 
     }
 
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void Awake()
     {
         _currentView = GetComponent<PlayerView>();
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     public void Start()
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (!_isRunning) return;
 
         var moveSpeed = _isAiming ? _moveSpeed * 0.75f : _moveSpeed;
-        rb.MovePosition(rb.position + _movement * Time.fixedDeltaTime * moveSpeed);
+        _rb.MovePosition(_rb.position + _movement * Time.fixedDeltaTime * moveSpeed);
     }
 
     private void Move()
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
 
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 15.0f));
-        var rbPos = new Vector3(rb.position.x, rb.position.y, 15.0f);
+        var rbPos = new Vector3(_rb.position.x, _rb.position.y, 15.0f);
         _aimPos = mousePos - rbPos;
 
         animator.SetBool("isAiming", _isAiming);
@@ -147,6 +147,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void TakeDamage(float value)
     {
         Health -= value;
-        Debug.LogError("Player take damage");
+    }
+
+    public Vector2 GetPosition()
+    {
+        return _rb.position;
     }
 }

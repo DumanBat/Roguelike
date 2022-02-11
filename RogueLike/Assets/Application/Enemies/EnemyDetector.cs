@@ -7,17 +7,14 @@ public class EnemyDetector : MonoBehaviour
 {
     /// <summary>
     /// TODO:
-    /// Remove PlayerController class from on trigger enter
+    /// Remove PlayerController class from on trigger enter - DONE, replaced with IDamageable
     /// </summary>
     [SerializeField]
     private string _enemyTag;
 
     private CircleCollider2D _areaCollider;
-
-    private EnemyMeleeDetector _enemyMeleeDetector;
-
-    public Action onEnemyDetected;
-    public Action onEnemyLeaveDetectionArea;
+    public EnemyMeleeDetector _meleeDetector;
+    private float _aggroCooldown;
 
     public IDamageable detectedTarget;
     public bool EnemyInRange => detectedTarget != null;
@@ -26,24 +23,29 @@ public class EnemyDetector : MonoBehaviour
     {
         _areaCollider = GetComponent<CircleCollider2D>();
 
-        _enemyMeleeDetector = GetComponentInChildren<EnemyMeleeDetector>();
+        _meleeDetector = GetComponentInChildren<EnemyMeleeDetector>();
     }
 
-    public void Init(float aggroRange, float meleeRange)
+    public void Init(float aggroRange, float meleeRange, float aggroCooldown)
     {
         _areaCollider.radius = aggroRange;
-        _enemyMeleeDetector.Init(_enemyTag, meleeRange);
+        _meleeDetector.Init(_enemyTag, meleeRange);
+        _aggroCooldown = aggroCooldown;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(_enemyTag))
         {
-            IDamageable attribute = collision.gameObject.GetComponentInParent(typeof(IDamageable)) as IDamageable;
-            detectedTarget = attribute;
-            Debug.Log("Detected target == null?");
-            Debug.Log(detectedTarget == null);
+            detectedTarget = collision.gameObject.GetComponentInParent(typeof(IDamageable)) as IDamageable;
+        }
+    }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag(_enemyTag))
+        {
+            detectedTarget = collision.gameObject.GetComponentInParent(typeof(IDamageable)) as IDamageable;
         }
     }
 
@@ -57,7 +59,7 @@ public class EnemyDetector : MonoBehaviour
 
     private IEnumerator ClearDetectedTargetAfterDelay()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(_aggroCooldown);
         detectedTarget = null;
     }
 }

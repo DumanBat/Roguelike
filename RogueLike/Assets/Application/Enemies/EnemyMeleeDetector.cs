@@ -8,8 +8,7 @@ public class EnemyMeleeDetector : MonoBehaviour
     private CircleCollider2D _meleeColider;
     private string _enemyTag;
 
-    public Action onMeleeDetected;
-    public Action onMeleeRangeLeft;
+    public bool enemyInMeleeRange = false;
 
     private void Awake()
     {
@@ -26,7 +25,7 @@ public class EnemyMeleeDetector : MonoBehaviour
     {
         if (collision.CompareTag(_enemyTag))
         {
-            onMeleeDetected?.Invoke();
+            enemyInMeleeRange = true;
         }
     }
 
@@ -34,7 +33,7 @@ public class EnemyMeleeDetector : MonoBehaviour
     {
         if (collision.CompareTag(_enemyTag))
         {
-            onMeleeRangeLeft?.Invoke();
+            enemyInMeleeRange = false;
         }
     }
 }
