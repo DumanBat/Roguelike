@@ -13,7 +13,12 @@ public class AutoRifle : Weapon
     public override void Init()
     {
         magazineSize = 30;
-        bulletVelocity = 60;
+        bulletsLeft = magazineSize;
+        bulletVelocity = 30;
+        damage = 10;
+        bpm = 7;
+        reloadingDuration = 3;
+        isAuto = true;
 
         base.Init();
     }

@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 162263638}
   m_Layer: 0
   m_Name: Tilemap - Walls
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1823,7 +1823,7 @@ GameObject:
   - component: {fileID: 499628087}
   m_Layer: 0
   m_Name: Tilemap - Base
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17394,7 +17394,7 @@ GameObject:
   - component: {fileID: 1272055676}
   m_Layer: 0
   m_Name: Tilemap - Props
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18131,7 +18131,7 @@ GameObject:
   - component: {fileID: 1568913777}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18179,7 +18179,7 @@ GameObject:
   - component: {fileID: 1743827598}
   m_Layer: 0
   m_Name: Tilemap - Walls 2
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

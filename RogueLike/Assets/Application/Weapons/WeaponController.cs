@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +13,13 @@ public class WeaponController : MonoBehaviour
     public Weapon currentWeapon;
     public List<Weapon> weapons;
 
+    private Transform _firepoint;
+
+    public Action<float> onReload;
     private void Awake()
     {
         _currentView = GetComponent<WeaponView>();
+        onReload += FillReloadProgressBar;
     }
 
     private void Start()
@@ -30,7 +35,7 @@ public class WeaponController : MonoBehaviour
     {
         weapons.Clear();
 
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount - 1; i++)
         {
             weapons.Add(transform.GetChild(i).GetComponent<Weapon>());
             weapons[i].weaponCollider.isTrigger = false;
@@ -60,8 +65,13 @@ public class WeaponController : MonoBehaviour
         GameManager.Instance.inventoryController.SetWeapons(weapons);
     }
 
-    public void SetActiveWeaponSprite(int directionIndex)
+    public void SetActiveWeaponDirection(int directionIndex)
     {
+        if (currentWeapon.weaponSprites[directionIndex].activeSelf)
+            return;
+
+        currentWeapon.SetFirepoint(currentWeapon.weaponSprites[directionIndex].transform.GetChild(0));
+
         _currentView.SetActiveWeaponSprite(currentWeapon, directionIndex);
     }
 
@@ -76,5 +86,15 @@ public class WeaponController : MonoBehaviour
         weapon.weaponSprites[4].SetActive(true);
         weapon.onWeaponPickUp += AddWeaponToInventory;
         weapon.weaponCollider.isTrigger = true;
+    }
+
+    public void Reload()
+    {
+        StartCoroutine(currentWeapon.Reload());
+    }
+
+    public void FillReloadProgressBar(float duration)
+    {
+        _currentView.FillReloadProgressBar(duration);
     }
 }

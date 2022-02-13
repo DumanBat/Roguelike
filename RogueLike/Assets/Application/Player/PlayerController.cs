@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     /// <summary>
     /// TODO: 
     /// Remove health display from Update();
-    /// Remove Health property from variables;
+    /// 
+    /// Rework reference to WeaponController in Update() Shot() section
     /// </summary>
     private PlayerView _currentView;
     public WeaponController weaponController;
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             return _health;
         }
-        set
+        private set
         {
             _health = value > 0 ? value : 0;
         } 
@@ -65,11 +66,22 @@ public class PlayerController : MonoBehaviour, IDamageable
         _isAiming = Input.GetMouseButton(1);
         Aim();
 
-        if (Input.GetMouseButtonDown(0) && _isAiming)
-            Shot();
+        if (!weaponController.currentWeapon.isAuto)
+        {
+            if (Input.GetMouseButtonDown(0) && _isAiming)
+                Shot();
+        }
+        else
+        {
+            if (Input.GetMouseButton(0) && _isAiming)
+                Shot();
+        }
 
         if (Input.GetKeyDown(KeyCode.Q))
             SwapWeapons();
+
+        if (Input.GetKeyDown(KeyCode.R))
+            Reload();
 
         healthDisplay.text = _health.ToString();
     }
@@ -112,13 +124,18 @@ public class PlayerController : MonoBehaviour, IDamageable
         animator.SetFloat("AimVertical", _aimPos.normalized.y);
 
         var directionIndex = GetDirection(_aimPos);
-        weaponController.SetActiveWeaponSprite(directionIndex);
+        weaponController.SetActiveWeaponDirection(directionIndex);
         _currentView.SetActiveHand(directionIndex);
     }
 
     private void Shot()
     {
         weaponController.currentWeapon.Shot(_aimPos);
+    }
+
+    private void Reload()
+    {
+        weaponController.Reload();
     }
 
     private void SwapWeapons()

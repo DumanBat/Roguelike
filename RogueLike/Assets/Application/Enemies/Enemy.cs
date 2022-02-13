@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public abstract class Enemy: MonoBehaviour, IDamageable
 {
@@ -22,7 +23,18 @@ public abstract class Enemy: MonoBehaviour, IDamageable
 
     protected Vector2 _spawnPosition;
 
-    public float Health { get; private set; }
+    private float _health;
+    public float Health
+    {
+        get
+        {
+            return _health;
+        }
+        private set
+        {
+            _health = value > 0 ? value : 0;
+        }
+    }
     public float Damage { get; private set; }
     public float Scale { get; private set; }
     public float PatrolRange { get; private set; }
@@ -30,6 +42,10 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public float MeleeRange { get; private set; }
     public float AttackCooldown { get; private set; }
     public float AggroCooldown { get; private set; }
+
+    private static readonly int DeathHash = Animator.StringToHash("isDie");
+    private static readonly int DeathStateHash = Animator.StringToHash("Base Layer.Die");
+    public TextMeshPro healthDisplay;
 
     public virtual void Awake()
     {
@@ -66,6 +82,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public void Update()
     {
         _stateMachine.Tick();
+        healthDisplay.text = _health.ToString();
     }
 
     public virtual void Spawn(Vector3 position)
@@ -77,6 +94,21 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public virtual void TakeDamage(float value)
     {
         Health -= value;
+        if (_health <= 0)
+        {
+            StartCoroutine(Die());
+        }
+    }
+
+    public virtual IEnumerator Die()
+    {
+        _animator.SetBool(DeathHash, true);
+
+        while(_animator.GetCurrentAnimatorStateInfo(0).fullPathHash != DeathStateHash)
+            yield return null;
+
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(this.gameObject);
     }
 
     public Vector2 GetPosition()

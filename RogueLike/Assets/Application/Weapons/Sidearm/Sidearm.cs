@@ -13,7 +13,12 @@ public class Sidearm : Weapon
     public override void Init()
     {
         magazineSize = 12;
+        bulletsLeft = magazineSize;
         bulletVelocity = 15;
+        damage = 5;
+        bpm = 5;
+        reloadingDuration = 1.5f;
+        isAuto = false;
 
         base.Init();
     }
