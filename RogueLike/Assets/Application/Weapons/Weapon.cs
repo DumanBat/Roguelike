@@ -8,10 +8,13 @@ using UnityEngine.Pool;
 public abstract class Weapon : MonoBehaviour, IPickable
 {
     protected string weaponName;
+    private WeaponController _weaponController;
 
     protected int damage;
 
+    public bool isAuto = false;
     protected float bpm;
+    private float _lastFired = -9999;
     protected float bulletVelocity;
     protected float timeBetweenShooting;
 
@@ -22,8 +25,19 @@ public abstract class Weapon : MonoBehaviour, IPickable
     protected int bulletsShot;
 
     protected bool shooting;
-    protected bool readyToShot;
+    protected bool readyToShot
+    {
+        get
+        {
+            if (reloading == false && bulletsLeft > 0)
+                return true;
+            else
+                return false;
+        }
+    }
+
     protected bool reloading;
+    protected float reloadingDuration;
 
     protected ObjectPool<Bullet> bulletPool;
     public Bullet bulletPrefab;
@@ -35,8 +49,11 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     public Action<Weapon> onWeaponPickUp;
 
+    public Transform _firepoint;
+
     public virtual void Init()
     {
+        _weaponController = GetComponentInParent<WeaponController>();
         weaponCollider = GetComponent<BoxCollider2D>();
         weaponSprites = new GameObject[spritesTransform.childCount];
 
@@ -45,7 +62,9 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
         bulletPool = new ObjectPool<Bullet>(() =>
         {
-            return Instantiate(bulletPrefab);
+            var bullet = Instantiate(bulletPrefab);
+            bullet.Init(bulletPool, damage);
+            return bullet;
         }, bullet => {
             bullet.gameObject.SetActive(true);
         }, bullet => {
@@ -58,21 +77,52 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     public virtual void Shot(Vector2 direction)
     {
+        if (readyToShot)
+        {
+            if (Time.time - _lastFired > 1 / bpm)
+            {
+                _lastFired = Time.time;
+                ShotBullet(direction);
+                bulletsLeft--;
+            }
+        }
+    }
+
+    public virtual void ShotBullet(Vector2 direction)
+    {
         var bullet = bulletPool.Get();
         var velocity = direction.normalized * bulletVelocity;
 
-        //kostyl for shot initial position
-        var position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        var position = new Vector3(_firepoint.position.x, _firepoint.position.y, _firepoint.position.z);
         bullet.Shot(position, direction, velocity);
     }
 
-    public virtual void Reload()
+    public virtual IEnumerator Reload()
     {
+        if (bulletsLeft == magazineSize)
+            yield break;
+        if (reloading)
+            yield break;
 
+        reloading = true;
+        _weaponController.onReload.Invoke(reloadingDuration);
+        yield return new WaitForSeconds(reloadingDuration);
+        bulletsLeft = magazineSize;
+        reloading = false;
     }
 
     public void PickUp()
     {
         onWeaponPickUp.Invoke(this);
+    }
+
+    public void SetFirepoint(Transform point)
+    {
+        _firepoint = point;
+    }
+
+    public float GetReloadingDuration()
+    {
+        return reloadingDuration;
     }
 }

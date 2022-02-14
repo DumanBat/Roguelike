@@ -18,6 +18,10 @@ public class LevelManager : MonoBehaviour
         SpawnEnemy(EnemyType.GreenJelly, new Vector3(5.0f, 5.0f, 0.0f));
         SpawnEnemy(EnemyType.PinkJelly, new Vector3(2.0f, 5.0f, 0.0f));
         SpawnEnemy(EnemyType.PinkJelly, new Vector3(10.0f, 5.0f, 0.0f));
+
+        SpawnEnemy(EnemyType.PinkJelly, new Vector3(4.0f, 5.0f, 0.0f));
+        SpawnEnemy(EnemyType.PinkJelly, new Vector3(6.0f, 5.0f, 0.0f));
+        SpawnEnemy(EnemyType.PinkJelly, new Vector3(8.0f, 5.0f, 0.0f));
     }
 
     public void SpawnEnemy(EnemyType type, Vector3 position)
