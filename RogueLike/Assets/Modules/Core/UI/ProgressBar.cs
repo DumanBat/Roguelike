@@ -7,7 +7,7 @@ public class ProgressBar : MonoBehaviour
 {
     private Slider slider;
     private float targetValue;
-    private float fillSpeed = 0.3f;
+    private float fillSpeed = 1f;
 
     private void Awake() => slider = GetComponent<Slider>();
 
@@ -21,7 +21,8 @@ public class ProgressBar : MonoBehaviour
     {
         if (slider == null) return;
 
-        targetValue = slider.value + val;
+       // targetValue = slider.value + val;
+        targetValue = val;
     }
 
     public void SetValue(float val) => slider.value = val;
