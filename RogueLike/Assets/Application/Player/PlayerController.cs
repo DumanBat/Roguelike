@@ -107,6 +107,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Aim()
     {
+        if (weaponController.currentWeapon == null)
+            return;
+
         if (!_isAiming)
         {
             weaponController.DisableWeaponSprites();

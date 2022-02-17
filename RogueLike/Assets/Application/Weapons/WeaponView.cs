@@ -36,4 +36,10 @@ public class WeaponView : MonoBehaviour
         }
         progressBar.gameObject.SetActive(false);
     }
+
+    public void ResetReloadProgressBar()
+    {
+        progressBar.gameObject.SetActive(false);
+        progressBar.SetValue(0);
+    }
 }

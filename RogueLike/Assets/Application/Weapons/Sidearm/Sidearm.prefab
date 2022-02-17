@@ -121,6 +121,7 @@ Transform:
   m_Children:
   - {fileID: 5232527353849114189}
   - {fileID: 2075458567643062434}
+  - {fileID: 7047040084838720302}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,9 +137,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4a52a103b42a4448a1b9ac32c4d27d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAuto: 0
   bulletPrefab: {fileID: 4960394840922736919, guid: a9029962dd1222b47be6fb4de5c8eccd,
     type: 3}
   weaponImage: {fileID: 474120503903647894}
+  weaponInGameSprite: {fileID: 6595481447540836377}
   spritesTransform: {fileID: 5232527353849114189}
   weaponSprites:
   - {fileID: 0}
@@ -146,6 +149,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   weaponCollider: {fileID: 0}
+  _firepoint: {fileID: 0}
 --- !u!61 &1403414199855259239
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -298,7 +302,7 @@ GameObject:
   - component: {fileID: 7047040084838720302}
   - component: {fileID: 6595481447540836377}
   m_Layer: 0
-  m_Name: sidearm_left_PickUp
+  m_Name: sidearm_InGame_PickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,12 +315,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5335616757351835305}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5232527353849114189}
-  m_RootOrder: 4
+  m_Father: {fileID: 369561905071149764}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6595481447540836377
 SpriteRenderer:
@@ -644,7 +648,6 @@ Transform:
   - {fileID: 2421803870474469122}
   - {fileID: 70721007554452482}
   - {fileID: 3330605323312856539}
-  - {fileID: 7047040084838720302}
   m_Father: {fileID: 369561905071149764}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

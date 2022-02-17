@@ -8,6 +8,7 @@ public class WeaponController : MonoBehaviour
 {
     /// TEMP 
     public Weapon weaponToSpawn;
+    public Weapon startingWeapon;
     /// 
     private WeaponView _currentView;
     public Weapon currentWeapon;
@@ -16,16 +17,21 @@ public class WeaponController : MonoBehaviour
     private Transform _firepoint;
 
     public Action<float> onReload;
+    public Action onWeaponChange;
+    private Coroutine _reloadingRoutine;
+    private Coroutine _reloadingViewRoutine;
     private void Awake()
     {
         _currentView = GetComponent<WeaponView>();
         onReload += FillReloadProgressBar;
+        onWeaponChange += StopReloading;
+        onWeaponChange += DisableWeaponSprites;
     }
 
     private void Start()
     {
         AddWeapons();
-        currentWeapon = weapons[0];
+        AddWeaponToInventory(SpawnWeapon(startingWeapon, Vector3.zero));
 
         SpawnWeapon(weaponToSpawn, new Vector3(10f, 10f, 0f));
         SpawnWeapon(weaponToSpawn, new Vector3(-10f, 10f, 0f));
@@ -45,11 +51,9 @@ public class WeaponController : MonoBehaviour
     private void AddWeaponToInventory(Weapon weapon)
     {
         weapons.Insert(0, weapon);
-        Destroy(weapon.weaponCollider);
-        weapon.transform.SetParent(this.transform);
-        weapon.transform.SetSiblingIndex(weapon.transform.childCount - 1);
-        weapon.transform.localPosition = Vector3.zero;
-        weapon.Init();
+        weapon.AddToInventory(this.transform);
+        if (weapons.Count > 1)
+            onWeaponChange.Invoke();
         SelectWeapon(0);
         GameManager.Instance.inventoryController.SetWeapons(weapons);
     }
@@ -61,6 +65,7 @@ public class WeaponController : MonoBehaviour
 
     public void SwapWeapon()
     {
+        onWeaponChange.Invoke();
         weapons.Add(weapons[0]);
         weapons.RemoveAt(0);
         SelectWeapon(0);
@@ -82,21 +87,33 @@ public class WeaponController : MonoBehaviour
         _currentView.DisableWeaponSprites(currentWeapon);
     }
 
-    public void SpawnWeapon(Weapon weaponToSpawn, Vector3 spawnPosition)
+    public Weapon SpawnWeapon(Weapon weaponToSpawn, Vector3 spawnPosition)
     {
         var weapon = Instantiate(weaponToSpawn, spawnPosition, Quaternion.identity);
-        weapon.weaponSprites[4].SetActive(true);
+        weapon.weaponInGameSprite.gameObject.SetActive(true);
         weapon.onWeaponPickUp += AddWeaponToInventory;
-        weapon.weaponCollider.isTrigger = true;
+        weapon.Init();
+        return weapon;
     }
 
     public void Reload()
     {
-        StartCoroutine(currentWeapon.Reload());
+        _reloadingRoutine = StartCoroutine(currentWeapon.Reload());
     }
 
     public void FillReloadProgressBar(float duration)
     {
-        StartCoroutine(_currentView.FillReloadProgressBar(duration));
+        _reloadingViewRoutine = StartCoroutine(_currentView.FillReloadProgressBar(duration));
+    }
+
+    public void StopReloading()
+    {
+        if (!currentWeapon.IsReloading()) 
+            return;
+
+        StopCoroutine(_reloadingRoutine);
+        StopCoroutine(_reloadingViewRoutine);
+        currentWeapon.StopReloading();
+        _currentView.ResetReloadProgressBar();
     }
 }

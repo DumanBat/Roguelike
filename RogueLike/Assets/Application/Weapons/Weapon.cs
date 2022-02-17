@@ -43,6 +43,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
     public Bullet bulletPrefab;
 
     public RawImage weaponImage;
+    public SpriteRenderer weaponInGameSprite;
     public Transform spritesTransform;
     public GameObject[] weaponSprites;
     public BoxCollider2D weaponCollider;
@@ -53,7 +54,6 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     public virtual void Init()
     {
-        _weaponController = GetComponentInParent<WeaponController>();
         weaponCollider = GetComponent<BoxCollider2D>();
         weaponSprites = new GameObject[spritesTransform.childCount];
 
@@ -111,6 +111,11 @@ public abstract class Weapon : MonoBehaviour, IPickable
         reloading = false;
     }
 
+    public void StopReloading()
+    {
+        reloading = false;
+    }
+
     public void PickUp()
     {
         onWeaponPickUp.Invoke(this);
@@ -121,8 +126,19 @@ public abstract class Weapon : MonoBehaviour, IPickable
         _firepoint = point;
     }
 
-    public float GetReloadingDuration()
+    public bool IsReloading()
     {
-        return reloadingDuration;
+        return reloading;
+    }
+
+    public void AddToInventory(Transform weaponsRoot)
+    {
+        Destroy(weaponCollider);
+        transform.SetParent(weaponsRoot);
+        transform.SetSiblingIndex(weaponsRoot.childCount - 2);
+        transform.localPosition = Vector3.zero;
+        weaponInGameSprite.gameObject.SetActive(false);
+
+        _weaponController = GetComponentInParent<WeaponController>();
     }
 }
