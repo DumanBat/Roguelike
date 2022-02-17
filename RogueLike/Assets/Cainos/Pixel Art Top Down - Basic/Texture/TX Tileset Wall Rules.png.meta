@@ -185,6 +185,12 @@ TextureImporter:
   - first:
       213: -5214298002706345612
     second: TX Tileset Wall Rules_60
+  - first:
+      213: -5700296652388513606
+    second: TX Tileset Wall Rules_61
+  - first:
+      213: 3717826815972028030
+    second: TX Tileset Wall Rules_62
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1285,8 +1291,8 @@ TextureImporter:
       name: TX Tileset Wall Rules_48
       rect:
         serializedVersion: 2
-        x: 32
-        y: 256
+        x: 256
+        y: 288
         width: 32
         height: 32
       alignment: 0
@@ -1306,8 +1312,8 @@ TextureImporter:
       name: TX Tileset Wall Rules_49
       rect:
         serializedVersion: 2
-        x: 64
-        y: 256
+        x: 288
+        y: 288
         width: 32
         height: 32
       alignment: 0
@@ -1327,7 +1333,7 @@ TextureImporter:
       name: TX Tileset Wall Rules_50
       rect:
         serializedVersion: 2
-        x: 96
+        x: 32
         y: 256
         width: 32
         height: 32
@@ -1348,7 +1354,7 @@ TextureImporter:
       name: TX Tileset Wall Rules_51
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 256
         width: 32
         height: 32
@@ -1369,7 +1375,7 @@ TextureImporter:
       name: TX Tileset Wall Rules_52
       rect:
         serializedVersion: 2
-        x: 192
+        x: 96
         y: 256
         width: 32
         height: 32
@@ -1390,8 +1396,8 @@ TextureImporter:
       name: TX Tileset Wall Rules_53
       rect:
         serializedVersion: 2
-        x: 32
-        y: 192
+        x: 128
+        y: 256
         width: 32
         height: 32
       alignment: 0
@@ -1411,8 +1417,8 @@ TextureImporter:
       name: TX Tileset Wall Rules_54
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 192
+        y: 256
         width: 32
         height: 32
       alignment: 0
@@ -1432,7 +1438,7 @@ TextureImporter:
       name: TX Tileset Wall Rules_55
       rect:
         serializedVersion: 2
-        x: 128
+        x: 32
         y: 192
         width: 32
         height: 32
@@ -1453,7 +1459,7 @@ TextureImporter:
       name: TX Tileset Wall Rules_56
       rect:
         serializedVersion: 2
-        x: 160
+        x: 64
         y: 192
         width: 32
         height: 32
@@ -1474,8 +1480,8 @@ TextureImporter:
       name: TX Tileset Wall Rules_57
       rect:
         serializedVersion: 2
-        x: 32
-        y: 160
+        x: 128
+        y: 192
         width: 32
         height: 32
       alignment: 0
@@ -1495,8 +1501,8 @@ TextureImporter:
       name: TX Tileset Wall Rules_58
       rect:
         serializedVersion: 2
-        x: 64
-        y: 160
+        x: 160
+        y: 192
         width: 32
         height: 32
       alignment: 0
@@ -1516,7 +1522,7 @@ TextureImporter:
       name: TX Tileset Wall Rules_59
       rect:
         serializedVersion: 2
-        x: 128
+        x: 32
         y: 160
         width: 32
         height: 32
@@ -1537,7 +1543,7 @@ TextureImporter:
       name: TX Tileset Wall Rules_60
       rect:
         serializedVersion: 2
-        x: 160
+        x: 64
         y: 160
         width: 32
         height: 32
@@ -1550,6 +1556,48 @@ TextureImporter:
       bones: []
       spriteID: 471d8a3d79713a7b0800000000000000
       internalID: -5214298002706345612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Tileset Wall Rules_61
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab8c808656a74e0b0800000000000000
+      internalID: -5700296652388513606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Tileset Wall Rules_62
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e2f6e8acf589330800000000000000
+      internalID: 3717826815972028030
       vertices: []
       indices: 
       edges: []
