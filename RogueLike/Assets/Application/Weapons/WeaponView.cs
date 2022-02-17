@@ -23,15 +23,17 @@ public class WeaponView : MonoBehaviour
         DisableWeaponSprites(currentWeapon);
     }
 
-    public void FillReloadProgressBar(float duration)
+    public IEnumerator FillReloadProgressBar(float duration)
     {
+        progressBar.gameObject.SetActive(true);
         progressBar.SetValue(0);
-        var timeLft = duration;
-        /*while (duration - Time.deltaTime > 0)
+        float time = 0.0f;
+        while (time < duration)
         {
-            timeLft = duration - Time.deltaTime;
-            if (timeLft != 0)
-                progressBar.IncrementValue(1 / timeLft);
-        }*/
+            progressBar.IncrementValue(time/duration);
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        progressBar.gameObject.SetActive(false);
     }
 }

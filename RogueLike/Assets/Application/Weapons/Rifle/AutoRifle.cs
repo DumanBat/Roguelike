@@ -5,11 +5,6 @@ using UnityEngine.Pool;
 
 public class AutoRifle : Weapon
 {
-    private void OnEnable()
-    {
-        Init();
-    }
-
     public override void Init()
     {
         magazineSize = 30;
@@ -17,9 +12,8 @@ public class AutoRifle : Weapon
         bulletVelocity = 30;
         damage = 10;
         bpm = 7;
-        reloadingDuration = 3;
+        reloadingDuration = 3f;
         isAuto = true;
-
         base.Init();
     }
 }

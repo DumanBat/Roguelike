@@ -180,6 +180,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 31
       objectReference: {fileID: 0}
+    - target: {fileID: 7059097511303340377, guid: c04ac759d2918004892b633272bbc039,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7059097511303340378, guid: c04ac759d2918004892b633272bbc039,
         type: 3}
       propertyPath: m_Pivot.x
@@ -328,7 +333,7 @@ PrefabInstance:
     - target: {fileID: 7059097512535426359, guid: c04ac759d2918004892b633272bbc039,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04ac759d2918004892b633272bbc039, type: 3}

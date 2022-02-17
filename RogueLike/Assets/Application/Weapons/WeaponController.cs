@@ -47,7 +47,9 @@ public class WeaponController : MonoBehaviour
         weapons.Insert(0, weapon);
         Destroy(weapon.weaponCollider);
         weapon.transform.SetParent(this.transform);
+        weapon.transform.SetSiblingIndex(weapon.transform.childCount - 1);
         weapon.transform.localPosition = Vector3.zero;
+        weapon.Init();
         SelectWeapon(0);
         GameManager.Instance.inventoryController.SetWeapons(weapons);
     }
@@ -95,6 +97,6 @@ public class WeaponController : MonoBehaviour
 
     public void FillReloadProgressBar(float duration)
     {
-        _currentView.FillReloadProgressBar(duration);
+        StartCoroutine(_currentView.FillReloadProgressBar(duration));
     }
 }
