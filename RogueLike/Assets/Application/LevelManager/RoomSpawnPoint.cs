@@ -24,27 +24,35 @@ public class RoomSpawnPoint : MonoBehaviour
             return;
         }
 
-        Room[] currentRoomList = null;
-
-        switch (openingDirection)
+        var roomsAmount = GameManager.Instance.levelManager.GetRoomsAmount();
+        if (_roomTemplates.spawnedRooms.Count < roomsAmount)
         {
-            case 1: 
-                currentRoomList = _roomTemplates.bottomRooms;
-                break;
-            case 2:
-                currentRoomList = _roomTemplates.topRooms;
-                break;
-            case 3:
-                currentRoomList = _roomTemplates.leftRooms;
-                break;
-            case 4:
-                currentRoomList = _roomTemplates.rightRooms;
-                break;
-        }
+            Room[] currentRoomList = null;
+            switch (openingDirection)
+            {
+                case 1:
+                    currentRoomList = _roomTemplates.bottomRooms;
+                    break;
+                case 2:
+                    currentRoomList = _roomTemplates.topRooms;
+                    break;
+                case 3:
+                    currentRoomList = _roomTemplates.leftRooms;
+                    break;
+                case 4:
+                    currentRoomList = _roomTemplates.rightRooms;
+                    break;
+            }
 
-        var rand = Random.Range(0, currentRoomList.Length);
-        var room = Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
-        room.Init();
+            var rand = Random.Range(0, currentRoomList.Length);
+            var room = Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
+            room.Init();
+        }
+        else
+        {
+            var room = Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
+            room.Init();
+        }
 
         _spawned = true;
     }
