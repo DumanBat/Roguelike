@@ -51,7 +51,6 @@ public class RoomSpawnPoint : MonoBehaviour
         else
         {
             var room = Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
-            room.Init();
         }
 
         _spawned = true;
