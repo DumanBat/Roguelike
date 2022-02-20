@@ -4514,7 +4514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 4
-  waitTime: 5
 --- !u!61 &8898314355647936533
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7114,7 +7113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
-  waitTime: 5
 --- !u!61 &5221170721186789894
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7203,7 +7201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7946120601918476539}
   - component: {fileID: 7946120601918476538}
-  - component: {fileID: 899024583392397782}
+  - component: {fileID: 5816300806752081144}
   m_Layer: 0
   m_Name: Room_1_BL 24x18
   m_TagString: Untagged
@@ -7244,7 +7242,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &899024583392397782
+--- !u!114 &5816300806752081144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7253,6 +7251,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7946120601918476537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f48f00ed9fa5a46b146194b5262465, type: 3}
+  m_Script: {fileID: 11500000, guid: e0d38b57ed48d24448481df03ab85772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomSpawners: []

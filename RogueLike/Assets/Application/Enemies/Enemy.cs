@@ -85,9 +85,9 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         healthDisplay.text = _health.ToString();
     }
 
-    public virtual void Spawn(Vector3 position)
+    public virtual void Spawn(Vector2 position)
     {
-        _navMeshAgent.Warp(position);
+        _navMeshAgent.Warp(new Vector3(position.x, position.y, 0.0f));
         _spawnPosition = position;
     }
 

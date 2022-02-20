@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private PlayerView _currentView;
     public WeaponController weaponController;
 
-    public float _moveSpeed = 6f;
+    public float _moveSpeed = 3f;
     public Animator animator;
 
     private Camera cam;

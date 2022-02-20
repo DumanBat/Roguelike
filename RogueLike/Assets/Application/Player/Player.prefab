@@ -301,7 +301,7 @@ Transform:
   m_GameObject: {fileID: 6302500916681262120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 7964126666521550444}
   - {fileID: 6457229641134050087}
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponController: {fileID: 6388222563120904190}
-  _moveSpeed: 6
+  _moveSpeed: 4
   animator: {fileID: 9117854801141168742}
   healthDisplay: {fileID: 3515290861529432119}
 --- !u!114 &130248119322468044

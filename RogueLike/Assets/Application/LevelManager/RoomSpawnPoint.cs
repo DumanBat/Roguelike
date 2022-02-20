@@ -1,27 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Modules.Core;
 
-public class RoomSpawner : MonoBehaviour
+public class RoomSpawnPoint : MonoBehaviour
 {
     public int openingDirection;
 
     private RoomTemplates _roomTemplates;
     private bool _spawned = false;
 
-    private void Start()
+    private void Awake()
     {
-        //Destroy(gameObject, waitTime);
-        _roomTemplates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-
-        Invoke("SpawnRooms", 0.3f);
+        _roomTemplates = GameManager.Instance.levelManager.GetRoomTemplates();
     }
 
-    private void SpawnRooms()
+    public void SpawnRoom()
     {
         if (_spawned) return;
+        if (openingDirection == 0)
+        {
+            _spawned = true;
+            return;
+        }
 
-        GameObject[] currentRoomList = null;
+        Room[] currentRoomList = null;
 
         switch (openingDirection)
         {
@@ -38,12 +41,10 @@ public class RoomSpawner : MonoBehaviour
                 currentRoomList = _roomTemplates.rightRooms;
                 break;
         }
-        
-        if (currentRoomList != null)
-        {
-            var rand = Random.Range(0, currentRoomList.Length);
-            Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
-        }
+
+        var rand = Random.Range(0, currentRoomList.Length);
+        var room = Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
+        room.Init();
 
         _spawned = true;
     }
@@ -52,11 +53,11 @@ public class RoomSpawner : MonoBehaviour
     {
         if (!collision.CompareTag("SpawnPoint")) return;
 
-        var roomSpawner = collision.GetComponent<RoomSpawner>();
+        var roomSpawnPoint = collision.GetComponent<RoomSpawnPoint>();
 
-        if (roomSpawner != null)
+        if (roomSpawnPoint != null)
         {
-            if (roomSpawner._spawned == false && _spawned == false)
+            if (roomSpawnPoint._spawned == false && _spawned == false)
             {
                 Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
                 Destroy(gameObject);

@@ -38,6 +38,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     protected bool reloading;
     protected float reloadingDuration;
+    public bool IsReloading() => reloading;
 
     protected ObjectPool<Bullet> bulletPool;
     public Bullet bulletPrefab;
@@ -77,14 +78,13 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     public virtual void Shot(Vector2 direction)
     {
-        if (readyToShot)
+        if (!readyToShot) return;
+
+        if (Time.time - _lastFired > 1 / bpm)
         {
-            if (Time.time - _lastFired > 1 / bpm)
-            {
-                _lastFired = Time.time;
-                ShotBullet(direction);
-                bulletsLeft--;
-            }
+            _lastFired = Time.time;
+            ShotBullet(direction);
+            bulletsLeft--;
         }
     }
 
@@ -111,26 +111,11 @@ public abstract class Weapon : MonoBehaviour, IPickable
         reloading = false;
     }
 
-    public void StopReloading()
-    {
-        reloading = false;
-    }
+    public void StopReloading() => reloading = false;
 
-    public void PickUp()
-    {
-        Debug.LogWarning("weapon pick up - " + gameObject.name);
-        onWeaponPickUp.Invoke(this);
-    }
+    public void PickUp() => onWeaponPickUp.Invoke(this);
 
-    public void SetFirepoint(Transform point)
-    {
-        _firepoint = point;
-    }
-
-    public bool IsReloading()
-    {
-        return reloading;
-    }
+    public void SetFirepoint(Transform point) => _firepoint = point;
 
     public void AddToInventory(Transform weaponsRoot)
     {
