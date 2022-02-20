@@ -4514,7 +4514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
-  waitTime: 5
 --- !u!61 &6164421887791366125
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6725,7 +6724,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
-  waitTime: 5
 --- !u!61 &5221170721186789894
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7271,7 +7269,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 1
-  waitTime: 5
 --- !u!61 &335121853485281378
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -118,6 +118,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     public void PickUp()
     {
+        Debug.LogWarning("weapon pick up - " + gameObject.name);
         onWeaponPickUp.Invoke(this);
     }
 

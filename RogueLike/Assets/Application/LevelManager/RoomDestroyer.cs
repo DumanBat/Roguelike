@@ -7,9 +7,6 @@ public class RoomDestroyer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("SpawnPoint"))
-        {
-            Debug.LogWarning(collision.gameObject.transform.parent.name);
             Destroy(collision.gameObject);
-        }
     }
 }

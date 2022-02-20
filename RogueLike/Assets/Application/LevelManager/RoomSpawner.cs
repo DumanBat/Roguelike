@@ -9,8 +9,6 @@ public class RoomSpawner : MonoBehaviour
     private RoomTemplates _roomTemplates;
     private bool _spawned = false;
 
-    public float waitTime = 5f;
-
     private void Start()
     {
         //Destroy(gameObject, waitTime);
@@ -23,25 +21,28 @@ public class RoomSpawner : MonoBehaviour
     {
         if (_spawned) return;
 
-        if (openingDirection == 1)
+        GameObject[] currentRoomList = null;
+
+        switch (openingDirection)
         {
-            var rand = Random.Range(0, _roomTemplates.bottomRooms.Length);
-            Instantiate(_roomTemplates.bottomRooms[rand], transform.position, Quaternion.identity);
+            case 1: 
+                currentRoomList = _roomTemplates.bottomRooms;
+                break;
+            case 2:
+                currentRoomList = _roomTemplates.topRooms;
+                break;
+            case 3:
+                currentRoomList = _roomTemplates.leftRooms;
+                break;
+            case 4:
+                currentRoomList = _roomTemplates.rightRooms;
+                break;
         }
-        else if (openingDirection == 2)
+        
+        if (currentRoomList != null)
         {
-            var rand = Random.Range(0, _roomTemplates.topRooms.Length);
-            Instantiate(_roomTemplates.topRooms[rand], transform.position, Quaternion.identity);
-        }
-        else if (openingDirection == 3)
-        {
-            var rand = Random.Range(0, _roomTemplates.leftRooms.Length);
-            Instantiate(_roomTemplates.leftRooms[rand], transform.position, Quaternion.identity);
-        }
-        else if (openingDirection == 4)
-        {
-            var rand = Random.Range(0, _roomTemplates.rightRooms.Length);
-            Instantiate(_roomTemplates.rightRooms[rand], transform.position, Quaternion.identity);
+            var rand = Random.Range(0, currentRoomList.Length);
+            Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
         }
 
         _spawned = true;
@@ -49,18 +50,18 @@ public class RoomSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("SpawnPoint"))
+        if (!collision.CompareTag("SpawnPoint")) return;
+
+        var roomSpawner = collision.GetComponent<RoomSpawner>();
+
+        if (roomSpawner != null)
         {
-            if (collision.GetComponent<RoomSpawner>() != null)
+            if (roomSpawner._spawned == false && _spawned == false)
             {
-                if (collision.GetComponent<RoomSpawner>()._spawned == false && _spawned == false)
-                {
-                    Debug.LogWarning("Spawned - " + gameObject.transform.parent.name);
-                    Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
-                    Destroy(gameObject);
-                }
-                _spawned = true;
+                Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
+            _spawned = true;
         }
     }
 }
