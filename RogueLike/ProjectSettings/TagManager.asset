@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Damageable
   - Environment
+  - SpawnPoint
+  - Rooms
   layers:
   - Default
   - TransparentFX

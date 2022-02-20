@@ -13,10 +13,10 @@ public class RoomSpawner : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, waitTime);
+        //Destroy(gameObject, waitTime);
         _roomTemplates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
 
-        Invoke("SpawnRooms", 0.5f);
+        Invoke("SpawnRooms", 0.3f);
     }
 
     private void SpawnRooms()
@@ -51,12 +51,16 @@ public class RoomSpawner : MonoBehaviour
     {
         if (collision.CompareTag("SpawnPoint"))
         {
-            if (collision.GetComponent<RoomSpawner>()._spawned == false && _spawned == false)
+            if (collision.GetComponent<RoomSpawner>() != null)
             {
-                Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                if (collision.GetComponent<RoomSpawner>()._spawned == false && _spawned == false)
+                {
+                    Debug.LogWarning("Spawned - " + gameObject.transform.parent.name);
+                    Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
+                }
+                _spawned = true;
             }
-            _spawned = true;
         }
     }
 }
