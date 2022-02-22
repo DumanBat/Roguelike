@@ -1,7 +1,163 @@
 fileFormatVersion: 2
 guid: 40e341c2a5f5b034aa1cd98cacae2c99
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 8613695699835734473
+    second: Struct Doors_0
+  - first:
+      213: 6721810213099440025
+    second: Struct Doors_1
+  - first:
+      213: -7773022534278720940
+    second: Struct Doors_2
+  - first:
+      213: 1101801936023570129
+    second: Struct Doors_3
+  - first:
+      213: 6533724804049586992
+    second: Struct Doors_4
+  - first:
+      213: 7587946349994952640
+    second: Struct Doors_5
+  - first:
+      213: -7451295273622577434
+    second: Struct Doors_6
+  - first:
+      213: 5002200864236393438
+    second: Struct Doors_7
+  - first:
+      213: 2150114158359638623
+    second: Struct Doors_9
+  - first:
+      213: -215362981891707344
+    second: Struct Doors_10
+  - first:
+      213: 7291447065436679922
+    second: Struct Doors_12
+  - first:
+      213: -7174483093965490233
+    second: Struct Doors_13
+  - first:
+      213: 2577741296758945150
+    second: Struct Doors_14
+  - first:
+      213: -1451512557938799433
+    second: Struct Doors_15
+  - first:
+      213: -5835598753304896599
+    second: Struct Doors_16
+  - first:
+      213: -8572218681803036388
+    second: Struct Doors_17
+  - first:
+      213: -4385262763891944705
+    second: Struct Doors_19
+  - first:
+      213: -6841818873008885442
+    second: Struct Doors_20
+  - first:
+      213: 7243640228546780002
+    second: Struct Doors_22
+  - first:
+      213: -4368486959567766185
+    second: Struct Doors_23
+  - first:
+      213: -1577240046004159855
+    second: Struct Doors_24
+  - first:
+      213: -1313065171658019448
+    second: Struct Doors_25
+  - first:
+      213: 7417958893451346657
+    second: Struct Doors_26
+  - first:
+      213: 3776872185404218287
+    second: Struct Doors_27
+  - first:
+      213: 5165007003412183407
+    second: Struct Doors_29
+  - first:
+      213: -3301620061989545418
+    second: Struct Doors_30
+  - first:
+      213: 2549009302557796966
+    second: Struct Doors_32
+  - first:
+      213: -7792877213168568820
+    second: Struct Doors_33
+  - first:
+      213: -6660475624767317849
+    second: Struct Doors_34
+  - first:
+      213: 3847943249808013215
+    second: Struct Doors_35
+  - first:
+      213: -7632971196364737971
+    second: Struct Doors_36
+  - first:
+      213: -2159390693768382827
+    second: Struct Doors_37
+  - first:
+      213: -7681740425756925730
+    second: Struct Doors_39
+  - first:
+      213: -8490312241739471397
+    second: Struct Doors_40
+  - first:
+      213: 2536799984044943237
+    second: Struct Doors_42
+  - first:
+      213: -7044658100169653809
+    second: Struct Doors_43
+  - first:
+      213: 8990705521219325518
+    second: Struct Doors_44
+  - first:
+      213: 8793973957542219384
+    second: Struct Doors_45
+  - first:
+      213: -4701158269067289294
+    second: Struct Doors_46
+  - first:
+      213: 463285416994200653
+    second: Struct Doors_47
+  - first:
+      213: -4133853500098015779
+    second: Struct Doors_49
+  - first:
+      213: -7095753150404617140
+    second: Struct Doors_50
+  - first:
+      213: -7408837429702808123
+    second: Struct Doors_54
+  - first:
+      213: 7355884680086213496
+    second: Struct Doors_55
+  - first:
+      213: -8615923191204329488
+    second: Struct Doors_56
+  - first:
+      213: -6626171822605782907
+    second: Struct Doors_57
+  - first:
+      213: -5412101914281038450
+    second: Struct Doors_59
+  - first:
+      213: 2642258438259387544
+    second: Struct Doors_60
+  - first:
+      213: -6137151843573946927
+    second: Struct Doors_62
+  - first:
+      213: 8822214967734172375
+    second: Struct Doors_63
+  - first:
+      213: -6638765282155537903
+    second: Struct Doors_64
+  - first:
+      213: 872450339270757115
+    second: Struct Doors_65
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -32,7 +188,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -41,12 +197,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,9 +231,227 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Struct Doors_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: -1, y: -16}
+        - {x: -1, y: -9}
+        - {x: 4, y: -3}
+        - {x: 16, y: -3}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03bc88597147caa50800000000000000
+      internalID: 6533724804049586992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Struct Doors_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -3}
+        - {x: -5, y: -3}
+        - {x: 1, y: -8}
+        - {x: 1, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7cb2ea00dcd4960800000000000000
+      internalID: 7587946349994952640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Struct Doors_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: -1, y: -16}
+        - {x: -1, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eedd236d6ea79890800000000000000
+      internalID: -7451295273622577434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Struct Doors_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: 16}
+        - {x: 1, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed356f7ee236b6540800000000000000
+      internalID: 5002200864236393438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Struct Doors_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c9c4080a9ef98770800000000000000
+      internalID: 8613695699835734473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Struct Doors_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 997826f66caa84d50800000000000000
+      internalID: 6721810213099440025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Struct Doors_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 452d535303da02490800000000000000
+      internalID: -7773022534278720940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Struct Doors_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d6c581f5036a4f00800000000000000
+      internalID: 1101801936023570129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

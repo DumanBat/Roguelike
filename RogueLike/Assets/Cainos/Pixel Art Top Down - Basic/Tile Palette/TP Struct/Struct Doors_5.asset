@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: FenceSide
+  m_Name: Struct Doors_5
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: c6d54e62db7a7be42a8f8ebdb4e48638, type: 3}
+  m_Sprite: {fileID: 7587946349994952640, guid: 40e341c2a5f5b034aa1cd98cacae2c99,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
