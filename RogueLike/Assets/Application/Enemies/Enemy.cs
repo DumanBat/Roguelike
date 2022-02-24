@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +11,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
 
     public abstract string enemyName { get; }
     public EnemyFactory OriginFactory { get; set; }
+    public Room OriginRoom { get; set; }
 
     protected Rigidbody2D _rb;
     protected NavMeshAgent _navMeshAgent;
@@ -46,6 +46,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     private static readonly int DeathHash = Animator.StringToHash("isDie");
     private static readonly int DeathStateHash = Animator.StringToHash("Base Layer.Die");
     public TextMeshPro healthDisplay;
+
 
     public virtual void Awake()
     {
@@ -108,6 +109,9 @@ public abstract class Enemy: MonoBehaviour, IDamageable
             yield return null;
 
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+
+        if (OriginRoom != null)
+            OriginRoom.RemoveEnemyFromSpawnedEnemyList(this);
         Destroy(this.gameObject);
     }
 

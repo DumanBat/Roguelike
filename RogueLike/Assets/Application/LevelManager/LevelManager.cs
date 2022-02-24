@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -23,8 +24,6 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         _roomTemplates = GetComponent<RoomTemplates>();
-        //OnRoomSpawned += NavMeshController.Instance.Init;
-        Debug.Log("sh");
     }
 
     public void Start()
@@ -41,10 +40,8 @@ public class LevelManager : MonoBehaviour
         {
             _roomSpawnCompleted = true;
             NavMeshController.Instance.Init();
-            SpawnEnemies();
 
-            foreach (var room in _roomTemplates.spawnedRooms)
-                room.SpawnEnemies();
+            ConfigureRooms();
         }
     }
 
@@ -55,20 +52,31 @@ public class LevelManager : MonoBehaviour
         _roomSpawnStarted = true;
     }
 
-    public void SpawnEnemies()
+    private void ConfigureRooms()
     {
-        SpawnEnemy(EnemyType.GreenJelly, new Vector2(5.0f, 5.0f));
-        SpawnEnemy(EnemyType.PinkJelly, new Vector2(2.0f, 5.0f));
-        SpawnEnemy(EnemyType.PinkJelly, new Vector2(10.0f, 5.0f));
+        // only enemies config
+        foreach (var room in _roomTemplates.spawnedRooms)
+        {
+            var enemiesAmountToSpawn = UnityEngine.Random.Range(2, 6);
+            List<EnemyType> enemiesToSpawn = new List<EnemyType>();
+            for (int i = 0; i < enemiesAmountToSpawn; i++)
+            {
+                var avaliableEnemyTypes = (int)Enum.GetValues(typeof(EnemyType)).Cast<EnemyType>().Max();
+                var enemyType = (EnemyType)UnityEngine.Random.Range(0, avaliableEnemyTypes + 1);
 
-        /*SpawnEnemy(EnemyType.PinkJelly, new Vector2(4.0f, 5.0f));
-        SpawnEnemy(EnemyType.PinkJelly, new Vector2(6.0f, 5.0f));
-        SpawnEnemy(EnemyType.PinkJelly, new Vector2(8.0f, 5.0f));*/
+                enemiesToSpawn.Add(enemyType);
+            }
+
+            room.SpawnEnemies(enemiesToSpawn);
+        }
     }
-    public void SpawnEnemy(EnemyType type, Vector2 position)
+
+    public Enemy SpawnEnemy(EnemyType type, Vector2 position)
     {
         var enemy = enemyFactory.Get(type);
         enemy.Spawn(position);
+
+        return enemy;
     }
 
     public RoomTemplates GetRoomTemplates() => _roomTemplates;
