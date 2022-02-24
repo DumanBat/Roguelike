@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: FenceSideOther
+  m_Name: TX Tileset Wall Down Pivot_16
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 64592d3a27dd3904eb62d66e264bbc31, type: 3}
+  m_Sprite: {fileID: 2013236756705032678, guid: d76aef400098f794281a5404bb3ede46,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
