@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
     public void Shot(Vector3 position, Vector3 direction, Vector2 velocity)
     {
         transform.position = position;
-        transform.Rotate(new Vector3(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
+        transform.Rotate(new Vector3(0.0f, 0.0f, Mathf.Atan2(direction.normalized.y, direction.normalized.x) * Mathf.Rad2Deg));
         _rb.velocity = velocity;
     }
 

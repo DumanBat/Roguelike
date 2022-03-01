@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4488051, g: 0.49886614, b: 0.5756953, a: 1}
+  m_IndirectSpecularColor: {r: 0.4488055, g: 0.49886644, b: 0.57569563, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.06666667
   m_BuildHeightMesh: 0
-  m_HideEditorLogs: 0
+  m_HideEditorLogs: 1
   m_NavMeshData: {fileID: 23800000, guid: 238e228b7340f6e489e16a645b76e3c4, type: 2}
 --- !u!4 &1339830550
 Transform:
@@ -780,22 +780,22 @@ PrefabInstance:
     - target: {fileID: 6076279598984469667, guid: 609c37c867d1c4644b1787f921ed4da7,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6076279598984469667, guid: 609c37c867d1c4644b1787f921ed4da7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6076279598984469667, guid: 609c37c867d1c4644b1787f921ed4da7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.57
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6076279598984469667, guid: 609c37c867d1c4644b1787f921ed4da7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.89
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6076279598984469667, guid: 609c37c867d1c4644b1787f921ed4da7,
         type: 3}
