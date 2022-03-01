@@ -15,15 +15,16 @@ public class RoomSpawnPoint : MonoBehaviour
         _roomTemplates = GameManager.Instance.levelManager.GetRoomTemplates();
     }
 
-    public void SpawnRoom()
+    public Room SpawnRoom()
     {
-        if (_spawned) return;
+        if (_spawned) return null;
         if (openingDirection == 0)
         {
             _spawned = true;
-            return;
+            return null;
         }
 
+        Room room;
         var roomsAmount = GameManager.Instance.levelManager.GetRoomsAmount();
         if (_roomTemplates.spawnedRooms.Count < roomsAmount)
         {
@@ -45,15 +46,16 @@ public class RoomSpawnPoint : MonoBehaviour
             }
 
             var rand = Random.Range(0, currentRoomList.Length);
-            var room = Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
+            room = Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
             room.Init();
         }
         else
         {
-            var room = Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
+            room = Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
         }
 
         _spawned = true;
+        return room;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

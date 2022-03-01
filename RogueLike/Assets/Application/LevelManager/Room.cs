@@ -8,7 +8,9 @@ public class Room : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> _doorTop, _doorBottom, _doorLeft, _doorRight;
-    private List<List<GameObject>> _roomDoors = new List<List<GameObject>>();
+    private List<GameObject>[] _roomDoors = new List<GameObject>[4];
+    [SerializeField]
+    private Room[] _sideRooms; // Indexes: 0 - Top room, 1 - Bottom, 2 - Right, 3 - Left
 
     public List<RoomSpawnPoint> roomSpawnPoints; 
     private RoomTemplates _roomTemplates;
@@ -21,8 +23,11 @@ public class Room : MonoBehaviour
     {
         roomSpawnPoints.AddRange(GetComponentsInChildren<RoomSpawnPoint>());
         _roomTemplates = GameManager.Instance.levelManager.GetRoomTemplates();
-        _roomDoors.AddRange(new List<List<GameObject>>() 
-            { _doorTop, _doorBottom, _doorLeft, _doorRight });
+
+        _roomDoors[0] = _doorBottom.Count > 0 ? _doorBottom : null;
+        _roomDoors[1] = _doorTop.Count > 0 ? _doorTop : null;
+        _roomDoors[2] = _doorLeft.Count > 0 ? _doorLeft : null;
+        _roomDoors[3] = _doorRight.Count > 0 ? _doorRight : null;
     }
 
     public void Init()
@@ -38,9 +43,14 @@ public class Room : MonoBehaviour
 
     public void SpawnSideRooms()
     {
+        _sideRooms = new Room[4];
+
         foreach (var spawnPoint in roomSpawnPoints)
         {
-            spawnPoint.SpawnRoom();
+            var room = spawnPoint.SpawnRoom();
+
+            if (room != null)
+                _sideRooms[spawnPoint.openingDirection - 1] = room;
         }
     }
 
@@ -74,10 +84,22 @@ public class Room : MonoBehaviour
     {
         foreach (var door in _roomDoors)
         {
-            if (door == null) return;
+            if (door == null)
+                continue;
 
             door[0].SetActive(false);
             door[1].SetActive(true);
+        }
+
+        for (int i = 0; i < _sideRooms.Length; i++)
+        {
+            if (_sideRooms[i] == null)
+                continue;
+            if (_sideRooms[i]._roomDoors[i] == null)
+                continue;
+
+            _sideRooms[i]._roomDoors[i][0].SetActive(false);
+            _sideRooms[i]._roomDoors[i][1].SetActive(true);
         }
     }
 }

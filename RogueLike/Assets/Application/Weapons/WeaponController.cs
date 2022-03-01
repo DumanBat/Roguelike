@@ -33,8 +33,8 @@ public class WeaponController : MonoBehaviour
         AddWeapons();
         AddWeaponToInventory(SpawnWeapon(startingWeapon, Vector3.zero));
 
-        SpawnWeapon(weaponToSpawn, new Vector3(10f, 10f, 0f));
-        SpawnWeapon(weaponToSpawn, new Vector3(-10f, 10f, 0f));
+        SpawnWeapon(weaponToSpawn, new Vector3(0f, 0f, 0f));
+        SpawnWeapon(weaponToSpawn, new Vector3(-1, 1f, 0f));
     }
 
     private void AddWeapons()
