@@ -5306,31 +5306,13 @@ CompositeCollider2D:
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
-    - - {x: -11.687525, y: 0.53124}
-      - {x: -11.687525, y: 0.78124}
-      - {x: -12.00001, y: 0.7812166}
-      - {x: -11.999974, y: 0.53124}
-    - - {x: 11.999974, y: 0.53124}
-      - {x: 11.999974, y: 0.74999}
-      - {x: 11.6874895, y: 0.7499666}
-      - {x: 11.687525, y: 0.53124}
-    - - {x: -11.687525, y: -0.78124}
-      - {x: -11.687525, y: -0.49999002}
-      - {x: -12.00001, y: -0.5000252}
-      - {x: -11.999974, y: -0.78124}
-    - - {x: 11.999974, y: -0.84374}
-      - {x: 11.999974, y: -0.49999002}
-      - {x: 11.6874895, y: -0.5000252}
-      - {x: 11.687525, y: -0.84374}
-    - - {x: -0.5312793, y: -9}
-      - {x: -0.5312441, y: -7.7812424}
-      - {x: -0.3749877, y: -7.5937505}
-      - {x: 0.3437572, y: -7.593756}
-      - {x: 0.53125, y: -7.750012}
+    - - {x: 0.99997073, y: -9}
+      - {x: 0.99997073, y: -8}
+      - {x: 0.53125, y: -8.00003}
       - {x: 0.5312793, y: -9}
-      - {x: 1, y: -8.99997}
-      - {x: 0.99997073, y: -7}
-      - {x: -1, y: -7.0000296}
+    - - {x: -0.5312793, y: -9}
+      - {x: -0.5312793, y: -8}
+      - {x: -1, y: -8.00003}
       - {x: -0.99997073, y: -9}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
@@ -5767,7 +5749,7 @@ GameObject:
   - component: {fileID: 7050112970581603699}
   m_Layer: 0
   m_Name: DoorsOpenedLeft
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6302,7 +6284,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 6.4931
+      m_AnimationSpeed: 9.833373
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -8, y: 8, z: 0}
@@ -6314,7 +6296,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 3.8378956
+      m_AnimationSpeed: 1.7212567
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -4, y: 8, z: 0}
@@ -6326,7 +6308,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 8.8398485
+      m_AnimationSpeed: 4.932959
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 3, y: 8, z: 0}
@@ -6338,7 +6320,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 3.538839
+      m_AnimationSpeed: 1.182401
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 7, y: 8, z: 0}
@@ -6350,7 +6332,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 3.7458198
+      m_AnimationSpeed: 1.5265799
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 11, y: 8, z: 0}
@@ -6362,7 +6344,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 7.0264482
+      m_AnimationSpeed: 1.6746904
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -6590,7 +6572,7 @@ GameObject:
   - component: {fileID: 1276007914335724310}
   m_Layer: 0
   m_Name: DoorsOpenedRight
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6830,7 +6812,7 @@ GameObject:
   - component: {fileID: 5835787317340085171}
   m_Layer: 0
   m_Name: Walls Sides (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7755,7 +7737,7 @@ GameObject:
   - component: {fileID: 7113747330695414222}
   m_Layer: 0
   m_Name: Walls Top (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8448,7 +8430,7 @@ GameObject:
   - component: {fileID: 6617291406947849689}
   m_Layer: 0
   m_Name: Walls Bottom (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9322,7 +9304,7 @@ GameObject:
   - component: {fileID: 4661249150591749596}
   m_Layer: 0
   m_Name: DoorsClosedLeft
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10064,7 +10046,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10074,7 +10056,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 5
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10084,7 +10066,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10094,17 +10076,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 3
-      m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 11, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10126,9 +10098,11 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: b439583689ff3f149a09254f63257fcd, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
@@ -10147,11 +10121,8 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -7773022534278720940, guid: 40e341c2a5f5b034aa1cd98cacae2c99,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 8363088420581105519, guid: 14e94e1354841cc4ea82f1aab084db0b,
-      type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 5
+  - m_RefCount: 4
     m_Data:
       e00: 1
       e01: 0
@@ -10170,7 +10141,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 5
+  - m_RefCount: 4
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -10302,22 +10273,6 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 5352143096473157918}
     m_ColliderPaths:
-    - - X: 120000100
-        Y: 10000041
-      - X: 120000041
-        Y: 10000100
-      - X: 116874959
-        Y: 10000100
-      - X: 116874900
-        Y: 10000041
-      - X: 116874900
-        Y: 41
-      - X: 116874959
-        Y: 100
-      - X: 120000041
-        Y: 100
-      - X: 120000100
-        Y: 41
     - - X: 10000000
         Y: -70000000
       - X: -10000000
@@ -10328,10 +10283,6 @@ CompositeCollider2D:
         Y: -90000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 11.999974, y: 0.00001}
-      - {x: 11.999974, y: 1.00001}
-      - {x: 11.6874895, y: 0.9999748}
-      - {x: 11.687525, y: 0.00001}
     - - {x: 0.99997073, y: -9}
       - {x: 0.99997073, y: -7}
       - {x: -1, y: -7.0000296}
@@ -10809,7 +10760,7 @@ GameObject:
   - component: {fileID: 2016547099594398829}
   m_Layer: 0
   m_Name: DoorsClosedRight
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
