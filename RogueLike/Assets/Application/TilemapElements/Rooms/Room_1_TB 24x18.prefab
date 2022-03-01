@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 6121007867926966256}
   m_Layer: 0
   m_Name: DoorsOpenedTop
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,7 +141,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &1671771769093099384
 Tilemap:
@@ -5221,7 +5221,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &9030026805866191652
 Tilemap:
@@ -5482,7 +5482,7 @@ GameObject:
   - component: {fileID: 3912913447783319455}
   m_Layer: 0
   m_Name: Walls Sides (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7095,7 +7095,7 @@ GameObject:
   - component: {fileID: 7113747330695414222}
   m_Layer: 0
   m_Name: Walls Top (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7768,7 +7768,7 @@ GameObject:
   - component: {fileID: 4709793776882077994}
   m_Layer: 0
   m_Name: Walls Bottom (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8912,7 +8912,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &6382528998362665911
 Tilemap:
@@ -8993,7 +8993,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 8.503374
+      m_AnimationSpeed: 1.2569256
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -8, y: 8, z: 0}
@@ -9005,7 +9005,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 9.849492
+      m_AnimationSpeed: 7.029695
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -4, y: 8, z: 0}
@@ -9017,7 +9017,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 9.965175
+      m_AnimationSpeed: 5.148204
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 3, y: 8, z: 0}
@@ -9029,7 +9029,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 5.1408367
+      m_AnimationSpeed: 7.682107
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 7, y: 8, z: 0}
@@ -9041,7 +9041,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 6.661933
+      m_AnimationSpeed: 9.793927
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 11, y: 8, z: 0}
@@ -9053,7 +9053,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 4.181827
+      m_AnimationSpeed: 4.1014385
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -9191,7 +9191,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &5052178349136724193
 Tilemap:
@@ -9465,7 +9465,7 @@ GameObject:
   - component: {fileID: 1330772187924743374}
   m_Layer: 0
   m_Name: DoorsClosedTop
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9482,7 +9482,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &3217476517583836192
 Tilemap:
@@ -9708,28 +9708,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 5325842254418676254}
     m_ColliderPaths:
-    - - X: 10000041
-        Y: 100000100
-      - X: -10000041
-        Y: 100000100
-      - X: -10000100
-        Y: 100000041
-      - X: -10000100
-        Y: 79999959
-      - X: -10000041
-        Y: 79999900
-      - X: 10000041
-        Y: 79999900
-      - X: 10000100
-        Y: 79999959
-      - X: 10000100
-        Y: 100000041
+    - - X: 10000000
+        Y: 100000000
+      - X: -10000000
+        Y: 100000000
+      - X: -10000000
+        Y: 80000000
+      - X: 10000000
+        Y: 80000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 0.9999748, y: 7.9999905}
-      - {x: 0.9999748, y: 10.00001}
-      - {x: -1.00001, y: 9.999974}
-      - {x: -0.9999748, y: 7.9999905}
+    - - {x: 0.99997073, y: 8}
+      - {x: 0.99997073, y: 10}
+      - {x: -1, y: 9.99997}
+      - {x: -0.99997073, y: 8}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!1 &7190750974527460306
@@ -9966,11 +9958,11 @@ Transform:
   - {fileID: 4666783491429179810}
   - {fileID: 5321312167742801333}
   - {fileID: 9097630386661203153}
-  - {fileID: 1842563601872122969}
   - {fileID: 579803359364364856}
   - {fileID: 6245242868314352501}
   - {fileID: 4377209168882229170}
   - {fileID: 3299097170897218415}
+  - {fileID: 1842563601872122969}
   - {fileID: 7743374359554175457}
   - {fileID: 3236275431204519788}
   - {fileID: 1259184365338957702}
