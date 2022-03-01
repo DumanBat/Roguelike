@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6340058773020962165
 Transform:
   m_ObjectHideFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &6642406416016607162
 Tilemap:
@@ -270,29 +270,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 3091505547476252379}
-    m_ColliderPaths:
-    - - X: 5312500
-        Y: -77500000
-      - X: 5312500
-        Y: -90000000
-      - X: 10000000
-        Y: -90000000
-      - X: 10000000
-        Y: -70000000
-      - X: -10000000
-        Y: -70000000
-      - X: -10000000
-        Y: -90000000
-      - X: -5312500
-        Y: -90000000
-      - X: -5312500
-        Y: -77812496
-      - X: -3750000
-        Y: -75937504
-      - X: 3437500
-        Y: -75937504
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: -0.5312793, y: -9}
@@ -5041,7 +5019,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &1635135352898903566
 Tilemap:
@@ -6226,7 +6204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &2800426034292045040
 Tilemap:
@@ -7089,7 +7067,7 @@ GameObject:
   - component: {fileID: 5518986936296658274}
   - component: {fileID: 7376071710563170490}
   m_Layer: 0
-  m_Name: DoorsClosedTop
+  m_Name: DoorsClosedRight
   m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7107,7 +7085,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 4
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &4501872359720411729
 Tilemap:
@@ -7586,7 +7564,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 9.096753
+      m_AnimationSpeed: 7.903874
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -8, y: 8, z: 0}
@@ -7598,7 +7576,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 8.695423
+      m_AnimationSpeed: 4.1713715
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -4, y: 8, z: 0}
@@ -7610,7 +7588,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 4.443976
+      m_AnimationSpeed: 1.7293752
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 3, y: 8, z: 0}
@@ -7622,7 +7600,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 3.5374444
+      m_AnimationSpeed: 4.7217307
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 7, y: 8, z: 0}
@@ -7634,7 +7612,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 3.106844
+      m_AnimationSpeed: 7.4947805
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 11, y: 8, z: 0}
@@ -7646,7 +7624,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 5.2939487
+      m_AnimationSpeed: 6.1546817
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -9692,7 +9670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8432674972932676152
 Transform:
   m_ObjectHideFlags: 0
@@ -9705,7 +9683,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &1811790471750429776
 Tilemap:
@@ -9898,25 +9876,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 3941605834525749941}
-    m_ColliderPaths:
-    - - X: -116875000
-        Y: 10000000
-      - X: -120000000
-        Y: 10000000
-      - X: -120000000
-        Y: 7812500
-      - X: -116875000
-        Y: 7812500
-    - - X: -116875000
-        Y: -7812500
-      - X: -120000000
-        Y: -7812500
-      - X: -120000000
-        Y: -10000000
-      - X: -116875000
-        Y: -10000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: -11.68753, y: 0.78125}
@@ -10272,7 +10232,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &6515813111290656622
 Tilemap:
@@ -10976,14 +10936,14 @@ Transform:
   - {fileID: 4666783491429179810}
   - {fileID: 5321312167742801333}
   - {fileID: 9097630386661203153}
-  - {fileID: 3612961524550751625}
-  - {fileID: 6313185101641645874}
   - {fileID: 2265144772929734175}
   - {fileID: 8340700996165818812}
   - {fileID: 7648348489167130518}
   - {fileID: 6340058773020962165}
   - {fileID: 4733337024922776882}
   - {fileID: 8432674972932676152}
+  - {fileID: 3612961524550751625}
+  - {fileID: 6313185101641645874}
   - {fileID: 3977556807110015972}
   - {fileID: 7946120601733822829}
   - {fileID: 5694719176343400623}
@@ -11018,6 +10978,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d38b57ed48d24448481df03ab85772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doorTop:
+  - {fileID: 2132766415424224738}
+  - {fileID: 9022677449280300079}
+  _doorBottom:
+  - {fileID: 7810701801316308422}
+  - {fileID: 51287105861080323}
+  _doorLeft:
+  - {fileID: 592014117742945516}
+  - {fileID: 6547396255976555597}
+  _doorRight:
+  - {fileID: 2624223931834725919}
+  - {fileID: 9039405570074282361}
   roomSpawnPoints: []
 --- !u!1 &8263406996912927457
 GameObject:
@@ -11240,7 +11212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8340700996165818812
 Transform:
   m_ObjectHideFlags: 0
@@ -11253,7 +11225,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &4333411146662408973
 Tilemap:
@@ -11476,29 +11448,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 8293577736988274679}
-    m_ColliderPaths:
-    - - X: 5312500
-        Y: 92500000
-      - X: 5312500
-        Y: 80000000
-      - X: 10000000
-        Y: 80000000
-      - X: 10000000
-        Y: 100000000
-      - X: -10000000
-        Y: 100000000
-      - X: -10000000
-        Y: 80000000
-      - X: -5312500
-        Y: 80000000
-      - X: -5312500
-        Y: 92187504
-      - X: -3750000
-        Y: 94062496
-      - X: 3437500
-        Y: 94062496
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: -0.5312793, y: 8}
@@ -11528,12 +11478,12 @@ GameObject:
   - component: {fileID: 7117570556986473681}
   - component: {fileID: 320010275695541578}
   m_Layer: 0
-  m_Name: DoorsOpenedTop
+  m_Name: DoorsOpenedRight
   m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6313185101641645874
 Transform:
   m_ObjectHideFlags: 0
@@ -11546,7 +11496,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7946120601918476539}
-  m_RootOrder: 5
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &6261378955232707992
 Tilemap:
@@ -11769,73 +11719,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 3176167736324829157}
-    m_ColliderPaths:
-    - - X: 120000100
-        Y: 5312459
-      - X: 120000100
-        Y: 10000041
-      - X: 120000041
-        Y: 10000100
-      - X: 116874959
-        Y: 10000100
-      - X: 116874900
-        Y: 10000041
-      - X: 116874900
-        Y: 5312459
-      - X: 116874959
-        Y: 5312400
-      - X: 120000041
-        Y: 5312400
-    - - X: -116874900
-        Y: 5312459
-      - X: -116874900
-        Y: 7812459
-      - X: -116874959
-        Y: 7812400
-      - X: -120000041
-        Y: 7812400
-      - X: -120000100
-        Y: 7812459
-      - X: -120000100
-        Y: 5312459
-      - X: -120000041
-        Y: 5312400
-      - X: -116874959
-        Y: 5312400
-    - - X: 120000100
-        Y: -10000041
-      - X: 120000100
-        Y: -4999959
-      - X: 120000041
-        Y: -4999900
-      - X: 116874959
-        Y: -4999900
-      - X: 116874900
-        Y: -4999959
-      - X: 116874900
-        Y: -10000041
-      - X: 116874959
-        Y: -10000100
-      - X: 120000041
-        Y: -10000100
-    - - X: -116874900
-        Y: -4999959
-      - X: -116874959
-        Y: -4999900
-      - X: -120000041
-        Y: -4999900
-      - X: -120000100
-        Y: -4999959
-      - X: -120000100
-        Y: -7812459
-      - X: -120000041
-        Y: -7812400
-      - X: -116874959
-        Y: -7812400
-      - X: -116874900
-        Y: -7812459
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 11.999974, y: 0.53124}

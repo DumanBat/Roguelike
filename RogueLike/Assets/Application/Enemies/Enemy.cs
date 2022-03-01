@@ -111,7 +111,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
 
         if (OriginRoom != null)
-            OriginRoom.RemoveEnemyFromSpawnedEnemyList(this);
+            OriginRoom.RemoveFromSpawnedEnemiesList(this);
         Destroy(this.gameObject);
     }
 
