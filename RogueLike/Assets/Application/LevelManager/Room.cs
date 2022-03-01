@@ -9,7 +9,6 @@ public class Room : MonoBehaviour
     [SerializeField]
     private List<GameObject> _doorTop, _doorBottom, _doorLeft, _doorRight;
     private List<GameObject>[] _roomDoors = new List<GameObject>[4];
-    [SerializeField]
     private Room[] _sideRooms; // Indexes: 0 - Top room, 1 - Bottom, 2 - Right, 3 - Left
 
     public List<RoomSpawnPoint> roomSpawnPoints; 
