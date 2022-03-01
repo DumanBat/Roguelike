@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     private bool _roomSpawnStarted = false;
     private bool _roomSpawnCompleted = false;
 
+    private Room _startingRoom;
     public Action OnRoomSpawned;
     // TODO: убрать инициализацию уровня из Start
 
@@ -47,28 +48,39 @@ public class LevelManager : MonoBehaviour
 
     public void Init()
     {
-        var startingRoom = Instantiate(_roomTemplates.startingRooms[0], Vector3.zero, Quaternion.identity);
-        startingRoom.Init();
+        _startingRoom = Instantiate(_roomTemplates.startingRooms[0], Vector3.zero, Quaternion.identity);
+        _startingRoom.Init();
+
+        _roomTemplates.spawnedRooms.Remove(_startingRoom);
         _roomSpawnStarted = true;
     }
 
     private void ConfigureRooms()
     {
         // only enemies config
+        _startingRoom.OpenDoors();
+
         foreach (var room in _roomTemplates.spawnedRooms)
         {
-            var enemiesAmountToSpawn = UnityEngine.Random.Range(2, 6);
-            List<EnemyType> enemiesToSpawn = new List<EnemyType>();
-            for (int i = 0; i < enemiesAmountToSpawn; i++)
-            {
-                var avaliableEnemyTypes = (int)Enum.GetValues(typeof(EnemyType)).Cast<EnemyType>().Max();
-                var enemyType = (EnemyType)UnityEngine.Random.Range(0, avaliableEnemyTypes + 1);
-
-                enemiesToSpawn.Add(enemyType);
-            }
+            var enemiesToSpawn = ConfigureEnemies();
 
             room.SpawnEnemies(enemiesToSpawn);
         }
+    }
+
+    private List<EnemyType> ConfigureEnemies()
+    {
+        var enemiesAmountToSpawn = UnityEngine.Random.Range(2, 6);
+        List<EnemyType> enemiesToSpawn = new List<EnemyType>();
+        for (int i = 0; i < enemiesAmountToSpawn; i++)
+        {
+            var avaliableEnemyTypes = (int)Enum.GetValues(typeof(EnemyType)).Cast<EnemyType>().Max();
+            var enemyType = (EnemyType)UnityEngine.Random.Range(0, avaliableEnemyTypes + 1);
+
+            enemiesToSpawn.Add(enemyType);
+        }
+
+        return enemiesToSpawn;
     }
 
     public Enemy SpawnEnemy(EnemyType type, Vector2 position)
