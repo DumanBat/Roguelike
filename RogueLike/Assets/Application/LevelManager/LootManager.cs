@@ -18,7 +18,7 @@ public class LootManager : MonoBehaviour
     {
         var weapon = Instantiate(weaponToSpawn, spawnPosition, Quaternion.identity);
         weapon.weaponInGameSprite.gameObject.SetActive(true);
-        weapon.onWeaponPickUp += PlayerController.Instance.weaponController.AddWeaponToInventory;
+        weapon.onAddedToInventory += PlayerController.Instance.weaponController.AddWeaponToInventory;
         weapon.Init();
         return weapon;
     }

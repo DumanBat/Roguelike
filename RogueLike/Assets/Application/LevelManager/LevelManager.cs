@@ -65,8 +65,7 @@ public class LevelManager : MonoBehaviour
         _startingRoom.Init();
         _roomTemplates.spawnedRooms.Remove(_startingRoom);
 
-        /*_lootManager.SpawnWeapon(_lootManager.weaponToSpawn, new Vector3(3f, 0f, 0f));
-        _lootManager.SpawnWeapon(_lootManager.weaponToSpawn, new Vector3(-1, 1f, 0f));*/
+        _lootManager.SpawnWeapon(_lootManager.weaponToSpawn, new Vector3(3f, 0f, 0f));
 
         _roomSpawnStarted = true;
     }
@@ -93,12 +92,11 @@ public class LevelManager : MonoBehaviour
             if (lootRoomIndexes.Contains(i))
             {
                 var weapon = _lootManager.SpawnWeapon(_lootManager.weaponToSpawn, spawnedRooms[i].transform.position);
-                //weapon.onWeaponPickUp += spawnedRooms[i].OpenDoors();
+                weapon.onWeaponPickUp += spawnedRooms[i].OpenDoors;
             }
             else
             {
                 var enemiesToSpawn = ConfigureEnemies();
-
                 spawnedRooms[i].SpawnEnemies(enemiesToSpawn);
             }
         }

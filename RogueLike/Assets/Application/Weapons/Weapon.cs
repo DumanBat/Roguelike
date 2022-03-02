@@ -39,6 +39,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
     protected bool reloading;
     protected float reloadingDuration;
     public bool IsReloading() => reloading;
+    public void StopReloading() => reloading = false;
 
     protected ObjectPool<Bullet> bulletPool;
     public Bullet bulletPrefab;
@@ -49,12 +50,16 @@ public abstract class Weapon : MonoBehaviour, IPickable
     public GameObject[] weaponSprites;
     public BoxCollider2D weaponCollider;
 
-    public Action<Weapon> onWeaponPickUp;
-    //public delegate void Action();
-    //public void onWeaponPickUp(Action action) => action();
-    public void PickUp() => onWeaponPickUp.Invoke(this);
+    public Action onWeaponPickUp;
+    public Action<Weapon> onAddedToInventory;
+    public void PickUp()
+    {
+        onWeaponPickUp?.Invoke();
+        onAddedToInventory?.Invoke(this);
+    }
 
     public Transform _firepoint;
+    public void SetFirepoint(Transform point) => _firepoint = point;
 
     public virtual void Init()
     {
@@ -113,11 +118,6 @@ public abstract class Weapon : MonoBehaviour, IPickable
         bulletsLeft = magazineSize;
         reloading = false;
     }
-
-    public void StopReloading() => reloading = false;
-
-
-    public void SetFirepoint(Transform point) => _firepoint = point;
 
     public void AddToInventory(Transform weaponsRoot)
     {

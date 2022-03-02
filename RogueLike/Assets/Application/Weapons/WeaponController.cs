@@ -10,8 +10,6 @@ public class WeaponController : MonoBehaviour
     public Weapon currentWeapon;
     public List<Weapon> weapons;
 
-    private Transform _firepoint;
-
     public Action<float> onReload;
     public Action onWeaponChange;
     private Coroutine _reloadingRoutine;
