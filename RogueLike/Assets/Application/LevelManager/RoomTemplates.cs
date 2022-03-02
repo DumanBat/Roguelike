@@ -14,4 +14,9 @@ public class RoomTemplates : MonoBehaviour
     public Room closedRoom;
 
     public List<Room> spawnedRooms;
+
+    public void Unload()
+    {
+        spawnedRooms.Clear();
+    }
 }

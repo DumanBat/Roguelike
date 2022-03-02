@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using Modules.Core;
 
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : Singleton<PlayerController>, IDamageable
 {
 
     /// <summary>

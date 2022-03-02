@@ -50,6 +50,9 @@ public abstract class Weapon : MonoBehaviour, IPickable
     public BoxCollider2D weaponCollider;
 
     public Action<Weapon> onWeaponPickUp;
+    //public delegate void Action();
+    //public void onWeaponPickUp(Action action) => action();
+    public void PickUp() => onWeaponPickUp.Invoke(this);
 
     public Transform _firepoint;
 
@@ -113,7 +116,6 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     public void StopReloading() => reloading = false;
 
-    public void PickUp() => onWeaponPickUp.Invoke(this);
 
     public void SetFirepoint(Transform point) => _firepoint = point;
 

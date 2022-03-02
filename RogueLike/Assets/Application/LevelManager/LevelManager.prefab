@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4805717308002775508}
   - component: {fileID: 5694852723935072412}
+  - component: {fileID: 3868940226469306751}
   - component: {fileID: 1658429313104494548}
   m_Layer: 0
   m_Name: LevelManager
@@ -46,6 +47,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyFactory: {fileID: 11400000, guid: 4c8d39b34b0120b4594b6ce6109f51cd, type: 2}
   _roomsAmount: 0
+--- !u!114 &3868940226469306751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8392170350389145551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11854f063b9e2b3499f1a0372a9f9b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponToSpawn: {fileID: 148401657117487076, guid: 717c59ad3852e5a469942162f1f7bc75,
+    type: 3}
+  startingWeapon: {fileID: 2891379312429323266, guid: de114e39415a980448e4466ad0a46bc6,
+    type: 3}
 --- !u!114 &1658429313104494548
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,10 +6,6 @@ using Modules.Core;
 
 public class WeaponController : MonoBehaviour
 {
-    /// TEMP 
-    public Weapon weaponToSpawn;
-    public Weapon startingWeapon;
-    /// 
     private WeaponView _currentView;
     public Weapon currentWeapon;
     public List<Weapon> weapons;
@@ -31,10 +27,6 @@ public class WeaponController : MonoBehaviour
     private void Start()
     {
         AddWeapons();
-        AddWeaponToInventory(SpawnWeapon(startingWeapon, Vector3.zero));
-
-        SpawnWeapon(weaponToSpawn, new Vector3(0f, 0f, 0f));
-        SpawnWeapon(weaponToSpawn, new Vector3(-1, 1f, 0f));
     }
 
     private void AddWeapons()
@@ -48,7 +40,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    private void AddWeaponToInventory(Weapon weapon)
+    public void AddWeaponToInventory(Weapon weapon)
     {
         weapons.Insert(0, weapon);
         weapon.AddToInventory(this.transform);
@@ -85,15 +77,6 @@ public class WeaponController : MonoBehaviour
     public void DisableWeaponSprites()
     {
         _currentView.DisableWeaponSprites(currentWeapon);
-    }
-
-    public Weapon SpawnWeapon(Weapon weaponToSpawn, Vector3 spawnPosition)
-    {
-        var weapon = Instantiate(weaponToSpawn, spawnPosition, Quaternion.identity);
-        weapon.weaponInGameSprite.gameObject.SetActive(true);
-        weapon.onWeaponPickUp += AddWeaponToInventory;
-        weapon.Init();
-        return weapon;
     }
 
     public void Reload()
