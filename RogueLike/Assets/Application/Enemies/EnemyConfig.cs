@@ -10,7 +10,7 @@ public class EnemyConfig
     public float Health = 10.0f;
     [Range(0.5f, 100.0f)]
     public float Damage = 5f;
-    [Range(0.5f, 2.0f)]
+    [Range(0.5f, 10.0f)]
     public float Scale = 1.0f;
     [Range(0.0f, 20.0f)]
     public float PatrolRange = 5.0f;

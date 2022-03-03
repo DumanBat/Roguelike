@@ -27,18 +27,21 @@ public class LevelManager : MonoBehaviour
     public int GetRoomsAmount() => _roomsAmount;
     private int _lootRoomsAmount;
     private List<EnemyType> _bossPool;
+    private List<EnemyType> _enemyPool;
     // TODO: убрать инициализацию уровня из Start
 
     private void Awake()
     {
         _roomTemplates = GetComponent<RoomTemplates>();
         _lootManager = GetComponent<LootManager>();
-        _bossPool = new List<EnemyType>() { EnemyType.PinkJelly };
+        _bossPool = new List<EnemyType>() { EnemyType.BossShark };
+        _enemyPool = new List<EnemyType>() { EnemyType.GreenJelly, EnemyType.PinkJelly };
     }
 
     public void Start()
     {
-        Init(true);
+        SetLevelConfig();
+        Init();
     }
 
     private void Update()
@@ -55,17 +58,8 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void Init(bool isRandom, int roomsAmount = 0, int lootRoomsAmount = 0, List<EnemyType> bossPool = null)
+    public void Init()
     {
-        if (isRandom)
-            RandomizeLevelConfig();
-        else
-        {
-            _roomsAmount = roomsAmount;
-            _lootRoomsAmount = lootRoomsAmount;
-            _bossPool = bossPool;
-        }
-
         _startingRoom = Instantiate(_roomTemplates.startingRooms[0], Vector3.zero, Quaternion.identity);
         _startingRoom.Init();
         _roomTemplates.spawnedRooms.Remove(_startingRoom);
@@ -75,10 +69,20 @@ public class LevelManager : MonoBehaviour
         _roomSpawnStarted = true;
     }
 
-    public void RandomizeLevelConfig()
+    public void SetLevelConfig()
     {
         _roomsAmount = UnityEngine.Random.Range(10, 16);
         _lootRoomsAmount = UnityEngine.Random.Range(1, 3);
+        _bossPool = enemyFactory.GetBossesTypes();
+        _enemyPool = enemyFactory.GetEnemiesTypes();
+    }
+
+    public void SetLevelConfig(int roomsAmount, int lootRoomsAmount, List<EnemyType> bossPool, List<EnemyType> enemyPool)
+    {
+        _roomsAmount = roomsAmount;
+        _lootRoomsAmount = lootRoomsAmount;
+        _bossPool = bossPool;
+        _enemyPool = enemyPool;
     }
 
     private void ConfigureRooms()
@@ -127,9 +131,12 @@ public class LevelManager : MonoBehaviour
         List<EnemyType> enemiesToSpawn = new List<EnemyType>();
         for (int i = 0; i < enemiesAmountToSpawn; i++)
         {
-            var avaliableEnemyTypes = (int)Enum.GetValues(typeof(EnemyType)).Cast<EnemyType>().Max();
-            var enemyType = (EnemyType)UnityEngine.Random.Range(0, avaliableEnemyTypes + 1);
+            /*var avaliableEnemyTypes = (int)Enum.GetValues(typeof(EnemyType)).Cast<EnemyType>().Max();
+            var enemyType = (EnemyType)UnityEngine.Random.Range(0, avaliableEnemyTypes + 1);*/
 
+
+
+            var enemyType = _enemyPool[UnityEngine.Random.Range(0, _enemyPool.Count)];
             enemiesToSpawn.Add(enemyType);
         }
 
