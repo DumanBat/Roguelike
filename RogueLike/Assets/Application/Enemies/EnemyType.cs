@@ -1,5 +1,6 @@
 public enum EnemyType
 {
     GreenJelly,
-    PinkJelly
+    PinkJelly,
+    BossShark
 }

@@ -1,11 +1,30 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Enemy Factory", menuName = "Factories/Enemy")]
 
 public class EnemyFactory: GameObjectFactory
 {
+    [Header("Bosses")]
     [SerializeField]
-    private EnemyConfig _greenJelly, _pinkJelly;
+    private EnemyConfig _bossShark;
+    private List<EnemyType> _bosses = new List<EnemyType>() 
+    { 
+        EnemyType.BossShark 
+    };
+    public List<EnemyType> GetBossesTypes() => _bosses;
+
+    [Header("Enemies")]
+    [SerializeField]
+    private EnemyConfig _greenJelly;
+    [SerializeField]
+    private EnemyConfig _pinkJelly;
+    private List<EnemyType> _enemies = new List<EnemyType>() 
+    { 
+        EnemyType.GreenJelly, 
+        EnemyType.PinkJelly 
+    };
+    public List<EnemyType> GetEnemiesTypes() => _enemies;
 
     public Enemy Get(EnemyType type)
     {
@@ -24,6 +43,8 @@ public class EnemyFactory: GameObjectFactory
                 return _greenJelly;
             case EnemyType.PinkJelly:
                 return _pinkJelly;
+            case EnemyType.BossShark:
+                return _bossShark;
         }
         Debug.LogError($"No config for: {type}");
         return _greenJelly;
