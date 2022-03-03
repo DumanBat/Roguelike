@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using Modules.Core;
 
 public class LevelManager : MonoBehaviour
 {
@@ -131,11 +128,6 @@ public class LevelManager : MonoBehaviour
         List<EnemyType> enemiesToSpawn = new List<EnemyType>();
         for (int i = 0; i < enemiesAmountToSpawn; i++)
         {
-            /*var avaliableEnemyTypes = (int)Enum.GetValues(typeof(EnemyType)).Cast<EnemyType>().Max();
-            var enemyType = (EnemyType)UnityEngine.Random.Range(0, avaliableEnemyTypes + 1);*/
-
-
-
             var enemyType = _enemyPool[UnityEngine.Random.Range(0, _enemyPool.Count)];
             enemiesToSpawn.Add(enemyType);
         }

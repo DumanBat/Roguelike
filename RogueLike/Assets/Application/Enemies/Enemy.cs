@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +44,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public float AttackCooldown { get; private set; }
     public float AggroCooldown { get; private set; }
 
+    public Action onEnemyDie;
     private static readonly int DeathHash = Animator.StringToHash("isDie");
     private static readonly int DeathStateHash = Animator.StringToHash("Base Layer.Die");
     public TextMeshPro healthDisplay;
@@ -56,6 +58,8 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         _navMeshAgent.updateRotation = false;
         _navMeshAgent.updateUpAxis = false;
         _stateMachine = new StateMachine();
+
+        onEnemyDie += () => StartCoroutine(Die());
     }
 
     public virtual void Init(float health, float damage, float scale, float patrolRange, 
@@ -97,7 +101,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         Health -= value;
         if (_health <= 0)
         {
-            StartCoroutine(Die());
+            onEnemyDie.Invoke();
         }
     }
 
