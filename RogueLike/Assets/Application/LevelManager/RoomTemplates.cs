@@ -15,6 +15,13 @@ public class RoomTemplates : MonoBehaviour
 
     public List<Room> spawnedRooms;
 
+    public enum RoomType
+    {
+        EnemyRoom,
+        LootRoom,
+        BossRoom
+    }
+
     public void Unload()
     {
         spawnedRooms.Clear();

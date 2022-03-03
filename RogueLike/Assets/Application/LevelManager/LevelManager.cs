@@ -9,10 +9,12 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField]
     private EnemyFactory enemyFactory;
-    private RoomTemplates _roomTemplates;
     private LootManager _lootManager;
+    private RoomTemplates _roomTemplates;
+    public RoomTemplates GetRoomTemplates() => _roomTemplates;
 
     private float _lastSpawnedRoomTime = -9999f;
+    public void SetLastSpawnedRoomTime(float time) => _lastSpawnedRoomTime = time + 0.5f;
     private bool _roomSpawnStarted = false;
     private bool _roomSpawnCompleted = false;
 
@@ -78,28 +80,37 @@ public class LevelManager : MonoBehaviour
 
     private void ConfigureRooms()
     {
-        // only enemies config
-        _startingRoom.OpenDoors();
-
         var spawnedRooms = _roomTemplates.spawnedRooms;
-        var lootRoomIndexes = new List<int>();
 
         for (int i = 0; i < _lootRoomsAmount; i++)
-            lootRoomIndexes.Add(UnityEngine.Random.Range(0, spawnedRooms.Count));
+        {
+            var lootRoomIndex = GetRandomIndexOfRoomType(RoomTemplates.RoomType.LootRoom, spawnedRooms);
+            spawnedRooms[lootRoomIndex].roomType = RoomTemplates.RoomType.LootRoom;
+        }
 
         for (int i = 0; i < spawnedRooms.Count; i++)
         {
-            if (lootRoomIndexes.Contains(i))
+            switch (spawnedRooms[i].roomType)
             {
-                var weapon = _lootManager.SpawnWeapon(_lootManager.weaponToSpawn, spawnedRooms[i].transform.position);
-                weapon.onWeaponPickUp += spawnedRooms[i].OpenDoors;
-            }
-            else
-            {
-                var enemiesToSpawn = ConfigureEnemies();
-                spawnedRooms[i].SpawnEnemies(enemiesToSpawn);
+                case RoomTemplates.RoomType.LootRoom:
+                    _lootManager.SpawnLootInRoom(spawnedRooms[i]);
+                    break;
+                case RoomTemplates.RoomType.EnemyRoom:
+                    var enemiesToSpawn = ConfigureEnemies();
+                    spawnedRooms[i].SpawnEnemies(enemiesToSpawn);
+                    break;
             }
         }
+
+        _startingRoom.OpenDoors();
+    }
+
+    private int GetRandomIndexOfRoomType(RoomTemplates.RoomType roomType, List<Room> spawnedRooms)
+    {
+        var index = UnityEngine.Random.Range(0, spawnedRooms.Count);
+        return spawnedRooms[index].roomType != roomType
+            ? index
+            : GetRandomIndexOfRoomType(roomType, spawnedRooms);
     }
 
     private List<EnemyType> ConfigureEnemies()
@@ -124,10 +135,6 @@ public class LevelManager : MonoBehaviour
 
         return enemy;
     }
-
-    public RoomTemplates GetRoomTemplates() => _roomTemplates;
-
-    public void SetLastSpawnedRoomTime(float time) => _lastSpawnedRoomTime = time + 0.5f;
 
     public void Unload()
     {

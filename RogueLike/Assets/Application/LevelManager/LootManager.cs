@@ -22,4 +22,10 @@ public class LootManager : MonoBehaviour
         weapon.Init();
         return weapon;
     }
+
+    public void SpawnLootInRoom(Room room)
+    {
+        var weapon = SpawnWeapon(weaponToSpawn, room.transform.position);
+        weapon.onWeaponPickUp += room.OpenDoors;
+    }
 }

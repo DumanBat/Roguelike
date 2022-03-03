@@ -6,6 +6,7 @@ using Modules.Core;
 
 public class Room : MonoBehaviour
 {
+    public RoomTemplates.RoomType roomType;
     [SerializeField]
     private List<GameObject> _doorTop, _doorBottom, _doorLeft, _doorRight;
     private List<GameObject>[] _roomDoors = new List<GameObject>[4];
