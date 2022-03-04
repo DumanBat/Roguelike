@@ -12,6 +12,8 @@ public class Room : MonoBehaviour
     private List<GameObject> _doorTop, _doorBottom, _doorLeft, _doorRight;
     private List<GameObject>[] _roomDoors = new List<GameObject>[4];
     private Room[] _sideRooms; // Indexes: 0 - Top room, 1 - Bottom, 2 - Right, 3 - Left
+    [SerializeField]
+    private GameObject _passToNextLevel;
 
     public List<RoomSpawnPoint> roomSpawnPoints; 
     private RoomTemplates _roomTemplates;
@@ -23,7 +25,7 @@ public class Room : MonoBehaviour
     private void Awake()
     {
         roomSpawnPoints.AddRange(GetComponentsInChildren<RoomSpawnPoint>());
-        _roomTemplates = GameManager.Instance.levelManager.GetRoomTemplates();
+        _roomTemplates = GameManager.Instance.levelConfigurator.GetRoomTemplates();
 
         _roomDoors[0] = _doorBottom.Count > 0 ? _doorBottom : null;
         _roomDoors[1] = _doorTop.Count > 0 ? _doorTop : null;
@@ -38,7 +40,7 @@ public class Room : MonoBehaviour
         _roomTemplates.spawnedRooms.Add(this);
         onRoomCleared += OpenDoors;
         gameObject.transform.SetParent(NavMeshController.Instance.transform);
-        GameManager.Instance.levelManager.SetLastSpawnedRoomTime(Time.time);
+        GameManager.Instance.levelConfigurator.SetLastSpawnedRoomTime(Time.time);
         Invoke("SpawnSideRooms", 0.3f);
     }
 
@@ -55,11 +57,11 @@ public class Room : MonoBehaviour
         }
     }
 
-    public void SpawnEnemies(List<EnemyType> enemiesToSpawn)
+    public List<Enemy> SpawnEnemies(List<EnemyType> enemiesToSpawn)
     {
-        if (enemiesToSpawn.Count == 0) return;
+        if (enemiesToSpawn.Count == 0) return null;
 
-        var levelManager = GameManager.Instance.levelManager;
+        var levelManager = GameManager.Instance.levelConfigurator;
         _spawnedEnemies = new List<Enemy>();
 
         foreach (var enemyType in enemiesToSpawn)
@@ -72,6 +74,8 @@ public class Room : MonoBehaviour
             enemy.OriginRoom = this;
             _spawnedEnemies.Add(enemy);
         }
+
+        return _spawnedEnemies;
     }
 
     public bool RemoveFromSpawnedEnemiesList(Enemy enemy)
@@ -102,5 +106,13 @@ public class Room : MonoBehaviour
             _sideRooms[i]._roomDoors[i][0].SetActive(false);
             _sideRooms[i]._roomDoors[i][1].SetActive(true);
         }
+    }
+
+    public void OpenNextLevelPass()
+    {
+        if (roomType != RoomTemplates.RoomType.BossRoom)
+            return;
+
+        _passToNextLevel.SetActive(true);
     }
 }
