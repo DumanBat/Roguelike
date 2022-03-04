@@ -10,8 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a980b46cf9e6d55428699ed41b065cd1, type: 3}
-  m_Name: Enemy Factory
+  m_Name: EnemyFactory
   m_EditorClassIdentifier: 
+  _bossShark:
+    enemyPrefab: {fileID: 883650871001423432, guid: 7d7f5db836c57374ca07061dfe91b2c2,
+      type: 3}
+    Health: 500
+    Damage: 25
+    Scale: 4
+    PatrolRange: 5
+    AggroRange: 20
+    MeleeRange: 1.5
+    AttackCooldown: 1
+    AggroCooldown: 5
   _greenJelly:
     enemyPrefab: {fileID: 2796267632980311292, guid: e9aecf1944b4c7d4891a384123ea4362,
       type: 3}
