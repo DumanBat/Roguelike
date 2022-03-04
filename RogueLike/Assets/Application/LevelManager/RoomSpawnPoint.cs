@@ -12,7 +12,7 @@ public class RoomSpawnPoint : MonoBehaviour
 
     private void Awake()
     {
-        _roomTemplates = GameManager.Instance.levelConfigurator.GetRoomTemplates();
+        _roomTemplates = GameManager.Instance.levelManager.GetLevelConfigurator().GetRoomTemplates();
     }
 
     public Room SpawnRoom()
@@ -26,7 +26,7 @@ public class RoomSpawnPoint : MonoBehaviour
 
         Room room;
         var roomsCount = _roomTemplates.spawnedRooms.Count;
-        var roomsAmountToSpawn = GameManager.Instance.levelConfigurator.GetRoomsAmount();
+        var roomsAmountToSpawn = GameManager.Instance.levelManager.GetLevelConfigurator().GetRoomsAmount();
         if (roomsCount < roomsAmountToSpawn)
         {
             room = roomsAmountToSpawn - 1 == roomsCount
@@ -56,6 +56,7 @@ public class RoomSpawnPoint : MonoBehaviour
     private Room SpawnBossRoom()
     {
         var room = Instantiate(_roomTemplates.GetBossRoom()[openingDirection - 1], transform.position, Quaternion.identity);
+        room.roomType = RoomTemplates.RoomType.BossRoom;
         room.Init();
 
         return room;

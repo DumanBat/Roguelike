@@ -17,7 +17,7 @@ namespace Modules.Core
         public ModalWindow modalWindow;
         public CameraController cameraController;
         public InventoryController inventoryController;
-        public LevelConfigurator levelConfigurator;
+        public LevelManager levelManager;
 
         private void Awake()
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using Modules.Core;
 
-public class PlayerController : Singleton<PlayerController>, IDamageable
+public class PlayerController : Singleton<PlayerController>, IDamageable, IPushable
 {
 
     /// <summary>
@@ -172,5 +172,15 @@ public class PlayerController : Singleton<PlayerController>, IDamageable
     public Vector2 GetPosition()
     {
         return _rb.position;
+    }
+
+    public IEnumerator GetPush(Vector2 pushDirection, float duration)
+    {
+        _rb.AddForce(pushDirection, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(duration);
+
+        yield return new WaitForEndOfFrame();
+        _rb.velocity = Vector2.zero;
     }
 }

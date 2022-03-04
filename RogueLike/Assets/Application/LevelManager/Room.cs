@@ -25,7 +25,7 @@ public class Room : MonoBehaviour
     private void Awake()
     {
         roomSpawnPoints.AddRange(GetComponentsInChildren<RoomSpawnPoint>());
-        _roomTemplates = GameManager.Instance.levelConfigurator.GetRoomTemplates();
+        _roomTemplates = GameManager.Instance.levelManager.GetLevelConfigurator().GetRoomTemplates();
 
         _roomDoors[0] = _doorBottom.Count > 0 ? _doorBottom : null;
         _roomDoors[1] = _doorTop.Count > 0 ? _doorTop : null;
@@ -40,7 +40,7 @@ public class Room : MonoBehaviour
         _roomTemplates.spawnedRooms.Add(this);
         onRoomCleared += OpenDoors;
         gameObject.transform.SetParent(NavMeshController.Instance.transform);
-        GameManager.Instance.levelConfigurator.SetLastSpawnedRoomTime(Time.time);
+        GameManager.Instance.levelManager.GetLevelConfigurator().SetLastSpawnedRoomTime(Time.time);
         Invoke("SpawnSideRooms", 0.3f);
     }
 
@@ -61,7 +61,7 @@ public class Room : MonoBehaviour
     {
         if (enemiesToSpawn.Count == 0) return null;
 
-        var levelManager = GameManager.Instance.levelConfigurator;
+        var levelConfigurator = GameManager.Instance.levelManager.GetLevelConfigurator();
         _spawnedEnemies = new List<Enemy>();
 
         foreach (var enemyType in enemiesToSpawn)
@@ -70,7 +70,7 @@ public class Room : MonoBehaviour
             var randomPosY = transform.position.y + UnityEngine.Random.Range(0, 6);
             var spawnPosition = new Vector2(randomPosX, randomPosY);
 
-            var enemy = levelManager.SpawnEnemy(enemyType, spawnPosition);
+            var enemy = levelConfigurator.SpawnEnemy(enemyType, spawnPosition);
             enemy.OriginRoom = this;
             _spawnedEnemies.Add(enemy);
         }
@@ -114,5 +114,8 @@ public class Room : MonoBehaviour
             return;
 
         _passToNextLevel.SetActive(true);
+
+        var pushDirection = PlayerController.Instance.GetPosition() - new Vector2(transform.position.x, transform.position.y);
+        StartCoroutine(PlayerController.Instance.GetPush(pushDirection.normalized * 10f, 1.5f));
     }
 }

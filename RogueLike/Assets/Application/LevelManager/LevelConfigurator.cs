@@ -26,6 +26,8 @@ public class LevelConfigurator : MonoBehaviour
     private List<EnemyType> _bossPool;
     private List<EnemyType> _enemyPool;
     // TODO: убрать инициализацию уровн€ из Start
+    //  оллизи€ между лут румами и босс румами. —павнит лут в комнате с боссом и не спавнит босса
+    // Ѕосса спавнит не в босс руме
 
     private void Awake()
     {
@@ -114,7 +116,9 @@ public class LevelConfigurator : MonoBehaviour
     private int GetRandomIndexOfRoomType(RoomTemplates.RoomType roomType, List<Room> spawnedRooms)
     {
         var index = UnityEngine.Random.Range(0, spawnedRooms.Count);
-        return spawnedRooms[index].roomType != roomType
+        return
+            spawnedRooms[index].roomType != roomType
+            && spawnedRooms[index].roomType == RoomTemplates.RoomType.EnemyRoom
             ? index
             : GetRandomIndexOfRoomType(roomType, spawnedRooms);
     }

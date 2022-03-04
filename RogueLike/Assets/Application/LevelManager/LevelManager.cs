@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private LevelConfigurator _levelConfigurator;
+    public LevelConfigurator GetLevelConfigurator() => _levelConfigurator;
 
     private void Awake()
     {
@@ -13,7 +14,18 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
+
         _levelConfigurator.SetLevelConfig();
         _levelConfigurator.Init();
+    }
+
+    public void Unload()
+    {
+        _levelConfigurator.Unload();
     }
 }
