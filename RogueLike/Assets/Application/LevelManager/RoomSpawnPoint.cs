@@ -25,36 +25,39 @@ public class RoomSpawnPoint : MonoBehaviour
         }
 
         Room room;
-        var roomsAmount = GameManager.Instance.levelConfigurator.GetRoomsAmount();
-        if (_roomTemplates.spawnedRooms.Count < roomsAmount)
+        var roomsCount = _roomTemplates.spawnedRooms.Count;
+        var roomsAmountToSpawn = GameManager.Instance.levelConfigurator.GetRoomsAmount();
+        if (roomsCount < roomsAmountToSpawn)
         {
-            Room[] currentRoomList = null;
-            switch (openingDirection)
-            {
-                case 1:
-                    currentRoomList = _roomTemplates.bottomRooms;
-                    break;
-                case 2:
-                    currentRoomList = _roomTemplates.topRooms;
-                    break;
-                case 3:
-                    currentRoomList = _roomTemplates.leftRooms;
-                    break;
-                case 4:
-                    currentRoomList = _roomTemplates.rightRooms;
-                    break;
-            }
-
-            var rand = Random.Range(0, currentRoomList.Length);
-            room = Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
-            room.Init();
+            room = roomsAmountToSpawn - 1 == roomsCount
+               ? SpawnBossRoom()
+               : SpawnRandomRoom();
         }
         else
         {
-            room = Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
+            room = Instantiate(_roomTemplates.GetClosedRoom(), transform.position, Quaternion.identity);
         }
 
         _spawned = true;
+        return room;
+    }
+
+    private Room SpawnRandomRoom()
+    {
+        var currentRoomList = _roomTemplates.GetRoomsBySide(openingDirection - 1);
+
+        var rand = Random.Range(0, currentRoomList.Length);
+        var room = Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
+        room.Init();
+
+        return room;
+    }
+
+    private Room SpawnBossRoom()
+    {
+        var room = Instantiate(_roomTemplates.GetBossRoom()[openingDirection - 1], transform.position, Quaternion.identity);
+        room.Init();
+
         return room;
     }
 
@@ -68,7 +71,7 @@ public class RoomSpawnPoint : MonoBehaviour
         {
             if (roomSpawnPoint._spawned == false && _spawned == false)
             {
-                Instantiate(_roomTemplates.closedRoom, transform.position, Quaternion.identity);
+                Instantiate(_roomTemplates.GetClosedRoom(), transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
             _spawned = true;

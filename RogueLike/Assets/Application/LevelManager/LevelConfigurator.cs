@@ -53,7 +53,7 @@ public class LevelConfigurator : MonoBehaviour
 
     public void Init()
     {
-        _startingRoom = Instantiate(_roomTemplates.startingRooms[0], Vector3.zero, Quaternion.identity);
+        _startingRoom = Instantiate(_roomTemplates.GetStartingRoom(), Vector3.zero, Quaternion.identity);
         _startingRoom.Init();
         _roomTemplates.spawnedRooms.Remove(_startingRoom);
 
