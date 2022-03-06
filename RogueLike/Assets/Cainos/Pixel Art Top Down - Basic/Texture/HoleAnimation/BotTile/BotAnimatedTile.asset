@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: BotAnimatedTile
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 3bba6379d5915d647b18f546b4135279, type: 3}
+  - {fileID: 21300000, guid: b49cbf4929f378244838b27444e1bd8b, type: 3}
+  - {fileID: 21300000, guid: 9a84ac4435ff2074b859c24a50dc56d2, type: 3}
+  - {fileID: 21300000, guid: de580d62f1095ba47b8efa5585246d67, type: 3}
+  - {fileID: 21300000, guid: 88117003a2eae1441a6b80164cadd2ed, type: 3}
+  - {fileID: 21300000, guid: cdb32c26a9992b04795a9aa5451022f5, type: 3}
+  - {fileID: 21300000, guid: f112132ee66a68e42981faf863530d5b, type: 3}
+  - {fileID: 21300000, guid: e583b4e65b68448478bdd2a501a41cf3, type: 3}
+  - {fileID: 21300000, guid: 46c1309f9248bdc48b089a828e336406, type: 3}
+  - {fileID: 21300000, guid: 0510743be50a37f429ff542bc173b6b0, type: 3}
+  - {fileID: 21300000, guid: 05e8dac4e2698f547bfcb441d9d0b706, type: 3}
+  m_MinSpeed: 5
+  m_MaxSpeed: 5
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: TopAnimatedTile
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: ab7f90d7fe993424b849cdd1a13b995c, type: 3}
+  - {fileID: 21300000, guid: e2a64bf03332d6545a316d0cf04be0ff, type: 3}
+  - {fileID: 21300000, guid: 88c604d7b07729f438ce1939eddbb320, type: 3}
+  - {fileID: 21300000, guid: 333378554f8f2564c8aa4fcfd2c56305, type: 3}
+  - {fileID: 21300000, guid: 84aad959a95614c4b946263ea00a9c17, type: 3}
+  - {fileID: 21300000, guid: 756e74a1dcf786245ad2a50994f05d79, type: 3}
+  - {fileID: 21300000, guid: 401a6aa557263694da1dc0f394ff5a09, type: 3}
+  - {fileID: 21300000, guid: 18268947bcf5f2e458c3c1fcf734b337, type: 3}
+  - {fileID: 21300000, guid: d0246d8987fd09f45ab4a37716222e0d, type: 3}
+  - {fileID: 21300000, guid: 7d9410a6c7b8fd54e9be4416759cf86c, type: 3}
+  - {fileID: 21300000, guid: 308414f4588b5a141a0a5fdc2bd43d58, type: 3}
+  m_MinSpeed: 5
+  m_MaxSpeed: 5
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
