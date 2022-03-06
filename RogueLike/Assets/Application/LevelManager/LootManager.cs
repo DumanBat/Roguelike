@@ -25,6 +25,9 @@ public class LootManager : MonoBehaviour
 
     public void SpawnLootInRoom(Room room)
     {
+        if (room.roomType != RoomTemplates.RoomType.LootRoom)
+            return;
+
         var weapon = SpawnWeapon(weaponToSpawn, room.transform.position);
         weapon.onWeaponPickUp += room.OpenDoors;
     }
