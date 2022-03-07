@@ -32,9 +32,9 @@ public class LevelManager : MonoBehaviour
         // Camera and player Init order important. Camera.Init() then PlayerController.Init().
         GameManager.Instance.cameraController.SetCamera(Camera.main, player.transform);
 
-        /*if (playerData != null)
+        if (playerData != null)
             PlayerController.Instance.Init(playerData);
-        else*/
+        else
             PlayerController.Instance.Init();
 
         PlayerController.Instance.weaponController.Init();

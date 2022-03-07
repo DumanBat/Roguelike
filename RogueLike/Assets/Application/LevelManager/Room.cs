@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
 {
     [SerializeField]
     public RoomTemplates.RoomType roomType;
+    public Transform spawnPointsRoot;
     [SerializeField]
     private List<GameObject> _doorTop, _doorBottom, _doorLeft, _doorRight;
     private List<GameObject>[] _roomDoors = new List<GameObject>[4];
@@ -15,17 +16,17 @@ public class Room : MonoBehaviour
     [SerializeField]
     private GameObject _passToNextLevel;
 
-    public List<RoomSpawnPoint> roomSpawnPoints; 
-    private RoomTemplates _roomTemplates;
-
+    [SerializeField]
+    private List<RoomSpawnPoint> roomSpawnPoints;
     private List<Enemy> _spawnedEnemies;
+
+    public RoomSpawnPoint centralPoint;
 
     public Action onRoomCleared;
 
     private void Awake()
     {
-        roomSpawnPoints.AddRange(GetComponentsInChildren<RoomSpawnPoint>());
-        _roomTemplates = GameManager.Instance.levelManager.GetLevelConfigurator().GetRoomTemplates();
+        roomSpawnPoints.AddRange(spawnPointsRoot.GetComponentsInChildren<RoomSpawnPoint>());
     }
 
     public void Init()
@@ -47,6 +48,10 @@ public class Room : MonoBehaviour
     {
         _sideRooms = new Room[4];
 
+        /// TODO: divide room center and room spawn point logic
+        if (centralPoint != null)
+            centralPoint.SpawnRoom();
+        ///
         foreach (var spawnPoint in roomSpawnPoints)
         {
             var room = spawnPoint.SpawnRoom();
@@ -54,6 +59,7 @@ public class Room : MonoBehaviour
             if (room != null)
                 _sideRooms[spawnPoint.openingDirection - 1] = room;
         }
+
     }
 
     public List<Enemy> SpawnEnemies(List<EnemyType> enemiesToSpawn)
