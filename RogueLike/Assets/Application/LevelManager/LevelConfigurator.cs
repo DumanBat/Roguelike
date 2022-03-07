@@ -14,9 +14,9 @@ public class LevelConfigurator : MonoBehaviour
     public void SetLastSpawnedRoomTime(float time) => _lastSpawnedRoomTime = time + 0.5f;
     private bool _roomSpawnStarted = false;
     private bool _roomSpawnCompleted = false;
+    public bool RoomSpawnCompleted() => _roomSpawnCompleted;
 
     private Room _startingRoom;
-    public Action OnRoomSpawned;
 
     // CONFIG
     [SerializeField]
@@ -26,8 +26,8 @@ public class LevelConfigurator : MonoBehaviour
     private List<EnemyType> _bossPool;
     private List<EnemyType> _enemyPool;
     // TODO: убрать инициализацию уровн€ из Start
-    //  оллизи€ между лут румами и босс румами. —павнит лут в комнате с боссом и не спавнит босса
-    // Ѕосса спавнит не в босс руме
+    //  оллизи€ между лут румами и босс румами. —павнит лут в комнате с боссом и не спавнит босса - FIXED
+    // Ѕосса спавнит не в босс руме (ставит RoomType.BossRoom не на комнате с боссом)
 
     private void Awake()
     {
@@ -53,17 +53,6 @@ public class LevelConfigurator : MonoBehaviour
         }
     }
 
-    public void Init()
-    {
-        _startingRoom = Instantiate(_roomTemplates.GetStartingRoom(), Vector3.zero, Quaternion.identity);
-        _startingRoom.Init();
-        _roomTemplates.spawnedRooms.Remove(_startingRoom);
-
-        _lootManager.SpawnWeapon(_lootManager.weaponToSpawn, new Vector3(3f, 0f, 0f));
-
-        _roomSpawnStarted = true;
-    }
-
     public void SetLevelConfig()
     {
         _roomsAmount = UnityEngine.Random.Range(10, 16);
@@ -80,10 +69,22 @@ public class LevelConfigurator : MonoBehaviour
         _enemyPool = enemyPool;
     }
 
+    public void Init()
+    {
+        _startingRoom = Instantiate(_roomTemplates.GetStartingRoom(), Vector3.zero, Quaternion.identity);
+        _startingRoom.Init();
+        _roomTemplates.allRooms.Add(_startingRoom);
+
+        _lootManager.Init();
+        _lootManager.SpawnWeapon(_lootManager.weaponToSpawn, new Vector3(3f, 0f, 0f));
+
+        _roomSpawnStarted = true;
+    }
+
     private void ConfigureRooms()
     {
-        var spawnedRooms = _roomTemplates.spawnedRooms;
-        spawnedRooms[spawnedRooms.Count - 1].roomType = RoomTemplates.RoomType.BossRoom;
+        var spawnedRooms = _roomTemplates.activeRooms;
+        //spawnedRooms[spawnedRooms.Count - 1].roomType = RoomTemplates.RoomType.BossRoom;
 
         for (int i = 0; i < _lootRoomsAmount; i++)
         {
@@ -117,8 +118,8 @@ public class LevelConfigurator : MonoBehaviour
     {
         var index = UnityEngine.Random.Range(0, spawnedRooms.Count);
         return
-            spawnedRooms[index].roomType != roomType
-            && spawnedRooms[index].roomType == RoomTemplates.RoomType.EnemyRoom
+            (spawnedRooms[index].roomType != roomType
+            && spawnedRooms[index].roomType == RoomTemplates.RoomType.EnemyRoom)
             ? index
             : GetRandomIndexOfRoomType(roomType, spawnedRooms);
     }
@@ -146,11 +147,15 @@ public class LevelConfigurator : MonoBehaviour
 
     public void Unload()
     {
+        SetLastSpawnedRoomTime(-9999f);
         _roomSpawnStarted = false;
         _roomSpawnCompleted = false;
 
         _roomsAmount = 0;
         _lootRoomsAmount = 0;
+
+        foreach (var room in _roomTemplates.allRooms)
+            room.Unload();
 
         _roomTemplates.Unload();
     }

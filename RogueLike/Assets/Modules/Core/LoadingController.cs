@@ -18,9 +18,7 @@ public class LoadingController : MonoBehaviour
         _currentView.Load();
 
         yield return StartCoroutine(LoadSceneAsync(sceneId));
-
         _currentView.SetActivePanel(false);
-
     }
 
     public IEnumerator LoadSceneAsync(string sceneId)
@@ -33,7 +31,5 @@ public class LoadingController : MonoBehaviour
             _currentView.IncrementProgressBar(handle.progress);
             yield return null;
         }
-
-        yield break;
     }
 }

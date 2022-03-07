@@ -26,18 +26,17 @@ public class Room : MonoBehaviour
     {
         roomSpawnPoints.AddRange(GetComponentsInChildren<RoomSpawnPoint>());
         _roomTemplates = GameManager.Instance.levelManager.GetLevelConfigurator().GetRoomTemplates();
-
-        _roomDoors[0] = _doorBottom.Count > 0 ? _doorBottom : null;
-        _roomDoors[1] = _doorTop.Count > 0 ? _doorTop : null;
-        _roomDoors[2] = _doorLeft.Count > 0 ? _doorLeft : null;
-        _roomDoors[3] = _doorRight.Count > 0 ? _doorRight : null;
     }
 
     public void Init()
     {
         if (roomSpawnPoints.Count == 0) return;
 
-        _roomTemplates.spawnedRooms.Add(this);
+        _roomDoors[0] = _doorBottom.Count > 0 ? _doorBottom : null;
+        _roomDoors[1] = _doorTop.Count > 0 ? _doorTop : null;
+        _roomDoors[2] = _doorLeft.Count > 0 ? _doorLeft : null;
+        _roomDoors[3] = _doorRight.Count > 0 ? _doorRight : null;
+
         onRoomCleared += OpenDoors;
         gameObject.transform.SetParent(NavMeshController.Instance.transform);
         GameManager.Instance.levelManager.GetLevelConfigurator().SetLastSpawnedRoomTime(Time.time);
@@ -117,5 +116,18 @@ public class Room : MonoBehaviour
 
         var pushDirection = PlayerController.Instance.GetPosition() - new Vector2(transform.position.x, transform.position.y);
         StartCoroutine(PlayerController.Instance.GetPush(pushDirection.normalized * 10f, 1.5f));
+    }
+
+    public void Unload()
+    {
+        _sideRooms = null;
+
+        if (_spawnedEnemies != null)
+        {
+            foreach (var enemy in _spawnedEnemies)
+                Destroy(enemy.gameObject);
+            _spawnedEnemies.Clear();
+        }
+        Destroy(this.gameObject);
     }
 }

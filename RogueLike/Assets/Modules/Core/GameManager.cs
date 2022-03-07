@@ -23,5 +23,11 @@ namespace Modules.Core
         {
             DontDestroyOnLoad(gameObject);
         }
+
+        private void Start()
+        {
+            // NOTE: Game selection logic is currently disabled.
+            catalogueManager.rogueLike.StartGame();
+        }
     }
 }

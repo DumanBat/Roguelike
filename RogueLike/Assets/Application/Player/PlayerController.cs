@@ -24,8 +24,12 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
     private Vector2 _movement;
     private Rigidbody2D _rb;
+    public Vector2 GetPosition() => _rb.position;
+    public void SetPosition(Vector2 position) => _rb.position = position;
     private Vector3 _aimPos;
 
+    private bool _isActive;
+    public bool IsActive() => _isActive;
     private bool _isRunning;
     private bool _isAiming;
 
@@ -45,22 +49,32 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     public TextMeshPro healthDisplay;
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         _currentView = GetComponent<PlayerView>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
     public void Start()
     {
-        Init();    
+        //Init();    
     }
 
-    public void Init()
+    public void Init(PlayerWalkthroughData playerData = null)
     {
+        if (playerData != null)
+        {
+            Health = playerData.health;
+            weaponController.weapons = playerData.weapons;
+        }
+
         cam = GameManager.Instance.cameraController.GetCamera();
+        _isActive = true;
     }
 
     private void Update()
     {
+        if (!_isActive) return;
+
         Move();
 
         _isAiming = Input.GetMouseButton(1);
@@ -88,6 +102,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
     private void FixedUpdate()
     {
+        if (!_isActive) return;
         if (!_isRunning) return;
 
         var moveSpeed = _isAiming ? _moveSpeed * 0.75f : _moveSpeed;
@@ -164,15 +179,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         collision.gameObject.GetComponent<IPickable>()?.PickUp();
     }
 
-    public void TakeDamage(float value)
-    {
-        Health -= value;
-    }
-
-    public Vector2 GetPosition()
-    {
-        return _rb.position;
-    }
+    public void TakeDamage(float value) => Health -= value;
 
     public IEnumerator GetPush(Vector2 pushDirection, float duration)
     {

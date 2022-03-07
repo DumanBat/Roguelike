@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Modules.Core;
 
-public class RiseUp : Game
+public class RogueLike : Game
 {
     
     public override void Init()
@@ -15,7 +15,6 @@ public class RiseUp : Game
     {
         GameManager.Instance.currentGame = CatalogueManager.GameEnum.RiseUp;
         GameManager.Instance.catalogueManager.onGameSelected.Invoke();
-        Debug.Log("Downloading game");
         DownloadGameAssets();
     }
     public override void DownloadGameAssets()

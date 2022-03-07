@@ -17,9 +17,11 @@ public class CameraController : MonoBehaviour
         return _currentCamera ?? Camera.main;
     }
 
-    public void SetCamera(Camera camera)
+    public void SetCamera(Camera camera, Transform target)
     {
         _currentCamera = camera;
+        var cameraFollow = _currentCamera.GetComponent<CameraFollow>();
+        cameraFollow.Init(target);
     }
 
     public void SetPointerTexture()

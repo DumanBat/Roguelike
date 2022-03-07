@@ -24,7 +24,16 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        AddWeapons();
+        //AddWeapons();
+    }
+
+    public void Init(List<Weapon> currentWeapons = null)
+    {
+        if (currentWeapons != null)
+        {
+            foreach (var weapon in currentWeapons)
+                AddWeaponToInventory(weapon);
+        }
     }
 
     private void AddWeapons()
@@ -96,5 +105,16 @@ public class WeaponController : MonoBehaviour
         StopCoroutine(_reloadingViewRoutine);
         currentWeapon.StopReloading();
         _currentView.ResetReloadProgressBar();
+    }
+
+    public void Unload(bool removeWeapons = false)
+    {
+        if (removeWeapons)
+        {
+            foreach (var weapon in weapons)
+                Destroy(weapon.gameObject);
+
+            weapons.Clear();
+        }
     }
 }

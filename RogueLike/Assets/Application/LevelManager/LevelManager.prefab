@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71279b212a629b44eb72e98593172e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 6130213725511728546, guid: 609c37c867d1c4644b1787f921ed4da7,
+    type: 3}
 --- !u!114 &5694852723935072412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,4 +149,5 @@ MonoBehaviour:
   - {fileID: -653774173391292709, guid: 2b939348104611945983f91571c69056, type: 3}
   - {fileID: 1987624576441711415, guid: 34394eb87c8f3984c87719387f1a1b78, type: 3}
   - {fileID: -6304476575149864992, guid: 2389f54759a36b44cbd87f901bfb8883, type: 3}
-  spawnedRooms: []
+  activeRooms: []
+  allRooms: []

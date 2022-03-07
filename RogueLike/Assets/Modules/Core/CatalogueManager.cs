@@ -7,7 +7,7 @@ using Modules.Core;
 public class CatalogueManager : MonoBehaviour
 {
     public List<Game> games = new List<Game>();
-    public RiseUp riseUpGame;
+    public RogueLike rogueLike;
 
     public enum GameEnum
     {
@@ -19,6 +19,6 @@ public class CatalogueManager : MonoBehaviour
 
     private void Awake()
     {
-        games.Add(riseUpGame);
+        games.Add(rogueLike);
     }
 }

@@ -1,31 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Modules.Core;
 
 public class LevelManager : MonoBehaviour
 {
     private LevelConfigurator _levelConfigurator;
     public LevelConfigurator GetLevelConfigurator() => _levelConfigurator;
 
+    public PlayerController playerPrefab;
+    private PlayerWalkthroughData playerData;
+
     private void Awake()
     {
         _levelConfigurator = GetComponent<LevelConfigurator>();
     }
 
-    private void Start()
+    public void Init(string sceneId)
     {
-        Init();
+        StartCoroutine(InitRoutine(sceneId));
     }
 
-    public void Init()
+    public IEnumerator InitRoutine(string sceneId)
     {
+        yield return StartCoroutine(GameManager.Instance.loadingController.Load(sceneId));
 
+        var player = PlayerController.Instance == null
+            ? Instantiate(playerPrefab, Vector3.zero, Quaternion.identity)
+            : PlayerController.Instance;
+
+        // Camera and player Init order important. Camera.Init() then PlayerController.Init().
+        GameManager.Instance.cameraController.SetCamera(Camera.main, player.transform);
+
+        /*if (playerData != null)
+            PlayerController.Instance.Init(playerData);
+        else*/
+            PlayerController.Instance.Init();
+
+        PlayerController.Instance.weaponController.Init();
+        PlayerController.Instance.SetPosition(Vector2.zero);
         _levelConfigurator.SetLevelConfig();
         _levelConfigurator.Init();
     }
 
-    public void Unload()
+    public void Unload(bool saveProgress = true)
     {
+        if (saveProgress)
+            SaveProgress();
+
         _levelConfigurator.Unload();
+    }
+
+    public void SaveProgress()
+    {
+        playerData = new PlayerWalkthroughData()
+        {
+            health = PlayerController.Instance.Health,
+            weapons = PlayerController.Instance.weaponController.weapons
+        };
     }
 }

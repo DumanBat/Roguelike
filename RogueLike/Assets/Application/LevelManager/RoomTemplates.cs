@@ -12,7 +12,8 @@ public class RoomTemplates : MonoBehaviour
     private Room[] _bottomRooms, _topRooms, _leftRooms, _rightRooms, _bossRoom;
     public Room[] GetBossRoom() => _bossRoom;
 
-    public List<Room> spawnedRooms;
+    public List<Room> activeRooms;
+    public List<Room> allRooms;
 
     public enum RoomType
     {
@@ -47,14 +48,15 @@ public class RoomTemplates : MonoBehaviour
 
     public void Unload()
     {
-        _startingRoom = null;
+        /*_startingRoom = null;
         _closedRoom = null;
         _bossRoom = null;
         _bottomRooms = null;
         _topRooms = null;
         _leftRooms = null;
-        _rightRooms = null;
+        _rightRooms = null;*/
 
-        spawnedRooms.Clear();
+        activeRooms.Clear();
+        allRooms.Clear();
     }
 }

@@ -5,15 +5,12 @@ using Modules.Core;
 
 public class NextLevelPass : MonoBehaviour
 {
-    [SerializeField]
-    private Collider2D _collider;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             GameManager.Instance.levelManager.Unload();
-            GameManager.Instance.levelManager.Init();
+            GameManager.Instance.levelManager.Init("QuickGame");
         }
     }
 }

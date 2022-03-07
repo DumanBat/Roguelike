@@ -219,7 +219,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 9.598896
+      m_AnimationSpeed: 9.10223
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -8, y: 8, z: 0}
@@ -231,7 +231,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 1.3948265
+      m_AnimationSpeed: 3.5029747
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -4, y: 8, z: 0}
@@ -243,7 +243,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 4.3818274
+      m_AnimationSpeed: 1.2804292
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 3, y: 8, z: 0}
@@ -255,7 +255,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 3.2836676
+      m_AnimationSpeed: 1.9955899
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 7, y: 8, z: 0}
@@ -267,7 +267,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 5.1118345
+      m_AnimationSpeed: 8.960695
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 11, y: 8, z: 0}
@@ -279,7 +279,7 @@ Tilemap:
       - {fileID: 21300000, guid: b99c38efed1cd2a40b4d7a544ba441b1, type: 3}
       - {fileID: 21300000, guid: baac4d8b3abc13549a1c2125b65fb9f6, type: 3}
       - {fileID: 21300000, guid: 082b2d96ea56ded4a81e6c7d826aa203, type: 3}
-      m_AnimationSpeed: 7.1622443
+      m_AnimationSpeed: 7.025457
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -6949,6 +6949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 849908899236636092}
+  - component: {fileID: 8804830819162865667}
   - component: {fileID: 7818836593393354251}
   - component: {fileID: 8849325559823911125}
   - component: {fileID: 277904819019216795}
@@ -6961,7 +6962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &849908899236636092
 Transform:
   m_ObjectHideFlags: 0
@@ -6976,6 +6977,18 @@ Transform:
   m_Father: {fileID: 7946120601918476539}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8804830819162865667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479676560083974255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3026335695f68b41980f07594403a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1839735485 &7818836593393354251
 Tilemap:
   m_ObjectHideFlags: 0
@@ -7281,64 +7294,14 @@ CompositeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 7006167225487051626}
-    m_ColliderPaths:
-    - - X: -3125000
-        Y: 10000000
-      - X: -3437500
-        Y: 10000000
-      - X: -6875000
-        Y: 6875000
-      - X: -7187500
-        Y: 5000000
-      - X: -5937500
-        Y: 1875000
-      - X: -3750000
-        Y: 0
-      - X: -3437500
-        Y: 0
-      - X: 0
-        Y: -1250000
-      - X: 3125000
-        Y: -1875000
-      - X: 7500000
-        Y: -1875000
-      - X: 10000000
-        Y: -1250000
-      - X: 10000000
-        Y: -1562500
-      - X: 13750000
-        Y: 0
-      - X: 14062500
-        Y: 0
-      - X: 16250000
-        Y: 1875000
-      - X: 17500000
-        Y: 4687500
-      - X: 16562500
-        Y: 7500000
-      - X: 13125000
-        Y: 10000000
-      - X: 10000000
-        Y: 10937500
-      - X: 7500000
-        Y: 11562500
-      - X: 3125000
-        Y: 11562500
-      - X: 0
-        Y: 10937500
-      - X: 0
-        Y: 10000000
-      - X: -937500
-        Y: 10625000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 0.7499972, y: -0.1875}
@@ -10153,6 +10116,7 @@ MonoBehaviour:
   - {fileID: 1068704411789557273}
   - {fileID: 8702085537351022051}
   _doorRight: []
+  _passToNextLevel: {fileID: 3479676560083974255}
   roomSpawnPoints: []
 --- !u!1 &8702085537351022051
 GameObject:

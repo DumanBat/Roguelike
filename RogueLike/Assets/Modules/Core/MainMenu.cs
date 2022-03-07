@@ -14,7 +14,7 @@ namespace Modules.Core
 
             _currentView.newGame.onClick.AddListener(() =>
             {
-                StartCoroutine(GameManager.Instance.loadingController.Load("QuickGame"));
+                GameManager.Instance.levelManager.Init("QuickGame");
                 _currentView.SetActivePanel(false);
             });
 

@@ -9,9 +9,10 @@ public class LootManager : MonoBehaviour
     public Weapon startingWeapon;
     /// 
 
-    private void Start()
+    public void Init()
     {
-        PlayerController.Instance.weaponController.AddWeaponToInventory(SpawnWeapon(startingWeapon, Vector3.zero));
+        if (PlayerController.Instance.weaponController.weapons.Count == 0)
+            PlayerController.Instance.weaponController.AddWeaponToInventory(SpawnWeapon(startingWeapon, Vector3.zero));
     }
 
     public Weapon SpawnWeapon(Weapon weaponToSpawn, Vector3 spawnPosition)
