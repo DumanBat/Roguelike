@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: eb1dabff1fe5a814395eb81ec1949717
+guid: f5957aa0ea8ec3e4f8e88b1ca74ccd72
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2423205058366025298
-    second: StairsSides_0
+      213: -5124465399629959324
+    second: Hole_01_0
   - first:
-      213: -414154846578554727
-    second: StairsSides_1
+      213: 2296520750281903610
+    second: Hole_01_1
   - first:
-      213: -6723550921793229784
-    second: StairsSides_2
+      213: 505560678741871874
+    second: Hole_01_2
   - first:
-      213: -5251985148756474270
-    second: StairsSides_3
+      213: -306657912630685426
+    second: Hole_01_3
   - first:
-      213: 9082398251764918626
-    second: StairsSides_4
+      213: -652445258636737945
+    second: Hole_01_4
   - first:
-      213: 3195098548570588868
-    second: StairsSides_5
+      213: 3071277946963239432
+    second: Hole_01_5
   - first:
-      213: -7874410620602239282
-    second: StairsSides_6
+      213: -5904404761474992460
+    second: Hole_01_6
   - first:
-      213: -4706589132219343231
-    second: StairsSides_7
+      213: 328147031055377542
+    second: Hole_01_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StairsSides_0
+      name: Hole_01_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,21 +127,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 11}
-        - {x: -16, y: 3}
-        - {x: 16, y: 1}
-        - {x: 16, y: 9}
-        - {x: 11, y: 11}
+      - - {x: 1.649086, y: -2.090313}
+        - {x: -3.792716, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 6.5871544}
       tessellationDetail: 0
       bones: []
-      spriteID: 25e26d17924f0a120800000000000000
-      internalID: 2423205058366025298
+      spriteID: 46fa64f9edd32e8b0800000000000000
+      internalID: -5124465399629959324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StairsSides_1
+      name: Hole_01_1
       rect:
         serializedVersion: 2
         x: 32
@@ -153,20 +152,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 9}
-        - {x: -16, y: 1}
-        - {x: 0, y: 1}
-        - {x: 0, y: 9}
+      - - {x: -16, y: 7}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 13}
       tessellationDetail: 0
       bones: []
-      spriteID: 998cdaf7c50a04af0800000000000000
-      internalID: -414154846578554727
+      spriteID: afdcdd37471eedf10800000000000000
+      internalID: 2296520750281903610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StairsSides_2
+      name: Hole_01_2
       rect:
         serializedVersion: 2
         x: 64
@@ -178,20 +177,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: 1}
-        - {x: 16, y: 1}
-        - {x: 16, y: 9}
-        - {x: 0, y: 9}
+      - - {x: -16, y: 13}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 8}
       tessellationDetail: 0
       bones: []
-      spriteID: 82ca34d3f0621b2a0800000000000000
-      internalID: -6723550921793229784
+      spriteID: 20d80dc32cc140700800000000000000
+      internalID: 505560678741871874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StairsSides_3
+      name: Hole_01_3
       rect:
         serializedVersion: 2
         x: 96
@@ -203,22 +202,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -11, y: 9}
-        - {x: -16, y: 9}
-        - {x: -16, y: 1}
-        - {x: 16, y: 3}
-        - {x: 16, y: 11}
-        - {x: -11, y: 11}
+      - - {x: -16, y: 7}
+        - {x: -16, y: -16}
+        - {x: 6, y: -16}
+        - {x: -2, y: -2}
       tessellationDetail: 0
       bones: []
-      spriteID: 2664eba55533d17b0800000000000000
-      internalID: -5251985148756474270
+      spriteID: e01d512d0488ebbf0800000000000000
+      internalID: -306657912630685426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StairsSides_4
+      name: Hole_01_4
       rect:
         serializedVersion: 2
         x: 0
@@ -230,22 +227,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: -2}
-        - {x: -16, y: -10}
-        - {x: 10, y: -10}
-        - {x: 10, y: -12}
-        - {x: 16, y: -12}
-        - {x: 16, y: -4}
+      - - {x: -4, y: 16}
+        - {x: 3, y: 2}
+        - {x: 16, y: -8}
+        - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: 269a311e6192b0e70800000000000000
-      internalID: 9082398251764918626
+      spriteID: 762c19b7e7c02f6f0800000000000000
+      internalID: -652445258636737945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StairsSides_5
+      name: Hole_01_5
       rect:
         serializedVersion: 2
         x: 32
@@ -257,20 +252,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: -4}
-        - {x: -16, y: -12}
-        - {x: 0, y: -12}
-        - {x: 0, y: -4}
+      - - {x: -16, y: 16}
+        - {x: -16, y: -8}
+        - {x: 16, y: -14}
+        - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: 4c68ae99335475c20800000000000000
-      internalID: 3195098548570588868
+      spriteID: 8022c3b350f5f9a20800000000000000
+      internalID: 3071277946963239432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StairsSides_6
+      name: Hole_01_6
       rect:
         serializedVersion: 2
         x: 64
@@ -282,20 +277,20 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: -4}
-        - {x: 0, y: -12}
-        - {x: 16, y: -12}
-        - {x: 16, y: -4}
+      - - {x: -16, y: 16}
+        - {x: -16, y: -14}
+        - {x: 16, y: -8}
+        - {x: 16, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: ec6b07fc24978b290800000000000000
-      internalID: -7874410620602239282
+      spriteID: 4b6782ef6275f0ea0800000000000000
+      internalID: -5904404761474992460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StairsSides_7
+      name: Hole_01_7
       rect:
         serializedVersion: 2
         x: 96
@@ -307,16 +302,14 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: -4}
-        - {x: -16, y: -12}
-        - {x: -10, y: -12}
-        - {x: -10, y: -10}
-        - {x: 16, y: -10}
-        - {x: 16, y: -2}
+      - - {x: -16, y: 16}
+        - {x: -16, y: -8}
+        - {x: -1, y: 1}
+        - {x: 6, y: 16}
       tessellationDetail: 0
       bones: []
-      spriteID: 18e1a5eee16deaeb0800000000000000
-      internalID: -4706589132219343231
+      spriteID: 684a7247cffcd8400800000000000000
+      internalID: 328147031055377542
       vertices: []
       indices: 
       edges: []
