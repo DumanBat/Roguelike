@@ -68,7 +68,8 @@ MonoBehaviour:
   m_text: CHOOSE GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f143ade18e6aa6746acc422269735758, type: 2}
-  m_sharedMaterial: {fileID: 9139955994369800092, guid: f143ade18e6aa6746acc422269735758, type: 2}
+  m_sharedMaterial: {fileID: 9139955994369800092, guid: f143ade18e6aa6746acc422269735758,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -201,8 +202,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1258ac417dd158a48b05eeedb739c469, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 357e6428a0973194bbd6b895f183a2cc, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
