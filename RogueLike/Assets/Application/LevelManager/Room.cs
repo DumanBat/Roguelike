@@ -20,8 +20,6 @@ public class Room : MonoBehaviour
     private List<RoomSpawnPoint> roomSpawnPoints;
     private List<Enemy> _spawnedEnemies;
 
-    public RoomSpawnPoint centralPoint;
-
     public Action onRoomCleared;
 
     private void Awake()
@@ -48,10 +46,6 @@ public class Room : MonoBehaviour
     {
         _sideRooms = new Room[4];
 
-        /// TODO: divide room center and room spawn point logic
-        if (centralPoint != null)
-            centralPoint.SpawnRoom();
-        ///
         foreach (var spawnPoint in roomSpawnPoints)
         {
             var room = spawnPoint.SpawnRoom();
@@ -59,7 +53,6 @@ public class Room : MonoBehaviour
             if (room != null)
                 _sideRooms[spawnPoint.openingDirection - 1] = room;
         }
-
     }
 
     public List<Enemy> SpawnEnemies(List<EnemyType> enemiesToSpawn)

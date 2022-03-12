@@ -8,6 +8,8 @@ TagManager:
   - Environment
   - SpawnPoint
   - Rooms
+  - ClosedRoom
+  - RoomCenter
   layers:
   - Default
   - TransparentFX

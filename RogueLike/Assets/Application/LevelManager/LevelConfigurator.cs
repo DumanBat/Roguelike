@@ -14,7 +14,7 @@ public class LevelConfigurator : MonoBehaviour
     public void SetLastSpawnedRoomTime(float time) => _lastSpawnedRoomTime = time + 0.5f;
     private bool _roomSpawnStarted = false;
     private bool _roomSpawnCompleted = false;
-    public bool RoomSpawnCompleted() => _roomSpawnCompleted;
+    public Action onRoomSpawnCompleted;
 
     private Room _startingRoom;
 
@@ -47,6 +47,7 @@ public class LevelConfigurator : MonoBehaviour
         if (Time.time > _lastSpawnedRoomTime)
         {
             _roomSpawnCompleted = true;
+            onRoomSpawnCompleted.Invoke();
             NavMeshController.Instance.Init();
 
             ConfigureRooms();
