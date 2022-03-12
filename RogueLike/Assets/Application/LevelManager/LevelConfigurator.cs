@@ -16,6 +16,10 @@ public class LevelConfigurator : MonoBehaviour
     private bool _roomSpawnCompleted = false;
     public Action onRoomSpawnCompleted;
 
+    private string _roomCenterTag = "RoomCenter";
+    private List<Vector3> _closedRoomToSpawnPositions = new List<Vector3>();
+    public void AddClosedRoomToSpawn(Vector3 pos) => _closedRoomToSpawnPositions.Add(pos);
+
     private Room _startingRoom;
 
     // CONFIG
@@ -37,6 +41,7 @@ public class LevelConfigurator : MonoBehaviour
         _bossPool = new List<EnemyType>() { EnemyType.BossShark };
         _enemyPool = new List<EnemyType>() { EnemyType.GreenJelly, EnemyType.PinkJelly };
         /// TEMP
+        onRoomSpawnCompleted = SpawnClosedRooms;
     }
 
     private void Update()
@@ -146,6 +151,30 @@ public class LevelConfigurator : MonoBehaviour
         return enemy;
     }
 
+    private void SpawnClosedRooms()
+    {
+        if (_closedRoomToSpawnPositions.Count == 0)
+            return;
+
+        foreach (var roomPos in _closedRoomToSpawnPositions)
+        {
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(roomPos, 1f);
+            var hasRoom = false;
+
+            foreach (var collider in hitColliders)
+            {
+                if (collider.CompareTag(_roomCenterTag))
+                    hasRoom = true;
+            }
+
+            if (!hasRoom)
+            {
+                var room = Instantiate(_roomTemplates.GetClosedRoom(), roomPos, Quaternion.identity);
+                _roomTemplates.allRooms.Add(room);
+            }
+        }
+    }
+
     public void Unload()
     {
         SetLastSpawnedRoomTime(-9999f);
@@ -158,6 +187,7 @@ public class LevelConfigurator : MonoBehaviour
         foreach (var room in _roomTemplates.allRooms)
             room.Unload();
 
+        _closedRoomToSpawnPositions.Clear();
         _roomTemplates.Unload();
     }
 }

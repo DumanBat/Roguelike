@@ -60,20 +60,24 @@ public class RoomSpawnPoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("SpawnPoint")) return;
-
-        var roomSpawnPoint = collision.GetComponent<RoomSpawnPoint>();
-
-        if (roomSpawnPoint != null)
+        if (collision.CompareTag("RoomCenter"))
         {
-            if (roomSpawnPoint._spawned == false && _spawned == false)
-            {
-                Debug.Log("Spawn closed room");
-                var room = Instantiate(_roomTemplates.GetClosedRoom(), transform.position, Quaternion.identity);
-                _roomTemplates.allRooms.Add(room);
-                Destroy(gameObject);
-            }
             _spawned = true;
+            return;
+        }
+        else if (collision.CompareTag("SpawnPoint"))
+        {
+            var roomSpawnPoint = collision.GetComponent<RoomSpawnPoint>();
+
+            if (roomSpawnPoint != null)
+            {
+                if (roomSpawnPoint._spawned == false && _spawned == false)
+                {
+                    GameManager.Instance.levelManager.GetLevelConfigurator().AddClosedRoomToSpawn(transform.position);
+                    Destroy(gameObject);
+                }
+                _spawned = true;
+            }
         }
     }
 }
