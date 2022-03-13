@@ -12,6 +12,22 @@ public class InventoryController : MonoBehaviour
         _currentView = GetComponent<InventoryView>();
     }
 
+    public void Init()
+    {
+        PlayerController.Instance.onHealthChange = SetHealth;
+        PlayerController.Instance.onMaxHealthChange = SetMaxHealth;
+    }
+
+    public void SetHealth(int health)
+    {
+        _currentView.SetHealth(health);
+    }
+
+    public void SetMaxHealth(int health)
+    {
+        _currentView.SetMaxHealth(health);
+    }
+
     public void SwapWeapons()
     {
 

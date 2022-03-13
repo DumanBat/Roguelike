@@ -84,16 +84,19 @@ public abstract class Weapon : MonoBehaviour, IPickable
         false, magazineSize, magazineSize * 2);
     }
 
-    public virtual void Shot(Vector2 direction)
+    public virtual bool Shot(Vector2 direction)
     {
-        if (!readyToShot) return;
+        if (!readyToShot) return false;
 
         if (Time.time - _lastFired > 1 / bpm)
         {
             _lastFired = Time.time;
             ShotBullet(direction);
             bulletsLeft--;
+            return true;
         }
+
+        return false;
     }
 
     public virtual void ShotBullet(Vector2 direction)

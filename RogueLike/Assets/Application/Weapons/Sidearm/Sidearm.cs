@@ -15,7 +15,7 @@ public class Sidearm : Weapon
         magazineSize = 12;
         bulletsLeft = magazineSize;
         bulletVelocity = 15;
-        damage = 5;
+        damage = 1;
         bpm = 5;
         reloadingDuration = 1.5f;
         isAuto = false;

@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
 
         // Camera and player Init order important. Camera.Init() then PlayerController.Init().
         GameManager.Instance.cameraController.SetCamera(Camera.main, player.transform);
+        GameManager.Instance.inventoryController.Init();
 
         if (playerData != null)
             PlayerController.Instance.Init(playerData);
@@ -56,6 +57,7 @@ public class LevelManager : MonoBehaviour
         playerData = new PlayerWalkthroughData()
         {
             health = PlayerController.Instance.Health,
+            maxHealth = PlayerController.Instance.GetMaxHealthValue(),
             weapons = PlayerController.Instance.weaponController.weapons
         };
     }

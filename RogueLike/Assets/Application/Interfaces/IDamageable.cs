@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamage(float value);
+    void TakeDamage(int value);
 
     Vector2 GetPosition();
 }

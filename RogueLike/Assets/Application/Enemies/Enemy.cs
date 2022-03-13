@@ -24,8 +24,8 @@ public abstract class Enemy: MonoBehaviour, IDamageable
 
     protected Vector2 _spawnPosition;
 
-    private float _health;
-    public float Health
+    private int _health;
+    public int Health
     {
         get
         {
@@ -36,7 +36,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
             _health = value > 0 ? value : 0;
         }
     }
-    public float Damage { get; private set; }
+    public int Damage { get; private set; }
     public float Scale { get; private set; }
     public float PatrolRange { get; private set; }
     public float AggroRange { get; private set; }
@@ -62,7 +62,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         onEnemyDie += () => StartCoroutine(Die());
     }
 
-    public virtual void Init(float health, float damage, float scale, float patrolRange, 
+    public virtual void Init(int health, int damage, float scale, float patrolRange, 
         float aggroRange, float meleeRange, float attackCooldown, float aggroCooldown)
     {
         Health = health;
@@ -96,7 +96,7 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         _spawnPosition = position;
     }
 
-    public virtual void TakeDamage(float value)
+    public virtual void TakeDamage(int value)
     {
         Health -= value;
         if (_health <= 0)

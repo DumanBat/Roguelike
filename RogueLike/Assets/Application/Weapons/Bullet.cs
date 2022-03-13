@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     private CapsuleCollider2D _collider;
     private ObjectPool<Bullet> _originPool;
 
-    private float _damage;
+    private int _damage;
     private static readonly string _tag = "Damageable";
     private static readonly string _environmentTag = "Environment";
 
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         _collider = GetComponent<CapsuleCollider2D>();
     }
 
-    public void Init(ObjectPool<Bullet> bulletPool, float damage)
+    public void Init(ObjectPool<Bullet> bulletPool, int damage)
     {
         _originPool = bulletPool;
         _damage = damage;

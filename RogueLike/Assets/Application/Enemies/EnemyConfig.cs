@@ -6,10 +6,10 @@ public class EnemyConfig
 {
     public Enemy enemyPrefab;
 
-    [Range(0.0f, 500.0f)]
-    public float Health = 10.0f;
-    [Range(0.5f, 100.0f)]
-    public float Damage = 5f;
+    [Range(0, 50)]
+    public int Health = 10;
+    [Range(0, 10)]
+    public int Damage = 5;
     [Range(0.5f, 10.0f)]
     public float Scale = 1.0f;
     [Range(0.0f, 20.0f)]

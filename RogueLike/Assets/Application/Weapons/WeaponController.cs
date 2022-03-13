@@ -10,6 +10,7 @@ public class WeaponController : MonoBehaviour
     public Weapon currentWeapon;
     public List<Weapon> weapons;
 
+    public Action onBulletShot;
     public Action<float> onReload;
     public Action onWeaponChange;
     private Coroutine _reloadingRoutine;
@@ -34,6 +35,12 @@ public class WeaponController : MonoBehaviour
             foreach (var weapon in currentWeapons)
                 AddWeaponToInventory(weapon);
         }
+    }
+
+    public void Shot(Vector3 aimPos)
+    {
+        if (currentWeapon.Shot(aimPos))
+            onBulletShot?.Invoke();
     }
 
     private void AddWeapons()

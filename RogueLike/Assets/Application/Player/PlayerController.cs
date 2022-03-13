@@ -33,8 +33,10 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     private bool _isRunning;
     private bool _isAiming;
 
-    private float _health = 100f;
-    public float Health
+    private int _maxHealth;
+    public int GetMaxHealthValue() => _maxHealth;
+    private int _health;
+    public int Health
     {
         get
         {
@@ -45,8 +47,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
             _health = value > 0 ? value : 0;
         } 
     }
-
-    public TextMeshPro healthDisplay;
+    public Action<int> onHealthChange;
+    public Action<int> onMaxHealthChange;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -64,8 +66,17 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         if (playerData != null)
         {
             Health = playerData.health;
+            _maxHealth = playerData.maxHealth;
             weaponController.weapons = playerData.weapons;
         }
+        else
+        {
+            Health = 10;
+            _maxHealth = 10;
+        }
+
+        onMaxHealthChange.Invoke(_maxHealth);
+        onHealthChange.Invoke(Health);
 
         cam = GameManager.Instance.cameraController.GetCamera();
         _isActive = true;
@@ -96,8 +107,6 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
         if (Input.GetKeyDown(KeyCode.R))
             Reload();
-
-        healthDisplay.text = _health.ToString();
     }
 
     private void FixedUpdate()
@@ -148,7 +157,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
     private void Shot()
     {
-        weaponController.currentWeapon.Shot(_aimPos);
+        weaponController.Shot(_aimPos);
     }
 
     private void Reload()
@@ -179,7 +188,11 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         collision.gameObject.GetComponent<IPickable>()?.PickUp();
     }
 
-    public void TakeDamage(float value) => Health -= value;
+    public void TakeDamage(int value)
+    {
+        Health -= value;
+        onHealthChange.Invoke(Health);
+    } 
 
     public IEnumerator GetPush(Vector2 pushDirection, float duration)
     {
