@@ -13,16 +13,14 @@ public class RoomSpawnPoint : MonoBehaviour
     private void Awake()
     {
         _roomTemplates = GameManager.Instance.levelManager.GetLevelConfigurator().GetRoomTemplates();
+
+        if (openingDirection == 0)
+            _spawned = true;
     }
 
     public Room SpawnRoom()
     {
         if (_spawned) return null;
-        if (openingDirection == 0)
-        {
-            _spawned = true;
-            return null;
-        }
 
         Room room;
         var roomsCount = _roomTemplates.activeRooms.Count;
@@ -32,6 +30,8 @@ public class RoomSpawnPoint : MonoBehaviour
             room = roomsAmountToSpawn - 1 == roomsCount
                ? SpawnBossRoom()
                : SpawnRandomRoom();
+            room.Init();
+            _roomTemplates.activeRooms.Add(room);
         }
         else
         {
@@ -46,12 +46,8 @@ public class RoomSpawnPoint : MonoBehaviour
     private Room SpawnRandomRoom()
     {
         var currentRoomList = _roomTemplates.GetRoomsBySide(openingDirection - 1);
-
         var rand = Random.Range(0, currentRoomList.Length);
         var room = Instantiate(currentRoomList[rand], transform.position, Quaternion.identity);
-        room.Init();
-        _roomTemplates.activeRooms.Add(room);
-
         return room;
     }
 
@@ -59,27 +55,29 @@ public class RoomSpawnPoint : MonoBehaviour
     {
         var room = Instantiate(_roomTemplates.GetBossRoom()[openingDirection - 1], transform.position, Quaternion.identity);
         room.roomType = RoomTemplates.RoomType.BossRoom;
-        room.Init();
-        _roomTemplates.activeRooms.Add(room);
-
         return room;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("SpawnPoint")) return;
-
-        var roomSpawnPoint = collision.GetComponent<RoomSpawnPoint>();
-
-        if (roomSpawnPoint != null)
+        if (collision.CompareTag("RoomCenter"))
         {
-            if (roomSpawnPoint._spawned == false && _spawned == false)
-            {
-                var room = Instantiate(_roomTemplates.GetClosedRoom(), transform.position, Quaternion.identity);
-                _roomTemplates.allRooms.Add(room);
-                Destroy(gameObject);
-            }
             _spawned = true;
+            return;
+        }
+        else if (collision.CompareTag("SpawnPoint"))
+        {
+            var roomSpawnPoint = collision.GetComponent<RoomSpawnPoint>();
+
+            if (roomSpawnPoint != null)
+            {
+                if (roomSpawnPoint._spawned == false && _spawned == false)
+                {
+                    GameManager.Instance.levelManager.GetLevelConfigurator().AddClosedRoomToSpawn(transform.position);
+                    Destroy(gameObject);
+                }
+                _spawned = true;
+            }
         }
     }
 }
