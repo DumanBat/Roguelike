@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class InventoryController : MonoBehaviour
 {
     private InventoryView _currentView;
+    private Weapon _currentWeapon;
 
     private void Awake()
     {
@@ -16,33 +17,33 @@ public class InventoryController : MonoBehaviour
     {
         PlayerController.Instance.onHealthChange = SetHealth;
         PlayerController.Instance.onMaxHealthChange = SetMaxHealth;
+
+        PlayerController.Instance.weaponController.onBulletShot = SetBullets;
     }
 
-    public void SetHealth(int health)
-    {
-        _currentView.SetHealth(health);
-    }
+    public void SetHealth(int health) => _currentView.SetHealth(health);
+    public void SetMaxHealth(int health) => _currentView.SetMaxHealth(health);
 
-    public void SetMaxHealth(int health)
-    {
-        _currentView.SetMaxHealth(health);
-    }
-
-    public void SwapWeapons()
-    {
-
-    }
+    public void AddWeaponSlot() => _currentView.AddWeaponSlot();
 
     public void SetWeapons(List<Weapon> weapons)
     {
-        var length = weapons.Count >= 3
-            ? 3
-            : weapons.Count;
+        _currentWeapon = weapons[0];
 
-        Texture[] weaponImages = new Texture[length];
-        for (int i = 0; i < length; i++)
+        Texture[] weaponImages = new Texture[weapons.Count];
+        for (int i = 0; i < weapons.Count; i++)
             weaponImages[i] = weapons[i].weaponImage.texture;
 
         _currentView.SetWeapons(weaponImages);
+    }
+
+    public void SetBullets()
+    {
+
+    }
+
+    public void Unload()
+    {
+        _currentView.Unload();
     }
 }

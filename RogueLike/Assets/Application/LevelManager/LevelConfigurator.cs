@@ -7,6 +7,7 @@ public class LevelConfigurator : MonoBehaviour
     [SerializeField]
     private EnemyFactory enemyFactory;
     private LootManager _lootManager;
+    public LootManager GetLootManager() => _lootManager;
     private RoomTemplates _roomTemplates;
     public RoomTemplates GetRoomTemplates() => _roomTemplates;
 

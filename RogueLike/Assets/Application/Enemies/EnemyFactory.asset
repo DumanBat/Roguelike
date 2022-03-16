@@ -15,8 +15,8 @@ MonoBehaviour:
   _bossShark:
     enemyPrefab: {fileID: 883650871001423432, guid: 7d7f5db836c57374ca07061dfe91b2c2,
       type: 3}
-    Health: 500
-    Damage: 25
+    Health: 50
+    Damage: 3
     Scale: 4
     PatrolRange: 5
     AggroRange: 20
@@ -26,8 +26,8 @@ MonoBehaviour:
   _greenJelly:
     enemyPrefab: {fileID: 2796267632980311292, guid: e9aecf1944b4c7d4891a384123ea4362,
       type: 3}
-    Health: 50
-    Damage: 5
+    Health: 5
+    Damage: 1
     Scale: 2
     PatrolRange: 20
     AggroRange: 5
@@ -37,8 +37,8 @@ MonoBehaviour:
   _pinkJelly:
     enemyPrefab: {fileID: 6116314101010631402, guid: 1e4028abda38544439cca80da41cb27c,
       type: 3}
-    Health: 15
-    Damage: 20
+    Health: 3
+    Damage: 1
     Scale: 1
     PatrolRange: 5
     AggroRange: 5

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Modules.Core;
 
@@ -15,6 +16,7 @@ public class WeaponController : MonoBehaviour
     public Action onWeaponChange;
     private Coroutine _reloadingRoutine;
     private Coroutine _reloadingViewRoutine;
+
     private void Awake()
     {
         _currentView = GetComponent<WeaponView>();
@@ -23,17 +25,15 @@ public class WeaponController : MonoBehaviour
         onWeaponChange += DisableWeaponSprites;
     }
 
-    private void Start()
+    public void Init(List<WeaponConfig> weaponConfigs = null)
     {
-        //AddWeapons();
-    }
-
-    public void Init(List<Weapon> currentWeapons = null)
-    {
-        if (currentWeapons != null)
+        if (weaponConfigs != null)
         {
-            foreach (var weapon in currentWeapons)
+            foreach (var config in weaponConfigs)
+            {
+                var weapon = GameManager.Instance.levelManager.GetLevelConfigurator().GetLootManager().GetWeaponFactory().Get(config);
                 AddWeaponToInventory(weapon);
+            }
         }
     }
 
@@ -43,17 +43,6 @@ public class WeaponController : MonoBehaviour
             onBulletShot?.Invoke();
     }
 
-    private void AddWeapons()
-    {
-        weapons.Clear();
-
-        for (int i = 0; i < transform.childCount - 1; i++)
-        {
-            weapons.Add(transform.GetChild(i).GetComponent<Weapon>());
-            weapons[i].weaponCollider.isTrigger = false;
-        }
-    }
-
     public void AddWeaponToInventory(Weapon weapon)
     {
         weapons.Insert(0, weapon);
@@ -61,6 +50,7 @@ public class WeaponController : MonoBehaviour
         if (weapons.Count > 1)
             onWeaponChange.Invoke();
         SelectWeapon(0);
+        GameManager.Instance.inventoryController.AddWeaponSlot();
         GameManager.Instance.inventoryController.SetWeapons(weapons);
     }
 
@@ -114,14 +104,13 @@ public class WeaponController : MonoBehaviour
         _currentView.ResetReloadProgressBar();
     }
 
-    public void Unload(bool removeWeapons = false)
-    {
-        if (removeWeapons)
-        {
-            foreach (var weapon in weapons)
-                Destroy(weapon.gameObject);
+    public List<WeaponConfig> GetWeaponConfigs() => weapons.Select(x => x.GetConfig()).ToList();
 
-            weapons.Clear();
-        }
+    public void Unload()
+    {
+        foreach (var weapon in weapons)
+            Destroy(weapon.gameObject);
+
+        weapons.Clear();
     }
 }

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75cfa3a54e2274d49a4dbc79e55f16a5, type: 3}
+  m_Name: Weapon Factory
+  m_EditorClassIdentifier: 
+  _autoRifle:
+    weaponPrefab: {fileID: 0}
+    isAuto: 0
+    Damage: 5
+    BPM: 5
+    MagazineSize: 30
+    BulletsPerShot: 1
+    BulletVelocity: 10
+    ReloadingDuration: 3
+    BulletsLeft: 30
+  _sidearm:
+    weaponPrefab: {fileID: 0}
+    isAuto: 0
+    Damage: 5
+    BPM: 5
+    MagazineSize: 30
+    BulletsPerShot: 1
+    BulletVelocity: 10
+    ReloadingDuration: 3
+    BulletsLeft: 30

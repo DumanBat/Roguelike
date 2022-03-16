@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 using Modules.Core;
@@ -49,16 +50,12 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     }
     public Action<int> onHealthChange;
     public Action<int> onMaxHealthChange;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         _currentView = GetComponent<PlayerView>();
         _rb = GetComponent<Rigidbody2D>();
-    }
-
-    public void Start()
-    {
-        //Init();    
     }
 
     public void Init(PlayerWalkthroughData playerData = null)
@@ -67,7 +64,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         {
             Health = playerData.health;
             _maxHealth = playerData.maxHealth;
-            weaponController.weapons = playerData.weapons;
+            weaponController.Init(playerData.weaponConfigs);
         }
         else
         {
@@ -91,15 +88,19 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         _isAiming = Input.GetMouseButton(1);
         Aim();
 
-        if (!weaponController.currentWeapon.isAuto)
+        if (weaponController.currentWeapon != null && _isAiming)
         {
-            if (Input.GetMouseButtonDown(0) && _isAiming)
-                Shot();
-        }
-        else
-        {
-            if (Input.GetMouseButton(0) && _isAiming)
-                Shot();
+            if (!weaponController.currentWeapon.isAuto)
+            {
+                if (Input.GetMouseButtonDown(0))
+                    Shot();
+            }
+            else
+            {
+                if (Input.GetMouseButton(0))
+                    Shot();
+            }
+
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -202,5 +203,10 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
         yield return new WaitForEndOfFrame();
         _rb.velocity = Vector2.zero;
+    }
+
+    public void Unload()
+    {
+        weaponController.Unload();
     }
 }

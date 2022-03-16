@@ -6,5 +6,5 @@ public class PlayerWalkthroughData
 {
     public int health;
     public int maxHealth;
-    public List<Weapon> weapons;
+    public List<WeaponConfig> weaponConfigs;
 }

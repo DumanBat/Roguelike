@@ -10,39 +10,39 @@ public abstract class Weapon : MonoBehaviour, IPickable
     protected string weaponName;
     private WeaponController _weaponController;
 
-    protected int damage;
+    private Weapon _prefabHandler;
+    public bool isAuto;
 
-    public bool isAuto = false;
-    protected float bpm;
+    private int _damage;
+    private float _bpm; // converts to float on Init()
+    private int _magazineSize;
+    private int _bulletsPerShot;
+
+    private float _bulletVelocity;
+    private float _reloadingDuration;
+
+    private int _bulletsLeft;
+
+    public WeaponFactory OriginFactory { get; set; }
     private float _lastFired = -9999;
-    protected float bulletVelocity;
-    protected float timeBetweenShooting;
 
-    protected int magazineSize;
-    protected int bulletsPerShot;
-
-    protected int bulletsLeft;
-    protected int bulletsShot;
-
-    protected bool shooting;
     protected bool readyToShot
     {
         get
         {
-            if (reloading == false && bulletsLeft > 0)
+            if (reloading == false && _bulletsLeft > 0)
                 return true;
             else
                 return false;
         }
     }
-
     protected bool reloading;
-    protected float reloadingDuration;
     public bool IsReloading() => reloading;
     public void StopReloading() => reloading = false;
 
     protected ObjectPool<Bullet> bulletPool;
     public Bullet bulletPrefab;
+    public RawImage bulletImage;
 
     public RawImage weaponImage;
     public SpriteRenderer weaponInGameSprite;
@@ -61,8 +61,20 @@ public abstract class Weapon : MonoBehaviour, IPickable
     public Transform _firepoint;
     public void SetFirepoint(Transform point) => _firepoint = point;
 
-    public virtual void Init()
+    public virtual void Init(WeaponConfig config)
     {
+        _prefabHandler = config.weaponPrefab;
+
+        isAuto = config.IsAuto;
+        _damage = config.Damage;
+        _bpm = 60.0f / config.BPM;
+        _magazineSize = config.MagazineSize;
+        _bulletsPerShot = config.BulletsPerShot;
+        _bulletVelocity = config.BulletVelocity;
+        _reloadingDuration = config.ReloadingDuration;
+
+        _bulletsLeft = config.BulletsLeft;
+
         weaponCollider = GetComponent<BoxCollider2D>();
         weaponSprites = new GameObject[spritesTransform.childCount];
 
@@ -72,7 +84,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
         bulletPool = new ObjectPool<Bullet>(() =>
         {
             var bullet = Instantiate(bulletPrefab);
-            bullet.Init(bulletPool, damage);
+            bullet.Init(bulletPool, _damage);
             return bullet;
         }, bullet => {
             bullet.gameObject.SetActive(true);
@@ -81,18 +93,18 @@ public abstract class Weapon : MonoBehaviour, IPickable
         }, bullet => {
             Destroy(bullet.gameObject);
         },
-        false, magazineSize, magazineSize * 2);
+        false, _magazineSize, _magazineSize * 2);
     }
 
     public virtual bool Shot(Vector2 direction)
     {
         if (!readyToShot) return false;
 
-        if (Time.time - _lastFired > 1 / bpm)
+        if (Time.time - _lastFired > _bpm)
         {
             _lastFired = Time.time;
             ShotBullet(direction);
-            bulletsLeft--;
+            _bulletsLeft--;
             return true;
         }
 
@@ -102,7 +114,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
     public virtual void ShotBullet(Vector2 direction)
     {
         var bullet = bulletPool.Get();
-        var velocity = direction.normalized * bulletVelocity;
+        var velocity = direction.normalized * _bulletVelocity;
 
         var position = new Vector3(_firepoint.position.x, _firepoint.position.y, _firepoint.position.z);
         bullet.Shot(position, direction, velocity);
@@ -110,15 +122,15 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     public virtual IEnumerator Reload()
     {
-        if (bulletsLeft == magazineSize)
+        if (_bulletsLeft == _magazineSize)
             yield break;
         if (reloading)
             yield break;
 
         reloading = true;
-        _weaponController.onReload.Invoke(reloadingDuration);
-        yield return new WaitForSeconds(reloadingDuration);
-        bulletsLeft = magazineSize;
+        _weaponController.onReload.Invoke(_reloadingDuration);
+        yield return new WaitForSeconds(_reloadingDuration);
+        _bulletsLeft = _magazineSize;
         reloading = false;
     }
 
@@ -131,5 +143,24 @@ public abstract class Weapon : MonoBehaviour, IPickable
         weaponInGameSprite.gameObject.SetActive(false);
 
         _weaponController = GetComponentInParent<WeaponController>();
+    }
+
+    public WeaponConfig GetConfig()
+    {
+        WeaponConfig config = new WeaponConfig()
+        {
+            weaponPrefab = _prefabHandler,
+            IsAuto = isAuto,
+            Damage = _damage,
+            BPM = Mathf.RoundToInt(60.0f / _bpm),
+            MagazineSize = _magazineSize,
+            BulletsPerShot = _bulletsPerShot,
+            BulletVelocity = _bulletVelocity,
+            ReloadingDuration = _reloadingDuration,
+
+            BulletsLeft = _bulletsLeft
+        };
+
+        return config;
     }
 }

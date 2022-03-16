@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Sidearm : Weapon
+public class AutoRifle : Weapon
 {
 
 }

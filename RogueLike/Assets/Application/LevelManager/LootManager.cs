@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class LootManager : MonoBehaviour
 {
+    [SerializeField]
+    private WeaponFactory _weaponFactory;
+    public WeaponFactory GetWeaponFactory() => _weaponFactory;
     /// TEMP 
-    public Weapon weaponToSpawn;
-    public Weapon startingWeapon;
+    public WeaponType weaponToSpawn = WeaponType.AutoRifle;
+    public WeaponType startingWeapon = WeaponType.Sidearm;
     /// 
 
     public void Init()
@@ -15,12 +18,14 @@ public class LootManager : MonoBehaviour
             PlayerController.Instance.weaponController.AddWeaponToInventory(SpawnWeapon(startingWeapon, Vector3.zero));
     }
 
-    public Weapon SpawnWeapon(Weapon weaponToSpawn, Vector3 spawnPosition)
+    public Weapon SpawnWeapon(WeaponType weaponTypeToSpawn, Vector3 spawnPosition)
     {
-        var weapon = Instantiate(weaponToSpawn, spawnPosition, Quaternion.identity);
+        //var weapon = Instantiate(weaponTypeToSpawn, spawnPosition, Quaternion.identity);
+        var weapon = _weaponFactory.Get(weaponTypeToSpawn);
+        weapon.transform.position = spawnPosition;
         weapon.weaponInGameSprite.gameObject.SetActive(true);
         weapon.onAddedToInventory += PlayerController.Instance.weaponController.AddWeaponToInventory;
-        weapon.Init();
+        //weapon.Init();
         return weapon;
     }
 

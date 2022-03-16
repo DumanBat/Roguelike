@@ -7,39 +7,54 @@ using UnityEngine.UI;
 public class InventoryView : MonoBehaviour
 {
     public GameObject root;
-    public VerticalLayoutGroup weaponsLayoutGroup;
-    public List<WeaponSlot> weaponSlots;
 
+    [Header("Weapons")]
+    public Transform weaponsRoot;
+    private List<WeaponSlot> _weaponSlots = new List<WeaponSlot>();
+    public WeaponSlot weaponSlotPrefab;
+
+    [Header("Health")]
     public Transform emptyHeartsRoot;
     public GameObject emptyHeartPrefab;
-    private List<GameObject> emptyHearts = new List<GameObject>();
+    private List<GameObject> _emptyHearts = new List<GameObject>();
 
     public Transform heartsRoot;
     public GameObject heartPrefab;
-    private List<GameObject> hearts = new List<GameObject>();
+    private List<GameObject> _heats = new List<GameObject>();
 
     public void InitWeapons()
     {
 
     }
 
+    public void AddWeaponSlot()
+    {
+        if (_weaponSlots.Count < 5)
+        {
+            var weaponSlot = Instantiate(weaponSlotPrefab, weaponsRoot);
+            if (_weaponSlots.Count != 0)
+                weaponSlot.gameObject.SetActive(false);
+            _weaponSlots.Add(weaponSlot);
+        }
+    }
+
     public void SetWeapons(Texture[] weaponTextures)
     {
-        for (int i = 0; i < weaponTextures.Length; i++)
+        for (int i = 0; i < _weaponSlots.Count; i++)
         {
-            weaponSlots[i].imagePlaceholder.texture = weaponTextures[i];
-            weaponSlots[i].imagePlaceholder.gameObject.SetActive(true);
+            _weaponSlots[i].imagePlaceholder.texture = weaponTextures[i];
+            _weaponSlots[i].imagePlaceholder.gameObject.SetActive(true);
         }
     }
 
     public void SetHealth(int health)
     {
-        foreach (var heart in hearts)
+        foreach (var heart in _heats)
             heart.SetActive(false);
 
         for (int i = 0; i < health; i++)
         {
-            hearts[i].SetActive(true);
+            _heats[i].SetActive(true);
         }
     }
 
@@ -56,14 +71,14 @@ public class InventoryView : MonoBehaviour
             for (var i = 0; i < requiredSize - currentSize; i++)
             {
                 var emptyHeart = Instantiate(emptyHeartPrefab, emptyHeartsRoot);
-                emptyHearts.Add(emptyHeart);
+                _emptyHearts.Add(emptyHeart);
                 var heart = Instantiate(heartPrefab, heartsRoot);
 
                 for (int j = 0; j < heart.transform.childCount; j++)
                 {
                     var halfHeart = heart.transform.GetChild(j).gameObject;
                     halfHeart.SetActive(false);
-                    hearts.Add(halfHeart);
+                    _heats.Add(halfHeart);
                 }
             }
         }
@@ -71,18 +86,26 @@ public class InventoryView : MonoBehaviour
         {
             for (var i = requiredSize; i < currentSize; i++)
             {
-                var emptyHeart = emptyHearts[i];
-                emptyHearts.Remove(emptyHeart);
+                var emptyHeart = _emptyHearts[i];
+                _emptyHearts.Remove(emptyHeart);
                 Destroy(emptyHeart);
 
-                var halfHeart1 = hearts[i * 2];
-                hearts.Remove(halfHeart1);
+                var halfHeart1 = _heats[i * 2];
+                _heats.Remove(halfHeart1);
                 Destroy(halfHeart1);
 
-                var halfHeart2 = hearts[(i * 2) - 1];
-                hearts.Remove(halfHeart2);
+                var halfHeart2 = _heats[(i * 2) - 1];
+                _heats.Remove(halfHeart2);
                 Destroy(halfHeart2);                
             }
         }
+    }
+
+    public void Unload()
+    {
+        foreach (var weaponSlot in _weaponSlots)
+            Destroy(weaponSlot.gameObject);
+
+        _weaponSlots.Clear();
     }
 }

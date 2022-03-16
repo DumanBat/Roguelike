@@ -38,7 +38,6 @@ public class LevelManager : MonoBehaviour
         else
             PlayerController.Instance.Init();
 
-        PlayerController.Instance.weaponController.Init();
         PlayerController.Instance.SetPosition(Vector2.zero);
         _levelConfigurator.SetLevelConfig();
         _levelConfigurator.Init();
@@ -49,6 +48,8 @@ public class LevelManager : MonoBehaviour
         if (saveProgress)
             SaveProgress();
 
+        PlayerController.Instance.Unload();
+        GameManager.Instance.inventoryController.Unload();
         _levelConfigurator.Unload();
     }
 
@@ -58,7 +59,7 @@ public class LevelManager : MonoBehaviour
         {
             health = PlayerController.Instance.Health,
             maxHealth = PlayerController.Instance.GetMaxHealthValue(),
-            weapons = PlayerController.Instance.weaponController.weapons
+            weaponConfigs = PlayerController.Instance.weaponController.GetWeaponConfigs()
         };
     }
 }

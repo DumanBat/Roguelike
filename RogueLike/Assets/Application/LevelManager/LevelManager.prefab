@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11854f063b9e2b3499f1a0372a9f9b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponFactory: {fileID: 11400000, guid: 49808d758be01a34db36a51708e0003b, type: 2}
   weaponToSpawn: {fileID: 148401657117487076, guid: 717c59ad3852e5a469942162f1f7bc75,
     type: 3}
   startingWeapon: {fileID: 2891379312429323266, guid: de114e39415a980448e4466ad0a46bc6,
