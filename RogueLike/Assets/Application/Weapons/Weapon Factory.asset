@@ -13,22 +13,24 @@ MonoBehaviour:
   m_Name: Weapon Factory
   m_EditorClassIdentifier: 
   _autoRifle:
-    weaponPrefab: {fileID: 0}
-    isAuto: 0
-    Damage: 5
-    BPM: 5
+    weaponPrefab: {fileID: 148401657117487076, guid: 717c59ad3852e5a469942162f1f7bc75,
+      type: 3}
+    IsAuto: 1
+    Damage: 10
+    BPM: 360
     MagazineSize: 30
     BulletsPerShot: 1
-    BulletVelocity: 10
+    BulletVelocity: 30
     ReloadingDuration: 3
     BulletsLeft: 30
   _sidearm:
-    weaponPrefab: {fileID: 0}
-    isAuto: 0
-    Damage: 5
-    BPM: 5
-    MagazineSize: 30
+    weaponPrefab: {fileID: 2891379312429323266, guid: de114e39415a980448e4466ad0a46bc6,
+      type: 3}
+    IsAuto: 0
+    Damage: 1
+    BPM: 180
+    MagazineSize: 12
     BulletsPerShot: 1
-    BulletVelocity: 10
-    ReloadingDuration: 3
-    BulletsLeft: 30
+    BulletVelocity: 15
+    ReloadingDuration: 1.5
+    BulletsLeft: 12
