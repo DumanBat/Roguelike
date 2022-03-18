@@ -10,8 +10,12 @@ public class InventoryView : MonoBehaviour
 
     [Header("Weapons")]
     public Transform weaponsRoot;
-    private List<WeaponSlot> _weaponSlots = new List<WeaponSlot>();
     public WeaponSlot weaponSlotPrefab;
+
+    public Transform ammoRoot;
+    public AmmoSlot ammoSlotPrefab;
+
+    private List<(WeaponSlot, AmmoSlot)> _weaponSlots = new List<(WeaponSlot, AmmoSlot)>();
 
     [Header("Health")]
     public Transform emptyHeartsRoot;
@@ -20,41 +24,63 @@ public class InventoryView : MonoBehaviour
 
     public Transform heartsRoot;
     public GameObject heartPrefab;
-    private List<GameObject> _heats = new List<GameObject>();
+    private List<GameObject> _hearts = new List<GameObject>();
 
     public void InitWeapons()
     {
 
     }
 
-    public void AddWeaponSlot()
+    public void AddWeaponSlot(Weapon weapon)
     {
-        if (_weaponSlots.Count < 5)
+        var weaponSlot = Instantiate(weaponSlotPrefab, weaponsRoot);
+        weaponSlot.imagePlaceholder.texture = weapon.weaponImage.texture;
+        weaponSlot.transform.SetAsLastSibling();
+
+        var ammoSlot = Instantiate(ammoSlotPrefab, ammoRoot);
+        var bulletSprite = weapon.bulletPrefab.GetComponent<SpriteRenderer>().sprite;
+        ammoSlot.SetAmmoSlot(bulletSprite, weapon.GetMagazineSize());
+
+        _weaponSlots.Insert(0, (weaponSlot, ammoSlot));
+
+        foreach (var slot in _weaponSlots)
         {
-            var weaponSlot = Instantiate(weaponSlotPrefab, weaponsRoot);
-            if (_weaponSlots.Count != 0)
-                weaponSlot.gameObject.SetActive(false);
-            _weaponSlots.Add(weaponSlot);
+            slot.Item1.gameObject.SetActive(false);
+            slot.Item2.gameObject.SetActive(false);
         }
+
+        _weaponSlots[0].Item1.gameObject.SetActive(true);
+        _weaponSlots[0].Item2.gameObject.SetActive(true);
+
     }
 
-    public void SetWeapons(Texture[] weaponTextures)
+    public void SetWeapons()
     {
-        for (int i = 0; i < _weaponSlots.Count; i++)
-        {
-            _weaponSlots[i].imagePlaceholder.texture = weaponTextures[i];
-            _weaponSlots[i].imagePlaceholder.gameObject.SetActive(true);
-        }
+        _weaponSlots[0].Item1.gameObject.SetActive(false);
+        _weaponSlots[0].Item1.transform.SetAsFirstSibling();
+        _weaponSlots[0].Item2.gameObject.SetActive(false);
+
+        _weaponSlots.Add(_weaponSlots[0]);
+        _weaponSlots.RemoveAt(0);
+
+        _weaponSlots[0].Item1.gameObject.SetActive(true);
+        _weaponSlots[0].Item1.transform.SetAsLastSibling();
+        _weaponSlots[0].Item2.gameObject.SetActive(true);
+    }
+
+    public void SetBullets(int val)
+    {
+        _weaponSlots[0].Item2.SetBullets(val);
     }
 
     public void SetHealth(int health)
     {
-        foreach (var heart in _heats)
+        foreach (var heart in _hearts)
             heart.SetActive(false);
 
         for (int i = 0; i < health; i++)
         {
-            _heats[i].SetActive(true);
+            _hearts[i].SetActive(true);
         }
     }
 
@@ -78,7 +104,7 @@ public class InventoryView : MonoBehaviour
                 {
                     var halfHeart = heart.transform.GetChild(j).gameObject;
                     halfHeart.SetActive(false);
-                    _heats.Add(halfHeart);
+                    _hearts.Add(halfHeart);
                 }
             }
         }
@@ -90,12 +116,12 @@ public class InventoryView : MonoBehaviour
                 _emptyHearts.Remove(emptyHeart);
                 Destroy(emptyHeart);
 
-                var halfHeart1 = _heats[i * 2];
-                _heats.Remove(halfHeart1);
+                var halfHeart1 = _hearts[i * 2];
+                _hearts.Remove(halfHeart1);
                 Destroy(halfHeart1);
 
-                var halfHeart2 = _heats[(i * 2) - 1];
-                _heats.Remove(halfHeart2);
+                var halfHeart2 = _hearts[(i * 2) - 1];
+                _hearts.Remove(halfHeart2);
                 Destroy(halfHeart2);                
             }
         }
@@ -103,8 +129,11 @@ public class InventoryView : MonoBehaviour
 
     public void Unload()
     {
-        foreach (var weaponSlot in _weaponSlots)
-            Destroy(weaponSlot.gameObject);
+        foreach (var slot in _weaponSlots)
+        {
+            Destroy(slot.Item1.gameObject);
+            Destroy(slot.Item2.gameObject);
+        }
 
         _weaponSlots.Clear();
     }

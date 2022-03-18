@@ -23,6 +23,8 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     private int _bulletsLeft;
 
+    public int GetBulletsLeft() => _bulletsLeft;
+    public int GetMagazineSize() => _magazineSize;
     public WeaponFactory OriginFactory { get; set; }
     private float _lastFired = -9999;
 
@@ -131,6 +133,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
         _weaponController.onReload.Invoke(_reloadingDuration);
         yield return new WaitForSeconds(_reloadingDuration);
         _bulletsLeft = _magazineSize;
+        _weaponController.onBulletAmountChange.Invoke(_bulletsLeft);
         reloading = false;
     }
 
