@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventoryView : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class InventoryView : MonoBehaviour
 
     public Transform ammoRoot;
     public AmmoSlot ammoSlotPrefab;
+    public TextMeshProUGUI totalAmmoDisplay;
 
     private List<(WeaponSlot, AmmoSlot)> _weaponSlots = new List<(WeaponSlot, AmmoSlot)>();
 
@@ -51,7 +53,6 @@ public class InventoryView : MonoBehaviour
 
         _weaponSlots[0].Item1.gameObject.SetActive(true);
         _weaponSlots[0].Item2.gameObject.SetActive(true);
-
     }
 
     public void SetWeapons()
@@ -68,9 +69,10 @@ public class InventoryView : MonoBehaviour
         _weaponSlots[0].Item2.gameObject.SetActive(true);
     }
 
-    public void SetBullets(int val)
+    public void SetBullets(int val, string totalAmmoLeft)
     {
         _weaponSlots[0].Item2.SetBullets(val);
+        totalAmmoDisplay.text = totalAmmoLeft;
     }
 
     public void SetHealth(int health)

@@ -24,15 +24,27 @@ public class InventoryController : MonoBehaviour
     public void SetHealth(int health) => _currentView.SetHealth(health);
     public void SetMaxHealth(int health) => _currentView.SetMaxHealth(health);
 
-    public void AddWeaponSlot(Weapon weapon) => _currentView.AddWeaponSlot(weapon);
+    public void AddWeaponSlot(Weapon weapon)
+    {
+        _currentWeapon = weapon;
+        _currentView.AddWeaponSlot(weapon);
+        SetBullets();
+    }
 
     public void SetWeapons(List<Weapon> weapons)
     {
         _currentWeapon = weapons[0];
         _currentView.SetWeapons();
+        SetBullets();
     }
 
-    public void SetBullets(int val) => _currentView.SetBullets(val);
+    public void SetBullets()
+    {
+        var magazineAmmo = _currentWeapon.GetMagazineAmmoLeft();
+        var totalAmmo = $"{_currentWeapon.GetTotalAmmoLeft()}/{_currentWeapon.GetMaxTotalAmmo()}";
+
+        _currentView.SetBullets(magazineAmmo, totalAmmo);
+    }
 
     public void Unload()
     {

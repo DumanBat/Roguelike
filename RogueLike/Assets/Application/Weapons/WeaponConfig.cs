@@ -13,6 +13,8 @@ public class WeaponConfig
     public int BPM = 5;
     [Range(1, 200)]
     public int MagazineSize = 30;
+    [Range(1, 1000)]
+    public int MaxTotalAmmoCapacity = 120;
     [Range(1, 10)]
     public int BulletsPerShot = 1;
     [Range(1f, 100.0f)]
@@ -21,6 +23,6 @@ public class WeaponConfig
     public float ReloadingDuration = 3.0f;
 
     [Header("RuntimeData")]
-    [Range(0, 200)]
-    public int BulletsLeft = 30;
+    public int MagazineAmmoLeft = 30;
+    public int TotalAmmoLeft = 120;
 }

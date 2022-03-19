@@ -16,15 +16,19 @@ public abstract class Weapon : MonoBehaviour, IPickable
     private int _damage;
     private float _bpm; // converts to float on Init()
     private int _magazineSize;
+    private int _maxTotalAmmoCapacity;
     private int _bulletsPerShot;
 
     private float _bulletVelocity;
     private float _reloadingDuration;
 
-    private int _bulletsLeft;
+    private int _magazineAmmoLeft;
+    private int _totalAmmoLeft;
 
-    public int GetBulletsLeft() => _bulletsLeft;
+    public int GetMagazineAmmoLeft() => _magazineAmmoLeft;
     public int GetMagazineSize() => _magazineSize;
+    public int GetTotalAmmoLeft() => _totalAmmoLeft;
+    public int GetMaxTotalAmmo() => _maxTotalAmmoCapacity;
     public WeaponFactory OriginFactory { get; set; }
     private float _lastFired = -9999;
 
@@ -32,7 +36,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
     {
         get
         {
-            if (reloading == false && _bulletsLeft > 0)
+            if (reloading == false && _magazineAmmoLeft > 0 && _totalAmmoLeft > 0)
                 return true;
             else
                 return false;
@@ -71,11 +75,13 @@ public abstract class Weapon : MonoBehaviour, IPickable
         _damage = config.Damage;
         _bpm = 60.0f / config.BPM;
         _magazineSize = config.MagazineSize;
+        _maxTotalAmmoCapacity = config.MaxTotalAmmoCapacity;
         _bulletsPerShot = config.BulletsPerShot;
         _bulletVelocity = config.BulletVelocity;
         _reloadingDuration = config.ReloadingDuration;
 
-        _bulletsLeft = config.BulletsLeft;
+        _magazineAmmoLeft = config.MagazineAmmoLeft;
+        _totalAmmoLeft = config.TotalAmmoLeft;
 
         weaponCollider = GetComponent<BoxCollider2D>();
         weaponSprites = new GameObject[spritesTransform.childCount];
@@ -98,24 +104,26 @@ public abstract class Weapon : MonoBehaviour, IPickable
         false, _magazineSize, _magazineSize * 2);
     }
 
-    public virtual bool Shot(Vector2 direction)
+    public virtual bool Shot(Vector2 aimPos)
     {
         if (!readyToShot) return false;
 
         if (Time.time - _lastFired > _bpm)
         {
             _lastFired = Time.time;
-            ShotBullet(direction);
-            _bulletsLeft--;
+            ShotBullet(aimPos);
+            _magazineAmmoLeft--;
+            _totalAmmoLeft--;
             return true;
         }
 
         return false;
     }
 
-    public virtual void ShotBullet(Vector2 direction)
+    public virtual void ShotBullet(Vector2 aimPos)
     {
         var bullet = bulletPool.Get();
+        var direction = new Vector3(aimPos.x, aimPos.y, 0.0f) - _firepoint.position;
         var velocity = direction.normalized * _bulletVelocity;
 
         var position = new Vector3(_firepoint.position.x, _firepoint.position.y, _firepoint.position.z);
@@ -124,16 +132,18 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     public virtual IEnumerator Reload()
     {
-        if (_bulletsLeft == _magazineSize)
+        if (_magazineAmmoLeft == _magazineSize || _totalAmmoLeft == 0 || reloading)
             yield break;
-        if (reloading)
+        if (_magazineAmmoLeft == _totalAmmoLeft)
             yield break;
 
         reloading = true;
         _weaponController.onReload.Invoke(_reloadingDuration);
         yield return new WaitForSeconds(_reloadingDuration);
-        _bulletsLeft = _magazineSize;
-        _weaponController.onBulletAmountChange.Invoke(_bulletsLeft);
+        _magazineAmmoLeft = _totalAmmoLeft < _magazineSize
+            ? _totalAmmoLeft
+            : _magazineSize;
+        _weaponController.onBulletAmountChange.Invoke();
         reloading = false;
     }
 
@@ -157,11 +167,13 @@ public abstract class Weapon : MonoBehaviour, IPickable
             Damage = _damage,
             BPM = Mathf.RoundToInt(60.0f / _bpm),
             MagazineSize = _magazineSize,
+            MaxTotalAmmoCapacity = _maxTotalAmmoCapacity,
             BulletsPerShot = _bulletsPerShot,
             BulletVelocity = _bulletVelocity,
             ReloadingDuration = _reloadingDuration,
 
-            BulletsLeft = _bulletsLeft
+            MagazineAmmoLeft = _magazineAmmoLeft,
+            TotalAmmoLeft = _totalAmmoLeft
         };
 
         return config;

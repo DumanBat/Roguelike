@@ -145,7 +145,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 15.0f));
         var rbPos = new Vector3(_rb.position.x, _rb.position.y, 15.0f);
-        _aimPos = mousePos - rbPos;
+        _aimPos = mousePos;
 
         animator.SetBool("isAiming", _isAiming);
         animator.SetFloat("AimHorizontal", _aimPos.normalized.x);

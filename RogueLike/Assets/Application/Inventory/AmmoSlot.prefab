@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7243563388056777162, guid: 30edb9d12883df642bcb8b4f9bb0c3da,
+  m_Sprite: {fileID: 8717620681952999140, guid: 30edb9d12883df642bcb8b4f9bb0c3da,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 9009487426540775748}
   - component: {fileID: 6171498734645486394}
   - component: {fileID: 1075901070436368104}
+  - component: {fileID: 7938577260091300884}
   m_Layer: 0
   m_Name: BulletDisplay
   m_TagString: Untagged
@@ -113,7 +114,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 32, y: 64}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9009487426540775748
 MonoBehaviour:
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7243563388056777162, guid: 30edb9d12883df642bcb8b4f9bb0c3da,
+  m_Sprite: {fileID: 8717620681952999140, guid: 30edb9d12883df642bcb8b4f9bb0c3da,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -166,6 +167,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2457658299950359364}
   m_CullTransparentMesh: 1
+--- !u!114 &7938577260091300884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457658299950359364}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &6983081024011990945
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +191,6 @@ GameObject:
   m_Component:
   - component: {fileID: 461108970162949794}
   - component: {fileID: 4589094959371308233}
-  - component: {fileID: 5997226133843605200}
   - component: {fileID: 5023105862635623680}
   m_Layer: 0
   m_Name: AmmoSlot
@@ -222,29 +236,15 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 3
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &5997226133843605200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6983081024011990945}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 0
 --- !u!114 &5023105862635623680
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class WeaponController : MonoBehaviour
     public Weapon currentWeapon;
     public List<Weapon> weapons;
 
-    public Action<int> onBulletAmountChange;
+    public Action onBulletAmountChange;
     public Action<float> onReload;
     public Action onWeaponChange;
     private Coroutine _reloadingRoutine;
@@ -40,7 +40,7 @@ public class WeaponController : MonoBehaviour
     public void Shot(Vector3 aimPos)
     {
         if (currentWeapon.Shot(aimPos))
-            onBulletAmountChange?.Invoke(currentWeapon.GetBulletsLeft());
+            onBulletAmountChange?.Invoke();
     }
 
     public void AddWeaponToInventory(Weapon weapon)

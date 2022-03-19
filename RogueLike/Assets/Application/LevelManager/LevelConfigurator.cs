@@ -83,7 +83,7 @@ public class LevelConfigurator : MonoBehaviour
         _roomTemplates.allRooms.Add(_startingRoom);
 
         _lootManager.Init();
-        _lootManager.SpawnWeapon(_lootManager.weaponToSpawn, new Vector3(3f, 0f, 0f));
+        _lootManager.SpawnWeapon(_lootManager.weaponToSpawn, new Vector3(5f, 0f, 0f));
 
         _roomSpawnStarted = true;
     }
@@ -91,7 +91,6 @@ public class LevelConfigurator : MonoBehaviour
     private void ConfigureRooms()
     {
         var spawnedRooms = _roomTemplates.activeRooms;
-        //spawnedRooms[spawnedRooms.Count - 1].roomType = RoomTemplates.RoomType.BossRoom;
 
         for (int i = 0; i < _lootRoomsAmount; i++)
         {
