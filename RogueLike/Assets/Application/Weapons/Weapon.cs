@@ -95,6 +95,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
             bullet.Init(bulletPool, _damage);
             return bullet;
         }, bullet => {
+            bullet.transform.rotation = Quaternion.identity;
             bullet.gameObject.SetActive(true);
         }, bullet => {
             bullet.gameObject.SetActive(false);
