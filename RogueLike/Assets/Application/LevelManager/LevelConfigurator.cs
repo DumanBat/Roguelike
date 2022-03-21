@@ -12,7 +12,7 @@ public class LevelConfigurator : MonoBehaviour
     public RoomTemplates GetRoomTemplates() => _roomTemplates;
 
     private float _lastSpawnedRoomTime = -9999f;
-    public void SetLastSpawnedRoomTime(float time) => _lastSpawnedRoomTime = time + 0.5f;
+    public void SetLastSpawnedRoomTime(float time) => _lastSpawnedRoomTime = time + 1f;
     private bool _roomSpawnStarted = false;
     private bool _roomSpawnCompleted = false;
     public bool RoomSpawnCompleted() => _roomSpawnCompleted;

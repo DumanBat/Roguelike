@@ -6,6 +6,7 @@ using Modules.Core;
 
 public class Room : MonoBehaviour
 {
+    private string _playerTag = "Player";
     [SerializeField]
     public RoomTemplates.RoomType roomType;
     public Transform spawnPointsRoot;
@@ -22,11 +23,13 @@ public class Room : MonoBehaviour
     public Transform spawnedEnemiesRoot;
     private List<Enemy> _spawnedEnemies;
 
+    private BoxCollider2D _roomCollider;
     public Action onRoomCleared;
 
     private void Awake()
     {
         roomSpawnPoints.AddRange(spawnPointsRoot.GetComponentsInChildren<RoomSpawnPoint>());
+        _roomCollider = GetComponent<BoxCollider2D>();
     }
 
     public void Init()
@@ -109,6 +112,18 @@ public class Room : MonoBehaviour
         }
     }
 
+    public void CloseDoors()
+    {
+        foreach (var door in _roomDoors)
+        {
+            if (door == null)
+                continue;
+
+            door[0].SetActive(true);
+            door[1].SetActive(false);
+        }
+    }
+
     public void OpenNextLevelPass()
     {
         if (roomType != RoomTemplates.RoomType.BossRoom)
@@ -131,5 +146,14 @@ public class Room : MonoBehaviour
             _spawnedEnemies.Clear();
         }
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(_playerTag))
+        {
+            CloseDoors();
+            Destroy(_roomCollider);
+        }
     }
 }
