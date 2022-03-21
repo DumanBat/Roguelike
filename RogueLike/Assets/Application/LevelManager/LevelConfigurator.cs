@@ -15,6 +15,7 @@ public class LevelConfigurator : MonoBehaviour
     public void SetLastSpawnedRoomTime(float time) => _lastSpawnedRoomTime = time + 0.5f;
     private bool _roomSpawnStarted = false;
     private bool _roomSpawnCompleted = false;
+    public bool RoomSpawnCompleted() => _roomSpawnCompleted;
     public Action onRoomSpawnCompleted;
 
     private string _roomCenterTag = "RoomCenter";
@@ -30,7 +31,7 @@ public class LevelConfigurator : MonoBehaviour
     private int _lootRoomsAmount;
     private List<EnemyType> _bossPool;
     private List<EnemyType> _enemyPool;
-    // TODO: убрать инициализацию уровня из Start
+    // TODO: 
     // Коллизия между лут румами и босс румами. Спавнит лут в комнате с боссом и не спавнит босса - FIXED
     // Босса спавнит не в босс руме (ставит RoomType.BossRoom не на комнате с боссом)
 

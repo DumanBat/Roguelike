@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator InitRoutine(string sceneId)
     {
-        yield return StartCoroutine(GameManager.Instance.loadingController.Load(sceneId));
+        yield return StartCoroutine(GameManager.Instance.loadingController.Load(sceneId, false));
 
         var player = PlayerController.Instance == null
             ? Instantiate(playerPrefab, Vector3.zero, Quaternion.identity)
@@ -41,6 +41,9 @@ public class LevelManager : MonoBehaviour
         PlayerController.Instance.SetPosition(Vector2.zero);
         _levelConfigurator.SetLevelConfig();
         _levelConfigurator.Init();
+
+        yield return new WaitUntil(() => _levelConfigurator.RoomSpawnCompleted());
+        GameManager.Instance.loadingController.SetActivePanel(false);
     }
 
     public void Unload(bool saveProgress = true)

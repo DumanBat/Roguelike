@@ -13,12 +13,14 @@ public class LoadingController : MonoBehaviour
         _currentView = GetComponent<LoadingView>();    
     }
 
-    public IEnumerator Load(string sceneId)
+    public IEnumerator Load(string sceneId, bool autoDisable = true)
     {
         _currentView.Load();
 
         yield return StartCoroutine(LoadSceneAsync(sceneId));
-        _currentView.SetActivePanel(false);
+        
+        if (autoDisable)
+            SetActivePanel(false);
     }
 
     public IEnumerator LoadSceneAsync(string sceneId)
@@ -32,4 +34,6 @@ public class LoadingController : MonoBehaviour
             yield return null;
         }
     }
+
+    public void SetActivePanel(bool val) => _currentView.SetActivePanel(val);
 }
