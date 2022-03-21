@@ -24,6 +24,9 @@ public class Room : MonoBehaviour
     private List<Enemy> _spawnedEnemies;
 
     private BoxCollider2D _roomCollider;
+
+    [SerializeField]
+    private Transform _roomLightsRoot;
     public Action onRoomCleared;
 
     private void Awake()
