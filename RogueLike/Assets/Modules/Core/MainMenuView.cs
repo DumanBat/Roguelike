@@ -6,6 +6,7 @@ using Modules.Core;
 
 public class MainMenuView : MonoBehaviour
 {
+    public bool animateBackground;
     public Image background;
     public GameObject root;
 
@@ -64,7 +65,8 @@ public class MainMenuView : MonoBehaviour
 
     public void Start()
     {
-        StartCoroutine(AnimateBackground());    
+        if (animateBackground)
+            StartCoroutine(AnimateBackground());    
     }
 
     public void SetActivePanel(bool val)

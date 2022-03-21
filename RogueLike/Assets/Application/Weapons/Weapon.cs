@@ -24,10 +24,35 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     private int _magazineAmmoLeft;
     private int _totalAmmoLeft;
+    public int MagazineAmmoLeft
+    {
+        get
+        {
+            return _magazineAmmoLeft;
+        }
+        set
+        {
+            _magazineAmmoLeft = value;
+            _weaponController.onBulletAmountChange?.Invoke();
+        }
+    }
+    public int TotalAmmoLeft
+    {
+        get
+        {
+            return _totalAmmoLeft;
+        }
+        set
+        {
+            _totalAmmoLeft = value;
+            _weaponController.onBulletAmountChange?.Invoke();
+        }
+    }
 
-    public int GetMagazineAmmoLeft() => _magazineAmmoLeft;
+    public int GetMagazineAmmoLeft() => MagazineAmmoLeft;
     public int GetMagazineSize() => _magazineSize;
-    public int GetTotalAmmoLeft() => _totalAmmoLeft;
+    public int GetTotalAmmoLeft() => TotalAmmoLeft;
+    public void SetTotalAmmoLeft(int value) => TotalAmmoLeft = value;
     public int GetMaxTotalAmmo() => _maxTotalAmmoCapacity;
     public WeaponFactory OriginFactory { get; set; }
     private float _lastFired = -9999;
@@ -36,7 +61,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
     {
         get
         {
-            if (reloading == false && _magazineAmmoLeft > 0 && _totalAmmoLeft > 0)
+            if (reloading == false && MagazineAmmoLeft > 0 && TotalAmmoLeft > 0)
                 return true;
             else
                 return false;
@@ -56,11 +81,11 @@ public abstract class Weapon : MonoBehaviour, IPickable
     public GameObject[] weaponSprites;
     public BoxCollider2D weaponCollider;
 
-    public Action onWeaponPickUp;
+    public Action onPickUp;
     public Action<Weapon> onAddedToInventory;
     public void PickUp()
     {
-        onWeaponPickUp?.Invoke();
+        onPickUp?.Invoke();
         onAddedToInventory?.Invoke(this);
     }
 
@@ -113,8 +138,8 @@ public abstract class Weapon : MonoBehaviour, IPickable
         {
             _lastFired = Time.time;
             ShotBullet(aimPos);
-            _magazineAmmoLeft--;
-            _totalAmmoLeft--;
+            MagazineAmmoLeft--;
+            TotalAmmoLeft--;
             return true;
         }
 
@@ -133,18 +158,17 @@ public abstract class Weapon : MonoBehaviour, IPickable
 
     public virtual IEnumerator Reload()
     {
-        if (_magazineAmmoLeft == _magazineSize || _totalAmmoLeft == 0 || reloading)
+        if (MagazineAmmoLeft == _magazineSize || TotalAmmoLeft == 0 || reloading)
             yield break;
-        if (_magazineAmmoLeft == _totalAmmoLeft)
+        if (MagazineAmmoLeft == TotalAmmoLeft)
             yield break;
 
         reloading = true;
         _weaponController.onReload.Invoke(_reloadingDuration);
         yield return new WaitForSeconds(_reloadingDuration);
-        _magazineAmmoLeft = _totalAmmoLeft < _magazineSize
-            ? _totalAmmoLeft
+        MagazineAmmoLeft = TotalAmmoLeft < _magazineSize
+            ? TotalAmmoLeft
             : _magazineSize;
-        _weaponController.onBulletAmountChange.Invoke();
         reloading = false;
     }
 
@@ -173,8 +197,8 @@ public abstract class Weapon : MonoBehaviour, IPickable
             BulletVelocity = _bulletVelocity,
             ReloadingDuration = _reloadingDuration,
 
-            MagazineAmmoLeft = _magazineAmmoLeft,
-            TotalAmmoLeft = _totalAmmoLeft
+            MagazineAmmoLeft = this.MagazineAmmoLeft,
+            TotalAmmoLeft = this.TotalAmmoLeft
         };
 
         return config;

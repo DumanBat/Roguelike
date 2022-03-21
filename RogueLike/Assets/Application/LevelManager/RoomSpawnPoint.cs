@@ -36,6 +36,7 @@ public class RoomSpawnPoint : MonoBehaviour
         else
         {
             room = Instantiate(_roomTemplates.GetClosedRoom(), transform.position, Quaternion.identity);
+            room.transform.SetParent(NavMeshController.Instance.transform);
         }
 
         _roomTemplates.allRooms.Add(room);

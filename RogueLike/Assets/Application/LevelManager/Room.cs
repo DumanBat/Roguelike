@@ -18,6 +18,8 @@ public class Room : MonoBehaviour
 
     [SerializeField]
     private List<RoomSpawnPoint> roomSpawnPoints;
+
+    public Transform spawnedEnemiesRoot;
     private List<Enemy> _spawnedEnemies;
 
     public Action onRoomCleared;
@@ -69,6 +71,7 @@ public class Room : MonoBehaviour
             var spawnPosition = new Vector2(randomPosX, randomPosY);
 
             var enemy = levelConfigurator.SpawnEnemy(enemyType, spawnPosition);
+            enemy.transform.SetParent(spawnedEnemiesRoot);
             enemy.OriginRoom = this;
             _spawnedEnemies.Add(enemy);
         }

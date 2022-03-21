@@ -170,6 +170,7 @@ public class LevelConfigurator : MonoBehaviour
             if (!hasRoom)
             {
                 var room = Instantiate(_roomTemplates.GetClosedRoom(), roomPos, Quaternion.identity);
+                room.transform.SetParent(NavMeshController.Instance.transform);
                 _roomTemplates.allRooms.Add(room);
             }
         }

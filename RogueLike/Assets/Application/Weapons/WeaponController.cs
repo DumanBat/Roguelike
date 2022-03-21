@@ -8,8 +8,10 @@ using Modules.Core;
 public class WeaponController : MonoBehaviour
 {
     private WeaponView _currentView;
-    public Weapon currentWeapon;
-    public List<Weapon> weapons;
+    private Weapon _currentWeapon;
+    public Weapon GetCurrentWeapon() => _currentWeapon;
+    private List<Weapon> _weapons = new List<Weapon>();
+    public List<Weapon> GetWeapons() => _weapons;
 
     public Action onBulletAmountChange;
     public Action<float> onReload;
@@ -39,15 +41,14 @@ public class WeaponController : MonoBehaviour
 
     public void Shot(Vector3 aimPos)
     {
-        if (currentWeapon.Shot(aimPos))
-            onBulletAmountChange?.Invoke();
+        _currentWeapon.Shot(aimPos);
     }
 
     public void AddWeaponToInventory(Weapon weapon)
     {
-        weapons.Insert(0, weapon);
+        _weapons.Insert(0, weapon);
         weapon.AddToInventory(this.transform);
-        if (weapons.Count > 1)
+        if (_weapons.Count > 1)
             onWeaponChange.Invoke();
         SelectWeapon(0);
         GameManager.Instance.inventoryController.AddWeaponSlot(weapon);
@@ -55,36 +56,36 @@ public class WeaponController : MonoBehaviour
 
     private void SelectWeapon(int index)
     {
-        currentWeapon = weapons[index];
+        _currentWeapon = _weapons[index];
     }
 
     public void SwapWeapon()
     {
         onWeaponChange.Invoke();
-        weapons.Add(weapons[0]);
-        weapons.RemoveAt(0);
+        _weapons.Add(_weapons[0]);
+        _weapons.RemoveAt(0);
         SelectWeapon(0);
-        GameManager.Instance.inventoryController.SetWeapons(weapons);
+        GameManager.Instance.inventoryController.SetWeapons(_weapons);
     }
 
     public void SetActiveWeaponDirection(int directionIndex)
     {
-        if (currentWeapon.weaponSprites[directionIndex].activeSelf)
+        if (_currentWeapon.weaponSprites[directionIndex].activeSelf)
             return;
 
-        currentWeapon.SetFirepoint(currentWeapon.weaponSprites[directionIndex].transform.GetChild(0));
+        _currentWeapon.SetFirepoint(_currentWeapon.weaponSprites[directionIndex].transform.GetChild(0));
 
-        _currentView.SetActiveWeaponSprite(currentWeapon, directionIndex);
+        _currentView.SetActiveWeaponSprite(_currentWeapon, directionIndex);
     }
 
     public void DisableWeaponSprites()
     {
-        _currentView.DisableWeaponSprites(currentWeapon);
+        _currentView.DisableWeaponSprites(_currentWeapon);
     }
 
     public void Reload()
     {
-        _reloadingRoutine = StartCoroutine(currentWeapon.Reload());
+        _reloadingRoutine = StartCoroutine(_currentWeapon.Reload());
     }
 
     public void FillReloadProgressBar(float duration)
@@ -94,22 +95,22 @@ public class WeaponController : MonoBehaviour
 
     public void StopReloading()
     {
-        if (!currentWeapon.IsReloading()) 
+        if (!_currentWeapon.IsReloading()) 
             return;
 
         StopCoroutine(_reloadingRoutine);
         StopCoroutine(_reloadingViewRoutine);
-        currentWeapon.StopReloading();
+        _currentWeapon.StopReloading();
         _currentView.ResetReloadProgressBar();
     }
 
-    public List<WeaponConfig> GetWeaponConfigs() => weapons.Select(x => x.GetConfig()).ToList();
+    public List<WeaponConfig> GetWeaponConfigs() => _weapons.Select(x => x.GetConfig()).ToList();
 
     public void Unload()
     {
-        foreach (var weapon in weapons)
+        foreach (var weapon in _weapons)
             Destroy(weapon.gameObject);
 
-        weapons.Clear();
+        _weapons.Clear();
     }
 }

@@ -8,11 +8,8 @@ using Modules.Core;
 
 public class PlayerController : Singleton<PlayerController>, IDamageable, IPushable
 {
-
     /// <summary>
     /// TODO: 
-    /// Remove health display from Update();
-    /// 
     /// Rework reference to WeaponController in Update() Shot() section
     /// </summary>
     private PlayerView _currentView;
@@ -35,6 +32,18 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     private bool _isAiming;
 
     private int _maxHealth;
+    public int MaxHealth
+    {
+        get
+        {
+            return _maxHealth;
+        }
+        set
+        {
+            _maxHealth = value;
+            onMaxHealthChange.Invoke(_maxHealth);
+        }
+    }
     public int GetMaxHealthValue() => _maxHealth;
     private int _health;
     public int Health
@@ -43,9 +52,14 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         {
             return _health;
         }
-        private set
+        set
         {
-            _health = value > 0 ? value : 0;
+            if (value < 0)
+                _health = 0;
+            else
+                _health = value > _maxHealth ? _maxHealth : value;
+
+            onHealthChange.Invoke(_health);
         } 
     }
     public Action<int> onHealthChange;
@@ -62,18 +76,15 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     {
         if (playerData != null)
         {
+            MaxHealth = playerData.maxHealth;
             Health = playerData.health;
-            _maxHealth = playerData.maxHealth;
             weaponController.Init(playerData.weaponConfigs);
         }
         else
         {
-            Health = 10;
-            _maxHealth = 10;
+            MaxHealth = 6;
+            Health = 6;
         }
-
-        onMaxHealthChange.Invoke(_maxHealth);
-        onHealthChange.Invoke(Health);
 
         cam = GameManager.Instance.cameraController.GetCamera();
         _isActive = true;
@@ -88,9 +99,9 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         _isAiming = Input.GetMouseButton(1);
         Aim();
 
-        if (weaponController.currentWeapon != null && _isAiming)
+        if (weaponController.GetCurrentWeapon() != null && _isAiming)
         {
-            if (!weaponController.currentWeapon.isAuto)
+            if (!weaponController.GetCurrentWeapon().isAuto)
             {
                 if (Input.GetMouseButtonDown(0))
                     Shot();
@@ -100,7 +111,6 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
                 if (Input.GetMouseButton(0))
                     Shot();
             }
-
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -132,7 +142,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
     private void Aim()
     {
-        if (weaponController.currentWeapon == null)
+        if (weaponController.GetCurrentWeapon() == null)
             return;
 
         if (!_isAiming)
@@ -194,7 +204,6 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     public void TakeDamage(int value)
     {
         Health -= value;
-        onHealthChange.Invoke(Health);
     } 
 
     public IEnumerator GetPush(Vector2 pushDirection, float duration)

@@ -14,6 +14,14 @@ public class WeaponFactory : GameObjectFactory
     };
     public List<WeaponType> GetWeaponsTierOne() => _tierOne;
 
+    public List<WeaponType> GetAllWeapons()
+    {
+        var allWeapons = new List<WeaponType>();
+        allWeapons.AddRange(_tierOne);
+
+        return allWeapons;
+    }
+
     [Header("Starting Weapons")]
     [SerializeField]
     private WeaponConfig _sidearm;

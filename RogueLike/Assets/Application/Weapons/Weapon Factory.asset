@@ -17,14 +17,14 @@ MonoBehaviour:
       type: 3}
     IsAuto: 1
     Damage: 10
-    BPM: 720
+    BPM: 360
     MagazineSize: 30
     MaxTotalAmmoCapacity: 360
     BulletsPerShot: 1
     BulletVelocity: 30
     ReloadingDuration: 3
     MagazineAmmoLeft: 30
-    TotalAmmoLeft: 60
+    TotalAmmoLeft: 120
   _sidearm:
     weaponPrefab: {fileID: 2891379312429323266, guid: de114e39415a980448e4466ad0a46bc6,
       type: 3}

@@ -111,6 +111,7 @@ MonoBehaviour:
   isAuto: 0
   bulletPrefab: {fileID: 4960394840922736919, guid: 853ee50609f4d5f4c8d99c7a9eae698a,
     type: 3}
+  bulletImage: {fileID: 0}
   weaponImage: {fileID: 7435456669377696232}
   weaponInGameSprite: {fileID: 4550327006052626003}
   spritesTransform: {fileID: 5232527353849114189}

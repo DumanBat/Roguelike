@@ -75,10 +75,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponFactory: {fileID: 11400000, guid: 49808d758be01a34db36a51708e0003b, type: 2}
-  weaponToSpawn: {fileID: 148401657117487076, guid: 717c59ad3852e5a469942162f1f7bc75,
-    type: 3}
-  startingWeapon: {fileID: 2891379312429323266, guid: de114e39415a980448e4466ad0a46bc6,
-    type: 3}
+  _itemFactory: {fileID: 11400000, guid: 4289d0e0dea563147916e6287c21c8bf, type: 2}
+  weaponToSpawn: 1
+  startingWeapon: 0
 --- !u!114 &1658429313104494548
 MonoBehaviour:
   m_ObjectHideFlags: 0
