@@ -46,4 +46,12 @@ public class Bullet : MonoBehaviour
             _originPool.Release(this);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(_environmentTag))
+        {
+            _originPool.Release(this);
+        }
+    }
 }

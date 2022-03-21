@@ -19,7 +19,8 @@ MonoBehaviour:
     IsActivatable: 0
     Value: 2
   _ammo:
-    ItemPrefab: {fileID: 0}
+    ItemPrefab: {fileID: 4947264698307454828, guid: 79c228860bf754746be1202e9a1f219a,
+      type: 3}
     IsEffect: 0
     IsActivatable: 0
     Value: 0
