@@ -40,6 +40,10 @@ public class JellyAttackState : IState
             }
         }
     }
+    public void FixedTick()
+    {
+
+    }
 
     public void OnEnter()
     {

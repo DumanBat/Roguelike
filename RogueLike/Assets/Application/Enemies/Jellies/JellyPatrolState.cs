@@ -50,6 +50,11 @@ public class JellyPatrolState : IState
         _lastPosition = _enemy.transform.position;
     }
 
+    public void FixedTick()
+    {
+
+    }
+
     private Vector3 GetPatrolPoint()
     {
         var posX = Random.Range(-_patrolRange, _patrolRange);

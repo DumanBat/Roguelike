@@ -47,7 +47,6 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public Action onEnemyDie;
     private static readonly int DeathHash = Animator.StringToHash("isDie");
     private static readonly int DeathStateHash = Animator.StringToHash("Base Layer.Die");
-    public TextMeshPro healthDisplay;
 
 
     public virtual void Awake()
@@ -87,7 +86,6 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public void Update()
     {
         _stateMachine.Tick();
-        healthDisplay.text = _health.ToString();
     }
 
     public virtual void Spawn(Vector2 position)
