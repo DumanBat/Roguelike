@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Modules.Core;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Room : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class Room : MonoBehaviour
 
     [SerializeField]
     private Transform _roomLightsRoot;
+    [SerializeField]
+    private Light2D _roomLight;
+    private float _roomLightIntensityHandler;
     public Action onRoomCleared;
 
     private void Awake()
@@ -45,7 +49,7 @@ public class Room : MonoBehaviour
         _roomDoors[3] = _doorRight.Count > 0 ? _doorRight : null;
 
         onRoomCleared += OpenDoors;
-        SetActiveLights(false);
+        StartCoroutine(SetActiveLights(false));
         transform.SetParent(NavMeshController.Instance.transform);
         GameManager.Instance.levelManager.GetLevelConfigurator().SetLastSpawnedRoomTime(Time.time);
         Invoke("SpawnSideRooms", 0.3f);
@@ -128,7 +132,35 @@ public class Room : MonoBehaviour
         }
     }
 
-    public void SetActiveLights(bool val) => _roomLightsRoot.gameObject.SetActive(val);
+    public IEnumerator SetActiveLights(bool val)
+    {
+        _roomLightIntensityHandler = _roomLight.intensity == 0
+            ? _roomLightIntensityHandler
+            : _roomLight.intensity;
+
+        if (val)
+        {
+            _roomLight.intensity = 0;
+            _roomLightsRoot.gameObject.SetActive(val);
+
+            float time = 0.0f;
+            float duration = 0.5f;
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                var step = Time.deltaTime / _roomLightIntensityHandler;
+                _roomLight.intensity = _roomLight.intensity + step >= _roomLightIntensityHandler
+                    ? _roomLightIntensityHandler
+                    : _roomLight.intensity + step;
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        else
+        {
+            _roomLight.intensity = _roomLightIntensityHandler;
+            _roomLightsRoot.gameObject.SetActive(val);
+        }
+    }
 
     public void OpenNextLevelPass()
     {
@@ -159,7 +191,7 @@ public class Room : MonoBehaviour
         if (collision.gameObject.CompareTag(_playerTag))
         {
             CloseDoors();
-            SetActiveLights(true);
+            StartCoroutine(SetActiveLights(true));
             Destroy(_roomCollider);
         }
     }

@@ -81,7 +81,7 @@ public class LevelConfigurator : MonoBehaviour
     {
         _startingRoom = Instantiate(_roomTemplates.GetStartingRoom(), Vector3.zero, Quaternion.identity);
         _startingRoom.Init();
-        _startingRoom.SetActiveLights(true);
+        StartCoroutine(_startingRoom.SetActiveLights(true));
         _roomTemplates.allRooms.Add(_startingRoom);
 
         _lootManager.Init();
