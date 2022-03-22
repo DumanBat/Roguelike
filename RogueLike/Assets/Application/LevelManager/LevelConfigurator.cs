@@ -109,7 +109,8 @@ public class LevelConfigurator : MonoBehaviour
                     break;
                 case RoomTemplates.RoomType.EnemyRoom:
                     var enemiesToSpawn = ConfigureEnemies();
-                    spawnedRooms[i].SpawnEnemies(enemiesToSpawn);
+                    //spawnedRooms[i].SpawnEnemies(enemiesToSpawn);
+                    spawnedRooms[i].SetEnemiesToSpawn(enemiesToSpawn);
                     break;
                 case RoomTemplates.RoomType.BossRoom:
                     var bossType = _bossPool[UnityEngine.Random.Range(0, _bossPool.Count)];

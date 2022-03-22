@@ -21,6 +21,7 @@ public class Room : MonoBehaviour
     [SerializeField]
     private List<RoomSpawnPoint> roomSpawnPoints;
 
+    private List<EnemyType> _enemiesToSpawn;
     public Transform spawnedEnemiesRoot;
     private List<Enemy> _spawnedEnemies;
 
@@ -67,6 +68,8 @@ public class Room : MonoBehaviour
                 _sideRooms[spawnPoint.openingDirection - 1] = room;
         }
     }
+
+    public void SetEnemiesToSpawn(List<EnemyType> enemiesToSpawn) => _enemiesToSpawn = enemiesToSpawn;
 
     public List<Enemy> SpawnEnemies(List<EnemyType> enemiesToSpawn)
     {
@@ -192,6 +195,10 @@ public class Room : MonoBehaviour
         {
             CloseDoors();
             StartCoroutine(SetActiveLights(true));
+
+            if (roomType == RoomTemplates.RoomType.EnemyRoom)
+                SpawnEnemies(_enemiesToSpawn);
+
             Destroy(_roomCollider);
         }
     }
