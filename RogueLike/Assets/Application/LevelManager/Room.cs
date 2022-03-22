@@ -45,7 +45,8 @@ public class Room : MonoBehaviour
         _roomDoors[3] = _doorRight.Count > 0 ? _doorRight : null;
 
         onRoomCleared += OpenDoors;
-        gameObject.transform.SetParent(NavMeshController.Instance.transform);
+        SetActiveLights(false);
+        transform.SetParent(NavMeshController.Instance.transform);
         GameManager.Instance.levelManager.GetLevelConfigurator().SetLastSpawnedRoomTime(Time.time);
         Invoke("SpawnSideRooms", 0.3f);
     }
@@ -127,6 +128,8 @@ public class Room : MonoBehaviour
         }
     }
 
+    public void SetActiveLights(bool val) => _roomLightsRoot.gameObject.SetActive(val);
+
     public void OpenNextLevelPass()
     {
         if (roomType != RoomTemplates.RoomType.BossRoom)
@@ -156,6 +159,7 @@ public class Room : MonoBehaviour
         if (collision.gameObject.CompareTag(_playerTag))
         {
             CloseDoors();
+            SetActiveLights(true);
             Destroy(_roomCollider);
         }
     }
