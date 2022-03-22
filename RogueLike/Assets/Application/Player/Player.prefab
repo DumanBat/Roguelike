@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponController: {fileID: 6388222563120904190}
-  _moveSpeed: 4
   animator: {fileID: 9117854801141168742}
+  _moveSpeed: 3.5
 --- !u!114 &130248119322468044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6457229641134050087
 Transform:
   m_ObjectHideFlags: 0

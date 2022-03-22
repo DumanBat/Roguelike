@@ -19,9 +19,11 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     private Camera cam;
     private Rigidbody2D _rb;
     
-    public float _moveSpeed = 4f;
+    private float _moveSpeed = 3.5f;
+    private float _slideDuration = 0.7f;
 
     private bool _isActive;
+    public bool IsSliding { get; set; }
 
     private int _maxHealth;
     private int _health;
@@ -83,7 +85,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
         cam = GameManager.Instance.cameraController.GetCamera();
 
-        var walking = new PlayerWalkingState(_rb, animator, _moveSpeed, weaponController);
+        var walking = new PlayerWalkingState(this, _rb, animator, _moveSpeed, weaponController, _slideDuration);
         var aiming = new PlayerAimingState(_rb, animator, _moveSpeed, weaponController, _currentView, cam);
 
         //_stateMachine.AddAnyTransition(attack, () => _enemyDetector.EnemyInRange);
@@ -117,9 +119,19 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
             && Input.GetMouseButton(1);
     }
 
+    private bool HasDamageResist()
+    {
+         return IsSliding;
+    }
+
     public Vector2 GetPosition() => _rb.position;
     public void SetPosition(Vector2 position) => _rb.position = position;
-    public void TakeDamage(int value) => Health -= value;
+    public void TakeDamage(int value)
+    {
+        if (HasDamageResist()) return;
+        
+        Health -= value;
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

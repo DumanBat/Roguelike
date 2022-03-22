@@ -19,7 +19,7 @@ MonoBehaviour:
     Damage: 3
     Scale: 4
     PatrolRange: 5
-    AggroRange: 20
+    AggroRange: 10
     MeleeRange: 1.5
     AttackCooldown: 1
     AggroCooldown: 5
@@ -29,8 +29,8 @@ MonoBehaviour:
     Health: 5
     Damage: 1
     Scale: 2
-    PatrolRange: 20
-    AggroRange: 5
+    PatrolRange: 5
+    AggroRange: 7
     MeleeRange: 1.5
     AttackCooldown: 1
     AggroCooldown: 10
@@ -41,7 +41,7 @@ MonoBehaviour:
     Damage: 1
     Scale: 1
     PatrolRange: 5
-    AggroRange: 5
+    AggroRange: 7
     MeleeRange: 1.5
     AttackCooldown: 1
     AggroCooldown: 3
