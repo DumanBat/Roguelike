@@ -88,8 +88,6 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         var walking = new PlayerWalkingState(this, _rb, animator, _moveSpeed, weaponController, _slideDuration);
         var aiming = new PlayerAimingState(_rb, animator, _moveSpeed, weaponController, _currentView, cam);
 
-        //_stateMachine.AddAnyTransition(attack, () => _enemyDetector.EnemyInRange);
-
         At(walking, aiming, () => IsAiming());
         At(aiming, walking, () => !IsAiming());
         void At(IState to, IState from, Func<bool> condition) => _stateMachine.AddTransition(to, from, condition);

@@ -82,11 +82,11 @@ public abstract class Weapon : MonoBehaviour, IPickable
     public BoxCollider2D weaponCollider;
 
     public Action onPickUp;
-    public Action<Weapon> onAddedToInventory;
+    public Action<Weapon, bool> onAddedToInventory;
     public void PickUp()
     {
         onPickUp?.Invoke();
-        onAddedToInventory?.Invoke(this);
+        onAddedToInventory?.Invoke(this, false);
     }
 
     public Transform _firepoint;
@@ -117,7 +117,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
         bulletPool = new ObjectPool<Bullet>(() =>
         {
             var bullet = Instantiate(bulletPrefab);
-            bullet.Init(bulletPool, _damage);
+            bullet.Init(bulletPool, _damage, transform.parent.parent.tag);
             return bullet;
         }, bullet => {
             bullet.transform.rotation = Quaternion.identity;
@@ -176,7 +176,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
     {
         Destroy(weaponCollider);
         transform.SetParent(weaponsRoot);
-        transform.SetSiblingIndex(weaponsRoot.childCount - 2);
+        //transform.SetSiblingIndex(weaponsRoot.childCount - 2);
         transform.localPosition = Vector3.zero;
         weaponInGameSprite.gameObject.SetActive(false);
 

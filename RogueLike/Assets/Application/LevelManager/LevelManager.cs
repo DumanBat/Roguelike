@@ -6,14 +6,25 @@ using Modules.Core;
 public class LevelManager : MonoBehaviour
 {
     private LevelConfigurator _levelConfigurator;
-    public LevelConfigurator GetLevelConfigurator() => _levelConfigurator;
+
+    private EnemyTypeHandler _enemyTypeHandler;
+    private ItemTypeHandler _itemTypeHandler;
+    private WeaponTypeHandler _weaponTypeHandler;
 
     public PlayerController playerPrefab;
     private PlayerWalkthroughData playerData;
 
+    public LevelConfigurator GetLevelConfigurator() => _levelConfigurator;
+    public EnemyTypeHandler GetEnemyTypeHandler() => _enemyTypeHandler;
+    public ItemTypeHandler GetItemTypeHandler() => _itemTypeHandler;
+    public WeaponTypeHandler GetWeaponTypeHandler() => _weaponTypeHandler;
+
     private void Awake()
     {
         _levelConfigurator = GetComponent<LevelConfigurator>();
+        _enemyTypeHandler = GetComponent<EnemyTypeHandler>();
+        _itemTypeHandler = GetComponent<ItemTypeHandler>();
+        _weaponTypeHandler = GetComponent<WeaponTypeHandler>();
     }
 
     public void Init(string sceneId)

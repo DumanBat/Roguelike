@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,7 +8,6 @@ public class JellyPatrolState : IState
     private readonly Animator _animator;
     private readonly float _patrolRange;
 
-    private bool _isPatroling;
     private bool _isPatrolPointSet;
     private Vector3 _currentPatrolPoint;
 
@@ -23,29 +20,25 @@ public class JellyPatrolState : IState
         _navMeshAgent = navMeshAgent;
         _animator = animator;
         _patrolRange = patrolRange;
-
-        _isPatrolPointSet = false;
-        _isPatroling = false;
     }
 
     public void Tick()
     {
         if (!_isPatrolPointSet)
-            _currentPatrolPoint = GetPatrolPoint();
-
-        if (!_isPatroling)
-            _navMeshAgent.SetDestination(_currentPatrolPoint);
-
-        var distance = _enemy.transform.position - _currentPatrolPoint;
-
-        if (distance.magnitude < 1f || _timeStuck >= 1f)
         {
-            _isPatrolPointSet = false;
-            _isPatroling = false;
+            _currentPatrolPoint = GetPatrolPoint();
+            _isPatrolPointSet = true;
+            _timeStuck = 0.0f;
+            _navMeshAgent.SetDestination(_currentPatrolPoint);
         }
 
-        if (Vector3.Distance(_enemy.transform.position, _lastPosition) <= 0f)
+        var distance = Vector3.Distance(_enemy.transform.position, _lastPosition);
+
+        if (distance <= 0.001f)
             _timeStuck += Time.deltaTime;
+
+        if (distance < 2f && _timeStuck >= 1f)
+            _isPatrolPointSet = false;
 
         _lastPosition = _enemy.transform.position;
     }
@@ -63,20 +56,14 @@ public class JellyPatrolState : IState
         var path = new NavMeshPath();
         _navMeshAgent.CalculatePath(destination, path);
 
-        if (path.status == NavMeshPathStatus.PathComplete)
-        {
-            _isPatrolPointSet = true;
-            return destination;
-        }
-        else
-        {
-            return GetPatrolPoint();
-        }
-            
+        return path.status == NavMeshPathStatus.PathComplete
+            ? destination
+            : GetPatrolPoint();
     }
 
     public void OnEnter()
     {
+        _isPatrolPointSet = false;
         _timeStuck = 0f;
         _navMeshAgent.enabled = true;
         _navMeshAgent.speed = 0.5f;

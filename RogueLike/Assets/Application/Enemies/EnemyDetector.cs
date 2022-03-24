@@ -13,11 +13,14 @@ public class EnemyDetector : MonoBehaviour
     private string _enemyTag;
 
     private CircleCollider2D _areaCollider;
-    public EnemyMeleeDetector _meleeDetector;
+    private EnemyMeleeDetector _meleeDetector;
     private float _aggroCooldown;
+    private float _aggroRange;
 
     public IDamageable detectedTarget;
     public bool EnemyInRange => detectedTarget != null;
+    public EnemyMeleeDetector GetMeleeDetector() => _meleeDetector;
+    public float GetAggroRange() => _aggroRange;
 
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class EnemyDetector : MonoBehaviour
     public void Init(float aggroRange, float meleeRange, float aggroCooldown)
     {
         _areaCollider.radius = aggroRange;
+        _aggroRange = aggroRange;
         _meleeDetector.Init(_enemyTag, meleeRange);
         _aggroCooldown = aggroCooldown;
     }

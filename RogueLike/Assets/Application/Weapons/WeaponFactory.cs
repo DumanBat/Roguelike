@@ -8,28 +8,12 @@ public class WeaponFactory : GameObjectFactory
     [Header("Tier 1")]
     [SerializeField]
     private WeaponConfig _autoRifle;
-    private List<WeaponType> _tierOne = new List<WeaponType>()
-    {
-        WeaponType.AutoRifle
-    };
-    public List<WeaponType> GetWeaponsTierOne() => _tierOne;
-
-    public List<WeaponType> GetAllWeapons()
-    {
-        var allWeapons = new List<WeaponType>();
-        allWeapons.AddRange(_tierOne);
-
-        return allWeapons;
-    }
 
     [Header("Starting Weapons")]
     [SerializeField]
     private WeaponConfig _sidearm;
-    private List<WeaponType> _startingWeapons = new List<WeaponType>()
-    {
-        WeaponType.Sidearm
-    };
-    public List<WeaponType> GetStartingWeapons() => _startingWeapons;
+    [SerializeField]
+    private WeaponConfig _none;
 
     public Weapon Get(WeaponType type)
     {
@@ -52,6 +36,8 @@ public class WeaponFactory : GameObjectFactory
     {
         switch (type)
         {
+            case WeaponType.None:
+                return _none;
             case WeaponType.Sidearm:
                 return _sidearm;
             case WeaponType.AutoRifle:

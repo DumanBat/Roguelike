@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Modules.Core;
 
 public class LevelConfigurator : MonoBehaviour
 {
     [SerializeField]
-    private EnemyFactory enemyFactory;
+    private EnemyFactory _enemyFactory;
+    public EnemyFactory GetEnemyFactory() => _enemyFactory;
     private LootManager _lootManager;
     public LootManager GetLootManager() => _lootManager;
     private RoomTemplates _roomTemplates;
@@ -65,8 +67,8 @@ public class LevelConfigurator : MonoBehaviour
     {
         _roomsAmount = UnityEngine.Random.Range(10, 16);
         _lootRoomsAmount = UnityEngine.Random.Range(1, 3);
-        _bossPool = enemyFactory.GetBossesTypes();
-        _enemyPool = enemyFactory.GetEnemiesTypes();
+        _bossPool = GameManager.Instance.levelManager.GetEnemyTypeHandler().GetBossesTypes();
+        _enemyPool = GameManager.Instance.levelManager.GetEnemyTypeHandler().GetEnemiesTypes();
     }
 
     public void SetLevelConfig(int roomsAmount, int lootRoomsAmount, List<EnemyType> bossPool, List<EnemyType> enemyPool)
@@ -148,7 +150,7 @@ public class LevelConfigurator : MonoBehaviour
 
     public Enemy SpawnEnemy(EnemyType type, Vector2 position)
     {
-        var enemy = enemyFactory.Get(type);
+        var enemy = _enemyFactory.Get(type);
         enemy.Spawn(position);
 
         return enemy;

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerWalkingState : IState
 {
-    private readonly string HORIZONTAL = "Horizontal";
-    private readonly string VERTICAL = "Vertical";
-    private readonly string IS_RUNNING = "isRunning";
-    private readonly string MOVE_HORIZONTAL = "MoveHorizontal";
-    private readonly string MOVE_VERTICAL = "MoveVertical";
-    private readonly string MAGNITUDE = "Magnitude";
-    private readonly string IS_SLIDING = "isSliding";
-    private readonly string SLIDE = "Slide";
+    private static readonly string HORIZONTAL = "Horizontal";
+    private static readonly string VERTICAL = "Vertical";
+
+    private static readonly int IS_RUNNING = Animator.StringToHash("isRunning");
+    private static readonly int MOVE_HORIZONTAL = Animator.StringToHash("MoveHorizontal");
+    private static readonly int MOVE_VERTICAL = Animator.StringToHash("MoveVertical");
+    private static readonly int MAGNITUDE = Animator.StringToHash("Magnitude");
+    private static readonly int IS_SLIDING = Animator.StringToHash("isSliding");
+    private static readonly int SLIDE = Animator.StringToHash("Slide");
 
     private PlayerController _playerController;
     private Rigidbody2D _rb;

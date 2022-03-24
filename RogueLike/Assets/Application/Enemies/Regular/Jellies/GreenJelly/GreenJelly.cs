@@ -12,7 +12,7 @@ public class GreenJelly : Enemy
         var patrol = new JellyPatrolState(this, _navMeshAgent, _animator, PatrolRange);
         var attack = new JellyAttackState(this, _navMeshAgent, _animator, _enemyDetector);
 
-        _stateMachine.AddAnyTransition(attack, () => _enemyDetector.EnemyInRange);
+        //_stateMachine.AddAnyTransition(attack, () => _enemyDetector.EnemyInRange);
         At(attack, patrol, () => _enemyDetector.EnemyInRange == false);
 
         void At(IState to, IState from, Func<bool> condition) => _stateMachine.AddTransition(to, from, condition);

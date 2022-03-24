@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerAimingState : IState
 {
-    private readonly string HORIZONTAL = "Horizontal";
-    private readonly string VERTICAL = "Vertical";
-    private readonly string IS_RUNNING = "isRunning";
-    private readonly string IS_AIMING = "isAiming";
-    private readonly string AIM_HORIZONTAL = "AimHorizontal";
-    private readonly string AIM_VERTICAL = "AimVertical";
+    private static readonly string HORIZONTAL = "Horizontal";
+    private static readonly string VERTICAL = "Vertical";
+
+    private static readonly int IS_RUNNING = Animator.StringToHash("isRunning");
+    private static readonly int IS_AIMING = Animator.StringToHash("isAiming");
+    private static readonly int AIM_HORIZONTAL = Animator.StringToHash("AimHorizontal");
+    private static readonly int AIM_VERTICAL = Animator.StringToHash("AimVertical");
 
     private Rigidbody2D _rb;
     private Animator _animator;
@@ -75,15 +76,13 @@ public class PlayerAimingState : IState
     {
         Vector3 mousePos = _cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         var rbPos = new Vector3(_rb.position.x, _rb.position.y, 0f);
-        _aimPos = mousePos - rbPos;
-
-        _animator.SetBool(IS_AIMING, true);
-        _animator.SetFloat(AIM_HORIZONTAL, _aimPos.normalized.x);
-        _animator.SetFloat(AIM_VERTICAL, _aimPos.normalized.y);
-        var directionIndex = GetDirection(_aimPos);
-
+        var animatorAimPos = mousePos - rbPos;
         _aimPos = mousePos;
 
+        _animator.SetFloat(AIM_HORIZONTAL, animatorAimPos.normalized.x);
+        _animator.SetFloat(AIM_VERTICAL, animatorAimPos.normalized.y);
+
+        var directionIndex = GetDirection(animatorAimPos);
         _weaponController.SetActiveWeaponDirection(directionIndex);
         _playerView.SetActiveHand(directionIndex);
     }
@@ -111,7 +110,7 @@ public class PlayerAimingState : IState
 
     public void OnEnter()
     {
-
+        _animator.SetBool(IS_AIMING, true);
     }
 
     public void OnExit()

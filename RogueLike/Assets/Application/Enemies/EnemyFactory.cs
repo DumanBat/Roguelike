@@ -8,30 +8,21 @@ public class EnemyFactory: GameObjectFactory
     [Header("Bosses")]
     [SerializeField]
     private EnemyConfig _bossShark;
-    private List<EnemyType> _bosses = new List<EnemyType>() 
-    { 
-        EnemyType.BossShark 
-    };
-    public List<EnemyType> GetBossesTypes() => _bosses;
 
     [Header("Enemies")]
     [SerializeField]
     private EnemyConfig _greenJelly;
     [SerializeField]
     private EnemyConfig _pinkJelly;
-    private List<EnemyType> _enemies = new List<EnemyType>() 
-    { 
-        EnemyType.GreenJelly, 
-        EnemyType.PinkJelly 
-    };
-    public List<EnemyType> GetEnemiesTypes() => _enemies;
+    [SerializeField]
+    private EnemyConfig _snake;
 
     public Enemy Get(EnemyType type)
     {
         var config = GetConfig(type);
         Enemy instance = CreateGameObjectInstance(config.enemyPrefab);
         instance.OriginFactory = this;
-        instance.Init(config.Health, config.Damage, config.Scale, config.PatrolRange, config.AggroRange, config.MeleeRange, config.AttackCooldown, config.AggroCooldown);
+        instance.Init(config);
         return instance;
     }
 
@@ -43,6 +34,8 @@ public class EnemyFactory: GameObjectFactory
                 return _greenJelly;
             case EnemyType.PinkJelly:
                 return _pinkJelly;
+            case EnemyType.Snake:
+                return _snake;
             case EnemyType.BossShark:
                 return _bossShark;
         }

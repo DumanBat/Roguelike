@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Modules.Core;
 
 public class LootManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class LootManager : MonoBehaviour
     public ItemFactory GetItemFactory() => _itemFactory;
     /// TEMP 
     public WeaponType weaponToSpawn = WeaponType.AutoRifle;
-    public WeaponType startingWeapon = WeaponType.Sidearm;
+    private WeaponType startingWeapon = WeaponType.Sidearm;
     /// 
 
     public void Init()
@@ -49,13 +50,16 @@ public class LootManager : MonoBehaviour
 
         if (lootType == 0)
         {
-            var weaponType = _weaponFactory.GetAllWeapons()[Random.Range(0, _weaponFactory.GetAllWeapons().Count)];
+            var allWeapons = GameManager.Instance.levelManager.GetWeaponTypeHandler().GetAllWeapons();
+
+            var weaponType = allWeapons[Random.Range(0, allWeapons.Count)];
             var weapon = SpawnWeapon(weaponType, room.transform.position);
             weapon.onPickUp += room.OpenDoors;
         }
         else
         {
-            var itemType = _itemFactory.GetAllItems()[Random.Range(0, _itemFactory.GetAllItems().Count)];
+            var allItems = GameManager.Instance.levelManager.GetItemTypeHandler().GetAllItems();
+            var itemType = allItems[Random.Range(0, allItems.Count)];
             var item = SpawnItem(itemType, room.transform.position);
             item.onPickUp += room.OpenDoors;
         }
