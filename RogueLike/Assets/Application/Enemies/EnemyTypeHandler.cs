@@ -13,7 +13,8 @@ public class EnemyTypeHandler : MonoBehaviour
     {
         EnemyType.GreenJelly,
         EnemyType.PinkJelly,
-        EnemyType.Snake
+        EnemyType.Snake,
+        EnemyType.AutoSnake
     };
     public List<EnemyType> GetBossesTypes() => _bosses;
     public List<EnemyType> GetEnemiesTypes() => _enemies;

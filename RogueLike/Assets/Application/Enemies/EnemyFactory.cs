@@ -16,6 +16,8 @@ public class EnemyFactory: GameObjectFactory
     private EnemyConfig _pinkJelly;
     [SerializeField]
     private EnemyConfig _snake;
+    [SerializeField]
+    private EnemyConfig _autoSnake;
 
     public Enemy Get(EnemyType type)
     {
@@ -36,6 +38,8 @@ public class EnemyFactory: GameObjectFactory
                 return _pinkJelly;
             case EnemyType.Snake:
                 return _snake;
+            case EnemyType.AutoSnake:
+                return _autoSnake;
             case EnemyType.BossShark:
                 return _bossShark;
         }

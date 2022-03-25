@@ -1,8 +1,8 @@
 using System;
 
-public class Snake : Enemy
+public class AutoSnake : Enemy
 {
-    public override string enemyName => "snake";
+    public override string enemyName => "autoSnake";
 
     public override void Init()
     {
