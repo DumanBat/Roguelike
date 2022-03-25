@@ -15,11 +15,18 @@ public class Bullet : MonoBehaviour
     private ObjectPool<Bullet> _originPool;
 
     private int _damage;
+    private Vector2 _velocity;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
+    }
+
+    private void Update()
+    {
+        if (_rb.velocity.magnitude < _velocity.magnitude)
+            _originPool.Release(this);
     }
 
     public void Init(ObjectPool<Bullet> bulletPool, int damage, string senderTag)
@@ -34,6 +41,7 @@ public class Bullet : MonoBehaviour
         transform.position = position;
         transform.Rotate(new Vector3(0.0f, 0.0f, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) + 90.0f));
         _rb.velocity = velocity;
+        _velocity = _rb.velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,7 +56,6 @@ public class Bullet : MonoBehaviour
             {
                 var target = collision.gameObject.GetComponentInParent(typeof(IDamageable)) as IDamageable;
                 target.TakeDamage(_damage);
-                _originPool.Release(this);
             }
 
         if (PLAYER != _senderTag)
@@ -56,15 +63,6 @@ public class Bullet : MonoBehaviour
             {
                 var target = collision.gameObject.GetComponentInParent(typeof(IDamageable)) as IDamageable;
                 target.TakeDamage(_damage);
-                _originPool.Release(this);
             }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag(ENVIRONMENT))
-        {
-            _originPool.Release(this);
-        }
     }
 }
