@@ -71,6 +71,11 @@ public class Room : MonoBehaviour
 
     public void SetEnemiesToSpawn(List<EnemyType> enemiesToSpawn) => _enemiesToSpawn = enemiesToSpawn;
 
+    public void SetActiveSpawnedEnemies(bool val)
+    {
+        foreach (var enemy in _spawnedEnemies)
+            enemy.gameObject.SetActive(val);
+    }
     public List<Enemy> SpawnEnemies(List<EnemyType> enemiesToSpawn)
     {
         if (enemiesToSpawn.Count == 0) return null;
@@ -197,7 +202,7 @@ public class Room : MonoBehaviour
             StartCoroutine(SetActiveLights(true));
 
             if (roomType == RoomTemplates.RoomType.EnemyRoom)
-                SpawnEnemies(_enemiesToSpawn);
+                SetActiveSpawnedEnemies(true);
 
             Destroy(_roomCollider);
         }
