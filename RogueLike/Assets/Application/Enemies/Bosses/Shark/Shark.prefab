@@ -108,6 +108,7 @@ MonoBehaviour:
   _model: {fileID: 4287138186665844133}
   _animator: {fileID: 5193516211830422309}
   _enemyDetector: {fileID: 3685971019706333600}
+  _weaponController: {fileID: 0}
 --- !u!50 &2899474859931157444
 Rigidbody2D:
   serializedVersion: 4
@@ -245,7 +246,7 @@ Animator:
   m_GameObject: {fileID: 7521910154365300646}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0d3842a994495234589cb6d54c1215e2, type: 2}
+  m_Controller: {fileID: 9100000, guid: d5ee5d06df071704daf3b002fcbfe885, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

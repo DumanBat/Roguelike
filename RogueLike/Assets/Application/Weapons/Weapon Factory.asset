@@ -38,3 +38,15 @@ MonoBehaviour:
     ReloadingDuration: 1.5
     MagazineAmmoLeft: 12
     TotalAmmoLeft: 120
+  _none:
+    weaponPrefab: {fileID: 0}
+    IsAuto: 0
+    Damage: 5
+    BPM: 5
+    MagazineSize: 30
+    MaxTotalAmmoCapacity: 120
+    BulletsPerShot: 1
+    BulletVelocity: 10
+    ReloadingDuration: 3
+    MagazineAmmoLeft: 30
+    TotalAmmoLeft: 120

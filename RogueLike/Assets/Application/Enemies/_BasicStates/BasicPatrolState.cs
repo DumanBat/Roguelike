@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class JellyPatrolState : IState
+public class BasicPatrolState : IState
 {
     private readonly Enemy _enemy;
     private readonly NavMeshAgent _navMeshAgent;
@@ -14,7 +14,7 @@ public class JellyPatrolState : IState
     private Vector3 _lastPosition = Vector3.zero;
     private float _timeStuck;
 
-    public JellyPatrolState(Enemy enemy, NavMeshAgent navMeshAgent, Animator animator, float patrolRange)
+    public BasicPatrolState(Enemy enemy, NavMeshAgent navMeshAgent, Animator animator, float patrolRange)
     {
         _enemy = enemy;
         _navMeshAgent = navMeshAgent;
@@ -43,10 +43,7 @@ public class JellyPatrolState : IState
         _lastPosition = _enemy.transform.position;
     }
 
-    public void FixedTick()
-    {
-
-    }
+    public void FixedTick() { }
 
     private Vector3 GetPatrolPoint()
     {

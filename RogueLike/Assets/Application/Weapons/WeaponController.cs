@@ -40,10 +40,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void Shot(Vector3 aimPos)
-    {
-        _currentWeapon.Shot(aimPos);
-    }
+    public bool Shot(Vector3 aimPos) => _currentWeapon.Shot(aimPos);
 
     public void AddWeaponToInventory(Weapon weapon, bool isEnemyWeapon = false)
     {
@@ -112,7 +109,10 @@ public class WeaponController : MonoBehaviour
     public void Unload()
     {
         foreach (var weapon in _weapons)
+        {
+            weapon.CleanBulletPool();
             Destroy(weapon.gameObject);
+        }
 
         _weapons.Clear();
     }

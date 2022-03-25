@@ -57,7 +57,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
     public WeaponFactory OriginFactory { get; set; }
     private float _lastFired = -9999;
 
-    protected bool readyToShot
+    protected bool readyToShoot
     {
         get
         {
@@ -67,6 +67,7 @@ public abstract class Weapon : MonoBehaviour, IPickable
                 return false;
         }
     }
+    public bool IsReadyToShoot() => readyToShoot;
     protected bool reloading;
     public bool IsReloading() => reloading;
     public void StopReloading() => reloading = false;
@@ -127,12 +128,12 @@ public abstract class Weapon : MonoBehaviour, IPickable
         }, bullet => {
             Destroy(bullet.gameObject);
         },
-        false, _magazineSize, _magazineSize * 2);
+        false, _magazineSize, _magazineSize);
     }
 
     public virtual bool Shot(Vector2 aimPos)
     {
-        if (!readyToShot) return false;
+        if (!readyToShoot) return false;
 
         if (Time.time - _lastFired > _bpm)
         {
@@ -176,11 +177,25 @@ public abstract class Weapon : MonoBehaviour, IPickable
     {
         Destroy(weaponCollider);
         transform.SetParent(weaponsRoot);
-        //transform.SetSiblingIndex(weaponsRoot.childCount - 2);
         transform.localPosition = Vector3.zero;
         weaponInGameSprite.gameObject.SetActive(false);
 
         _weaponController = GetComponentInParent<WeaponController>();
+
+        var bulletLimit = Convert.ToInt16(_magazineSize / (4 * Math.Ceiling(_bulletVelocity / 30)));
+        var bulletPoolSize = bulletPool.CountAll < bulletLimit
+            ? bulletLimit
+            : 0;
+
+        if (bulletPoolSize > 0)
+        {
+            Bullet[] bullets = new Bullet[bulletPoolSize];
+            for (int i = 0; i < bulletPoolSize; i++)
+                bullets[i] = bulletPool.Get();
+
+            foreach (var bullet in bullets)
+                bulletPool.Release(bullet);
+        }
     }
 
     public WeaponConfig GetConfig()
@@ -202,5 +217,10 @@ public abstract class Weapon : MonoBehaviour, IPickable
         };
 
         return config;
+    }
+
+    public void CleanBulletPool()
+    {
+        bulletPool.Dispose();
     }
 }

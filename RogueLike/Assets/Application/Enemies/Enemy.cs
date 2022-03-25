@@ -40,6 +40,8 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         private set
         {
             _health = value > 0 ? value : 0;
+            if (_health <= 0)
+                onEnemyDie?.Invoke();
         }
     }
     public int Damage { get; private set; }
@@ -63,8 +65,6 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         _navMeshAgent.updateRotation = false;
         _navMeshAgent.updateUpAxis = false;
         _stateMachine = new StateMachine();
-
-        onEnemyDie += () => StartCoroutine(Die());
     }
 
     public virtual void Init(EnemyConfig config)
@@ -116,24 +116,6 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public virtual void TakeDamage(int value)
     {
         Health -= value;
-        if (_health <= 0)
-        {
-            onEnemyDie.Invoke();
-        }
-    }
-
-    public virtual IEnumerator Die()
-    {
-        _animator.SetBool(DeathHash, true);
-
-        while(_animator.GetCurrentAnimatorStateInfo(0).fullPathHash != DeathStateHash)
-            yield return null;
-
-        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-
-        if (OriginRoom != null)
-            OriginRoom.RemoveFromSpawnedEnemiesList(this);
-        Destroy(this.gameObject);
     }
 
     public Vector2 GetPosition()
@@ -151,5 +133,10 @@ public abstract class Enemy: MonoBehaviour, IDamageable
             return currentDirection > 0 ? 1 : 3;
         else
             return currentDirection > 0 ? 0 : 2;
+    }
+
+    public void SelfDestroy()
+    {
+        Destroy(gameObject);
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class JellyAttackState : IState
+public class BasicAttackMeleeState : IState
 {
     private static readonly int CHASE = Animator.StringToHash("isWalk");
     private static readonly int MELEE_ATTACK = Animator.StringToHash("doMeleeAttack");
@@ -15,7 +15,7 @@ public class JellyAttackState : IState
     private float _lastAttackedAt;
 
     private float _initialStoppingDistance;
-    public JellyAttackState(Enemy enemy, NavMeshAgent navMeshAgent, Animator animator, EnemyDetector enemyDetector)
+    public BasicAttackMeleeState(Enemy enemy, NavMeshAgent navMeshAgent, Animator animator, EnemyDetector enemyDetector)
     {
         _enemy = enemy;
         _navMeshAgent = navMeshAgent;

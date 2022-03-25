@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SnakeAggroState : IState
+public class BasicAggroRangeState : IState
 {
     private static readonly int CHASE = Animator.StringToHash("isWalk");
 
@@ -13,7 +13,7 @@ public class SnakeAggroState : IState
     private float _shootingRange;
     private float _initialStoppingDistance;
 
-    public SnakeAggroState(Enemy enemy, NavMeshAgent navMeshAgent, Animator animator, EnemyDetector enemyDetector, float shootingRange)
+    public BasicAggroRangeState(Enemy enemy, NavMeshAgent navMeshAgent, Animator animator, EnemyDetector enemyDetector, float shootingRange)
     {
         _enemy = enemy;
         _navMeshAgent = navMeshAgent;

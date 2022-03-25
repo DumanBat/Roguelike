@@ -9,11 +9,14 @@ public class Shark : Enemy
 
     public override void Init()
     {
-        var patrol = new JellyPatrolState(this, _navMeshAgent, _animator, PatrolRange);
-        var attack = new JellyAttackState(this, _navMeshAgent, _animator, _enemyDetector);
+        var patrol = new BasicPatrolState(this, _navMeshAgent, _animator, PatrolRange);
+        var attack = new BasicAttackMeleeState(this, _navMeshAgent, _animator, _enemyDetector);
+        var die = new BasicDieState(this, _animator);
 
-        _stateMachine.AddAnyTransition(attack, () => _enemyDetector.EnemyInRange);
+        At(patrol, attack, () => _enemyDetector.EnemyInRange);
         At(attack, patrol, () => _enemyDetector.EnemyInRange == false);
+
+        _stateMachine.AddAnyTransition(die, () => Health <= 0);
 
         void At(IState to, IState from, Func<bool> condition) => _stateMachine.AddTransition(to, from, condition);
 
