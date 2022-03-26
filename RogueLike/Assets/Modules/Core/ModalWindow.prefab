@@ -911,11 +911,63 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7176471
+      objectReference: {fileID: 0}
     - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
         type: 3}
       propertyPath: m_text
       value: NO
       objectReference: {fileID: 0}
+    - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ea0e8982e039c0347982bbf4edb265ed,
+        type: 2}
+    - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4178207701777074246, guid: ea0e8982e039c0347982bbf4edb265ed,
+        type: 2}
     - target: {fileID: 8821700072798558390, guid: c4a389ec59afd6948bc438137844c559,
         type: 3}
       propertyPath: m_Name
@@ -1059,11 +1111,63 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881890320617280906, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7176471
+      objectReference: {fileID: 0}
     - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
         type: 3}
       propertyPath: m_text
       value: YES
       objectReference: {fileID: 0}
+    - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ea0e8982e039c0347982bbf4edb265ed,
+        type: 2}
+    - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394373911772081584, guid: c4a389ec59afd6948bc438137844c559,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4178207701777074246, guid: ea0e8982e039c0347982bbf4edb265ed,
+        type: 2}
     - target: {fileID: 8821700072798558390, guid: c4a389ec59afd6948bc438137844c559,
         type: 3}
       propertyPath: m_Name
@@ -1215,8 +1319,40 @@ PrefabInstance:
     - target: {fileID: 4593714977532608459, guid: 121f252bc34394346b23bec4f5ea3520,
         type: 3}
       propertyPath: m_text
-      value: Do you wanna leave?
+      value: 'Do you wanna leave?
+
+        Piss your pants?
+
+        Shit and cum
+        maybe?'
       objectReference: {fileID: 0}
+    - target: {fileID: 4593714977532608459, guid: 121f252bc34394346b23bec4f5ea3520,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593714977532608459, guid: 121f252bc34394346b23bec4f5ea3520,
+        type: 3}
+      propertyPath: m_margin.w
+      value: -71.7204
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593714977532608459, guid: 121f252bc34394346b23bec4f5ea3520,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ea0e8982e039c0347982bbf4edb265ed,
+        type: 2}
+    - target: {fileID: 4593714977532608459, guid: 121f252bc34394346b23bec4f5ea3520,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593714977532608459, guid: 121f252bc34394346b23bec4f5ea3520,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4178207701777074246, guid: ea0e8982e039c0347982bbf4edb265ed,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 121f252bc34394346b23bec4f5ea3520, type: 3}
 --- !u!114 &6999580400123603059 stripped
