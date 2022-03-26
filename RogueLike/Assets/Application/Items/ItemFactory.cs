@@ -11,21 +11,6 @@ public class ItemFactory : GameObjectFactory
     [SerializeField]
     private ItemConfig _ammo;
 
-    private List<ItemType> _itemsTierThree = new List<ItemType>()
-    {
-        ItemType.Heart,
-        ItemType.Ammo
-    };
-    public List<ItemType> GetItemsTierThree() => _itemsTierThree;
-
-    public List<ItemType> GetAllItems()
-    {
-        var allItems = new List<ItemType>();
-        allItems.AddRange(_itemsTierThree);
-
-        return allItems;
-    }
-
     public Item Get(ItemType type)
     {
         var config = GetConfig(type);

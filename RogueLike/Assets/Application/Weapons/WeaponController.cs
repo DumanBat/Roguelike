@@ -8,6 +8,7 @@ using Modules.Core;
 public class WeaponController : MonoBehaviour
 {
     private WeaponView _currentView;
+    [SerializeField]
     private Weapon _currentWeapon;
     public Weapon GetCurrentWeapon() => _currentWeapon;
     private List<Weapon> _weapons = new List<Weapon>();
@@ -39,19 +40,18 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void Shot(Vector3 aimPos)
-    {
-        _currentWeapon.Shot(aimPos);
-    }
+    public bool Shot(Vector3 aimPos) => _currentWeapon.Shot(aimPos);
 
-    public void AddWeaponToInventory(Weapon weapon)
+    public void AddWeaponToInventory(Weapon weapon, bool isEnemyWeapon = false)
     {
         _weapons.Insert(0, weapon);
         weapon.AddToInventory(this.transform);
         if (_weapons.Count > 1)
             onWeaponChange.Invoke();
         SelectWeapon(0);
-        GameManager.Instance.inventoryController.AddWeaponSlot(weapon);
+
+        if (!isEnemyWeapon)
+            GameManager.Instance.inventoryController.AddWeaponSlot(weapon);
     }
 
     private void SelectWeapon(int index)
@@ -109,7 +109,10 @@ public class WeaponController : MonoBehaviour
     public void Unload()
     {
         foreach (var weapon in _weapons)
+        {
+            weapon.CleanBulletPool();
             Destroy(weapon.gameObject);
+        }
 
         _weapons.Clear();
     }

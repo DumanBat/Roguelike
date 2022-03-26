@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyConfig
 {
     public Enemy enemyPrefab;
+    public WeaponType WeaponType;
 
     [Range(0, 50)]
     public int Health = 10;
@@ -18,6 +19,8 @@ public class EnemyConfig
     public float AggroRange = 5.0f;
     [Range(1.0f, 5.0f)]
     public float MeleeRange = 1.5f;
+    [Range(1.0f, 100.0f)]
+    public float ShootingRange = 3f;
     [Range(0.5f, 5.0f)]
     public float AttackCooldown = 1f;
     [Range(0.5f, 10.0f)]

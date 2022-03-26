@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using TMPro;
+using Modules.Core;
 
 public abstract class Enemy: MonoBehaviour, IDamageable
 {
+    private static readonly int DeathHash = Animator.StringToHash("isDie");
+    private static readonly int DeathStateHash = Animator.StringToHash("Base Layer.Die");
+
     [SerializeField]
     private Transform _model;
 
@@ -21,6 +24,9 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     protected StateMachine _stateMachine;
     [SerializeField]
     protected EnemyDetector _enemyDetector;
+    [SerializeField]
+    protected WeaponController _weaponController;
+    protected WeaponType _weaponType;
 
     protected Vector2 _spawnPosition;
 
@@ -34,6 +40,8 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         private set
         {
             _health = value > 0 ? value : 0;
+            if (_health <= 0)
+                onEnemyDie?.Invoke();
         }
     }
     public int Damage { get; private set; }
@@ -41,14 +49,13 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public float PatrolRange { get; private set; }
     public float AggroRange { get; private set; }
     public float MeleeRange { get; private set; }
+    public float ShootingRange { get; private set; }
     public float AttackCooldown { get; private set; }
     public float AggroCooldown { get; private set; }
 
     public Action onEnemyDie;
-    private static readonly int DeathHash = Animator.StringToHash("isDie");
-    private static readonly int DeathStateHash = Animator.StringToHash("Base Layer.Die");
-    public TextMeshPro healthDisplay;
-
+    public IDamageable targetToShoot { get; set; }
+    public bool HasTargetToShoot() => targetToShoot != null;
 
     public virtual void Awake()
     {
@@ -58,23 +65,29 @@ public abstract class Enemy: MonoBehaviour, IDamageable
         _navMeshAgent.updateRotation = false;
         _navMeshAgent.updateUpAxis = false;
         _stateMachine = new StateMachine();
-
-        onEnemyDie += () => StartCoroutine(Die());
     }
 
-    public virtual void Init(int health, int damage, float scale, float patrolRange, 
-        float aggroRange, float meleeRange, float attackCooldown, float aggroCooldown)
+    public virtual void Init(EnemyConfig config)
     {
-        Health = health;
-        Damage = damage;
-        Scale = scale;
-        PatrolRange = patrolRange;
-        AggroRange = aggroRange;
-        MeleeRange = meleeRange;
-        AttackCooldown = attackCooldown;
-        AggroCooldown = aggroCooldown;
-        _enemyDetector.Init(aggroRange, meleeRange, aggroCooldown);
-        _model.localScale = new Vector3(scale, scale, scale);
+        _weaponType = config.WeaponType;
+        if (_weaponType != WeaponType.None)
+        {
+            var weapon = GameManager.Instance.levelManager.GetLevelConfigurator().GetLootManager().SpawnWeapon(_weaponType, Vector3.zero);
+            _weaponController.AddWeaponToInventory(weapon, true);
+        }
+
+        Health = config.Health;
+        Damage = config.Damage;
+        Scale = config.Scale;
+        PatrolRange = config.PatrolRange;
+        AggroRange = config.AggroRange;
+        MeleeRange = config.MeleeRange;
+        ShootingRange = config.ShootingRange;
+        AttackCooldown = config.AttackCooldown;
+        AggroCooldown = config.AggroCooldown;
+
+        _enemyDetector.Init(AggroRange, MeleeRange, AggroCooldown);
+        _model.localScale = new Vector3(Scale, Scale, Scale);
 
         Init();
     }
@@ -87,7 +100,11 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public void Update()
     {
         _stateMachine.Tick();
-        healthDisplay.text = _health.ToString();
+    }
+
+    public void FixedUpdate()
+    {
+        _stateMachine.FixedTick();
     }
 
     public virtual void Spawn(Vector2 position)
@@ -99,28 +116,27 @@ public abstract class Enemy: MonoBehaviour, IDamageable
     public virtual void TakeDamage(int value)
     {
         Health -= value;
-        if (_health <= 0)
-        {
-            onEnemyDie.Invoke();
-        }
-    }
-
-    public virtual IEnumerator Die()
-    {
-        _animator.SetBool(DeathHash, true);
-
-        while(_animator.GetCurrentAnimatorStateInfo(0).fullPathHash != DeathStateHash)
-            yield return null;
-
-        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-
-        if (OriginRoom != null)
-            OriginRoom.RemoveFromSpawnedEnemiesList(this);
-        Destroy(this.gameObject);
     }
 
     public Vector2 GetPosition()
     {
         return _rb.position;
+    }
+
+    public int GetDirection(Vector3 position)
+    {
+        var directionX = position.normalized.x;
+        var directionY = position.normalized.y;
+        var currentDirection = Mathf.Abs(directionX) > Mathf.Abs(directionY) ? directionX : directionY;
+
+        if (currentDirection == directionX)
+            return currentDirection > 0 ? 1 : 3;
+        else
+            return currentDirection > 0 ? 0 : 2;
+    }
+
+    public void SelfDestroy()
+    {
+        Destroy(gameObject);
     }
 }

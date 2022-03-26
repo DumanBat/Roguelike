@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class JellyAttackState : IState
+public class BasicAttackMeleeState : IState
 {
+    private static readonly int CHASE = Animator.StringToHash("isWalk");
+    private static readonly int MELEE_ATTACK = Animator.StringToHash("doMeleeAttack");
+
     private readonly Enemy _enemy;
     private readonly NavMeshAgent _navMeshAgent;
     private readonly Animator _animator;
@@ -12,11 +13,9 @@ public class JellyAttackState : IState
 
     private float _cooldown;
     private float _lastAttackedAt;
-    private static readonly int ChaseHash = Animator.StringToHash("isWalk");
-    private static readonly int MeleeAttackHash = Animator.StringToHash("doMeleeAttack");
 
     private float _initialStoppingDistance;
-    public JellyAttackState(Enemy enemy, NavMeshAgent navMeshAgent, Animator animator, EnemyDetector enemyDetector)
+    public BasicAttackMeleeState(Enemy enemy, NavMeshAgent navMeshAgent, Animator animator, EnemyDetector enemyDetector)
     {
         _enemy = enemy;
         _navMeshAgent = navMeshAgent;
@@ -30,15 +29,19 @@ public class JellyAttackState : IState
     {
         _navMeshAgent.SetDestination(_enemyDetector.detectedTarget.GetPosition());
 
-        if (_enemyDetector._meleeDetector.enemyInMeleeRange)
+        if (_enemyDetector.GetMeleeDetector().enemyInMeleeRange)
         {
             if (Time.time > _lastAttackedAt + _cooldown)
             {
                 _enemyDetector.detectedTarget.TakeDamage(_enemy.Damage);
-                _animator.SetTrigger(MeleeAttackHash);
+                _animator.SetTrigger(MELEE_ATTACK);
                 _lastAttackedAt = Time.time;
             }
         }
+    }
+    public void FixedTick()
+    {
+
     }
 
     public void OnEnter()
@@ -46,13 +49,13 @@ public class JellyAttackState : IState
         _navMeshAgent.enabled = true;
         _navMeshAgent.speed = 2.5f;
         _navMeshAgent.stoppingDistance = _enemy.MeleeRange;
-        _animator.SetBool(ChaseHash, true);
+        _animator.SetBool(CHASE, true);
     }
 
     public void OnExit()
     {
         _navMeshAgent.stoppingDistance = _initialStoppingDistance;
         _navMeshAgent.enabled = false;
-        _animator.SetBool(ChaseHash, false);
+        _animator.SetBool(CHASE, false);
     }
 }

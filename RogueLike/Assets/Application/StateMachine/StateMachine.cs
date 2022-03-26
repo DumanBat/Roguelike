@@ -22,6 +22,8 @@ public class StateMachine
         _currentState?.Tick();
     }
 
+    public void FixedTick() => _currentState?.FixedTick();
+
     public void SetState(IState state)
     {
         if (state == _currentState)

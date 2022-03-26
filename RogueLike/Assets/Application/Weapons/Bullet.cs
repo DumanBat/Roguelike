@@ -5,13 +5,17 @@ using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
+    private static readonly string DAMAGEABLE = "Damageable";
+    private static readonly string ENVIRONMENT = "Environment";
+    private static readonly string PLAYER = "Player";
+    private string _senderTag;
+
     private Rigidbody2D _rb;
     private CapsuleCollider2D _collider;
     private ObjectPool<Bullet> _originPool;
 
     private int _damage;
-    private static readonly string _tag = "Damageable";
-    private static readonly string _environmentTag = "Environment";
+    private Vector2 _velocity;
 
     private void Awake()
     {
@@ -19,10 +23,17 @@ public class Bullet : MonoBehaviour
         _collider = GetComponent<CapsuleCollider2D>();
     }
 
-    public void Init(ObjectPool<Bullet> bulletPool, int damage)
+    private void Update()
+    {
+        if (_rb.velocity.magnitude < _velocity.magnitude)
+            _originPool.Release(this);
+    }
+
+    public void Init(ObjectPool<Bullet> bulletPool, int damage, string senderTag)
     {
         _originPool = bulletPool;
         _damage = damage;
+        _senderTag = senderTag;
     }
 
     public void Shot(Vector3 position, Vector3 direction, Vector2 velocity)
@@ -30,28 +41,28 @@ public class Bullet : MonoBehaviour
         transform.position = position;
         transform.Rotate(new Vector3(0.0f, 0.0f, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) + 90.0f));
         _rb.velocity = velocity;
+        _velocity = _rb.velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(_tag))
+        if (collision.gameObject.CompareTag(ENVIRONMENT))
         {
-            var target = collision.gameObject.GetComponentInParent(typeof(IDamageable)) as IDamageable;
-            target.TakeDamage(_damage);
             _originPool.Release(this);
         }
 
-        if (collision.gameObject.CompareTag(_environmentTag))
-        {
-            _originPool.Release(this);
-        }
-    }
+        if (DAMAGEABLE != _senderTag)
+            if (collision.gameObject.CompareTag(DAMAGEABLE))
+            {
+                var target = collision.gameObject.GetComponentInParent(typeof(IDamageable)) as IDamageable;
+                target.TakeDamage(_damage);
+            }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag(_environmentTag))
-        {
-            _originPool.Release(this);
-        }
+        if (PLAYER != _senderTag)
+            if (collision.gameObject.CompareTag(PLAYER))
+            {
+                var target = collision.gameObject.GetComponentInParent(typeof(IDamageable)) as IDamageable;
+                target.TakeDamage(_damage);
+            }
     }
 }
